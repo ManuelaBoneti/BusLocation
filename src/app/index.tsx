@@ -1,15 +1,16 @@
+import { router } from 'expo-router';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 export default function Index() {
     function cadastro(){
-        router.navigate("")
+        router.navigate("/telaInicial")
     }
 
     return(
         <View style={styles.container}>
             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
-            <TouchableOpacity style={styles.button} onPress={}>
-                <Text style={styles.textButton} >Iniciar</Text>
+            <TouchableOpacity style={styles.button} onPress={cadastro}>
+                <Text style={styles.textButton}>Entrar</Text>
             </TouchableOpacity>
         </View>
     )
