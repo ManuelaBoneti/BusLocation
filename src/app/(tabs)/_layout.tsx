@@ -15,18 +15,28 @@ export default function TabsLayout(){
                     tabBarLabel: "Criar conta",
                     tabBarActiveTintColor: "#black",
                     tabBarIcon: ({color, size}) => <MaterialIcons
-                    name="list" color={color} size={size}/>,
+                    name="person" color={color} size={size}/>,
                     tabBarItemStyle: {flex: 1}
                 }}
             />
+
             <Tabs.Screen
-                name="telaInicial"
+                name="esqueciSenha"
                 options={{
-                    tabBarLabel: "Login",
+                    tabBarLabel: "Esqueci a senha",
                     tabBarActiveTintColor: "#black",
                     tabBarIcon: ({color, size}) => <MaterialIcons
-                    name="home" color={color} size={size}/>,
+                    name="cached" color={color} size={size}/>,
                     tabBarItemStyle: {flex: 1}
+                }}
+            />
+
+            <Tabs.Screen
+                name="index"
+                options={{
+                    tabBarLabel: "",
+                    headerShown: false,
+                    tabBarItemStyle: {display: "none"}
                 }}
             />
         </Tabs>
