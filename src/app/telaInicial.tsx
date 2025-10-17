@@ -2,7 +2,7 @@ import {Text, View, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-
 import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
-
+// No additional imports or code are needed at this placeholder.
 export default function Index() {
     const router = useRouter();
 
@@ -12,6 +12,10 @@ export default function Index() {
 
     function criarCadastro (){
         router.navigate("/(tabs)/criarConta")
+    }
+
+    function menuPrincipal(){
+        router.navigate("/(tabs)/menuPrincipal")
     }
 
     return(
@@ -28,7 +32,7 @@ export default function Index() {
                     <TextInput style={styles.textInput}placeholder="Senha:" />
                 </View>
 
-                <TouchableOpacity style={styles.button} >
+                <TouchableOpacity onPress={menuPrincipal} style={styles.button} >
                     <Text style={styles.textButton}>Login</Text>
                 </TouchableOpacity>
 
@@ -56,7 +60,7 @@ const styles = StyleSheet.create({
     tela : {
         width: 340,
         height: 370,
-        marginTop: 80,
+        marginTop: 40,
     },
     section: {
         backgroundColor: '#ffff',
@@ -102,7 +106,7 @@ const styles = StyleSheet.create({
     },
  
     button : {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#677db0",
         borderRadius: 12,
         paddingVertical: 12,
         paddingHorizontal: 36,

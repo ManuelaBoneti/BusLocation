@@ -1,13 +1,39 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
 
 export default function criarConta(){
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>Criar conta</Text>
             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
             <View style={styles.section}>
+                <Text style={styles.title}>Criar conta</Text>
 
+                <View style={styles.inputContainer}>
+                    <MaterialIcons style={styles.icon} name='email' size={16} />
+                    <TextInput style={styles.textInput} placeholder="Email:" />
+                </View>
+
+                <View style={styles.inputContainer}>
+                    <MaterialIcons style={styles.icon} name='person' size={16} />
+                    <TextInput style={styles.textInput} placeholder="Nome completo:" />
+                </View>
+
+                <View style={styles.inputContainer}>
+                    <MaterialIcons style={styles.icon} name='person' size={16} />
+                    <TextInput style={styles.textInput} placeholder="Nome do usuário:" />
+                </View>
+
+                <View style={styles.inputContainer}>
+                    <MaterialIcons style={styles.icon} name='password' size={16} />
+                    <TextInput style={styles.textInput} placeholder="Senha:" />
+                </View>
+
+                <TouchableOpacity style={styles.button} >
+                    <Text style={styles.textButton}>Login</Text>
+                </TouchableOpacity>
+                
             </View>
+            
         </View>
     )
 }
@@ -21,7 +47,7 @@ const styles = StyleSheet.create({
     tela : {
         width: 340,
         height: 370,
-        marginTop: 80,
+        marginTop: 40,
     },
     section: {
         backgroundColor: '#ffff',
@@ -33,8 +59,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 2,
         width: 300,
-        height: 360,
-        marginBlock: -70,
+        height: 450,
+        marginBlock: -90,
     },
     inputContainer : {
         flexDirection: 'row',
@@ -58,19 +84,19 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 12,
-        marginTop: 40,
-        color: "#fff",
+        marginTop: 15,
+        color: "black",
         fontWeight: 'bold',
         textDecorationLine: 'underline',
         textDecorationStyle: 'solid',
         textAlign: 'center',
     },
     button : {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#677db0",
         borderRadius: 12,
         paddingVertical: 12,
         paddingHorizontal: 36,
-        marginTop: 40,
+        marginTop: 10,
         elevation: 4,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
@@ -79,7 +105,7 @@ const styles = StyleSheet.create({
     textButton : {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#000000',
+        color: '#fff',
         textAlign: 'center',
         letterSpacing: 1,
         textTransform: 'uppercase'
