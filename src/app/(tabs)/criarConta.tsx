@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     tela : {
         width: 340,
         height: 370,
-        marginTop: 80,
+        marginTop: 40,
     },
     section: {
         backgroundColor: '#ffff',

@@ -15,6 +15,10 @@ export default function Index() {
         router.navigate("/(tabs)/criarConta")
     }
 
+    function menuPrincipal(){
+        router.navigate("/(tabs)/menuPrincipal")
+    }
+
     return(
         <View style={styles.container}>
             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
@@ -29,7 +33,7 @@ export default function Index() {
                     <TextInput style={styles.textInput}placeholder="Senha:" />
                 </View>
 
-                <TouchableOpacity style={styles.button} >
+                <TouchableOpacity onPress={menuPrincipal} style={styles.button} >
                     <Text style={styles.textButton}>Login</Text>
                 </TouchableOpacity>
 
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     tela : {
         width: 340,
         height: 370,
-        marginTop: 80,
+        marginTop: 40,
     },
     section: {
         backgroundColor: '#ffff',
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
     },
  
     button : {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#677db0",
         borderRadius: 12,
         paddingVertical: 12,
         paddingHorizontal: 36,
