@@ -23,6 +23,7 @@ export default function Index() {
         <View style={styles.container}>
             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
             <View style={styles.section}>
+                <Text style={styles.title}>Entrar</Text>
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='email' size={16} />
                     <TextInput style={styles.textInput} placeholder="Email:"  />
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 12,
-        marginTop: 40,
+        marginTop: 10,
         color: "#033b85",
         fontWeight: 'bold',
         textDecorationLine: 'underline',
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         paddingVertical: 12,
         paddingHorizontal: 36,
-        marginTop: 40,
+        marginTop: 30,
         elevation: 4,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     textButton : {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#000000',
+        color: '#fff',
         textAlign: 'center',
         letterSpacing: 1,
         textTransform: 'uppercase'

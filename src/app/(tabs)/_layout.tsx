@@ -9,25 +9,22 @@ export default function TabsLayout(){
                 flexDirection: "row"
             }
         }}>
+
             <Tabs.Screen
                 name="criarConta"
                 options={{
-                    tabBarLabel: "Criar conta",
-                    tabBarActiveTintColor: "#black",
-                    tabBarIcon: ({color, size}) => <MaterialIcons
-                    name="person" color={color} size={size}/>,
-                    tabBarItemStyle: {flex: 1}
+                    tabBarLabel: "",
+                    headerShown: false,
+                    tabBarItemStyle: {display: "none"}
                 }}
             />
 
             <Tabs.Screen
                 name="esqueciSenha"
                 options={{
-                    tabBarLabel: "Esqueci a senha",
-                    tabBarActiveTintColor: "#black",
-                    tabBarIcon: ({color, size}) => <MaterialIcons
-                    name="password" color={color} size={size}/>,
-                    tabBarItemStyle: {flex: 1}
+                    tabBarLabel: "",
+                    headerShown: false,
+                    tabBarItemStyle: {display: "none"},
                 }}
             />
 
@@ -37,6 +34,14 @@ export default function TabsLayout(){
                     tabBarLabel: "",
                     headerShown: false,
                     tabBarItemStyle: {display: "none"}
+                }}
+            />
+
+            <Tabs.Screen
+                name="menuPrincipal"
+                options={{
+                    tabBarLabel: "Menu principal",
+            
                 }}
             />
         </Tabs>

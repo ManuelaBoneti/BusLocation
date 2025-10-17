@@ -1,13 +1,16 @@
 import { MaterialIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
 
 export default function criarConta(){
+    function menuPrincipal(){
+        router.navigate("/(tabs)/menuPrincipal")
+    }
+
     return(
         <View style={styles.container}>
             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
             <View style={styles.section}>
-                <Text style={styles.title}>Criar conta</Text>
-
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='email' size={16} />
                     <TextInput style={styles.textInput} placeholder="Email:" />
@@ -28,7 +31,7 @@ export default function criarConta(){
                     <TextInput style={styles.textInput} placeholder="Senha:" />
                 </View>
 
-                <TouchableOpacity style={styles.button} >
+                <TouchableOpacity onPress={menuPrincipal}style={styles.button} >
                     <Text style={styles.textButton}>Login</Text>
                 </TouchableOpacity>
                 
@@ -83,11 +86,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     title: {
-        fontSize: 12,
+        fontSize: 18,
         marginTop: 15,
         color: "black",
         fontWeight: 'bold',
-        textDecorationLine: 'underline',
         textDecorationStyle: 'solid',
         textAlign: 'center',
     },
