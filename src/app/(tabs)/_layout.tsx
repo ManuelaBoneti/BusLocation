@@ -26,7 +26,7 @@ export default function TabsLayout(){
                     tabBarLabel: "Esqueci a senha",
                     tabBarActiveTintColor: "#black",
                     tabBarIcon: ({color, size}) => <MaterialIcons
-                    name="cached" color={color} size={size}/>,
+                    name="password" color={color} size={size}/>,
                     tabBarItemStyle: {flex: 1}
                 }}
             />
