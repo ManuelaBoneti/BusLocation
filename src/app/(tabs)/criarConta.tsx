@@ -1,3 +1,4 @@
+import { Back } from "@/components/Back";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
@@ -9,6 +10,9 @@ export default function criarConta(){
 
     return(
         <View style={styles.container}>
+
+        <Back /> 
+
             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
             <View style={styles.section}>
                 <View style={styles.inputContainer}>
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
     tela : {
         width: 340,
         height: 370,
-        marginTop: 40,
+        marginBottom: -10,
     },
     section: {
         backgroundColor: '#ffff',
@@ -75,9 +79,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 20,
         backgroundColor: '#fff',
-    },
-    icon : {
-        marginLeft: 5,
     },
     textInput : {
         flex: 1,
