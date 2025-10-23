@@ -51,6 +51,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: "#033b85",
     },
+    icon: {
+        margin: 10
+    },
     tela : {
         width: 340,
         height: 370,
