@@ -44,6 +44,14 @@ export default function TabsLayout(){
             
                 }}
             />
+
+            <Tabs.Screen
+                name="codigoSenha"
+                options={{
+                    tabBarLabel: "",
+
+                }}
+            />
         </Tabs>
     )
 }
