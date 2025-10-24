@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { FaMapLocationDot } from "react-icons/fa6";
+import { MaterialIcons } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 
 
@@ -12,23 +14,26 @@ export default function menuPrincipal(){
             </View>
 
             <View style={styles.caixaIcon}>
-            {/* <MaterialCommunityIcons style={styles.icon} name='' size={16} /> */}
+            <FontAwesome6 name="map-location-dot" size={60} color={'white'}/>
             <Text style={styles.subtitulo}>Trajeto</Text>
             </View>
 
             <View style={styles.caixaIcon}>
-            <FontAwesome6 name="map-location-dot" size={24}/>
-            {/* <FontAwesomeIcon  style={styles.icon} icon={faMapPin} size={16} /> */}
+            <TouchableOpacity onPress={()=> 
+                router.navigate('/(drawer)/visualizacaoOnibus')
+            }>
+                <FontAwesome6 name="bus" size={60} color={'white'}/>
+            </TouchableOpacity>
             <Text style={styles.subtitulo}>Visualização Onibus</Text>
             </View>
 
             <View style={styles.caixaIcon}>
-            {/* <MaterialIcons style={styles.icon} name='location' size={16} /> */}
+            <FontAwesome6 name="star" size={60} color={'white'}/>
             <Text style={styles.subtitulo}>Avaliações</Text>
             </View>
 
             <View style={styles.caixaIcon}>
-            {/* <MaterialIcons style={styles.icon} name='location' size={16} /> */}
+            <MaterialIcons style={styles.icon} name='home' size={16} />
             <Text style={styles.subtitulo}>Chat</Text>
             </View>
 
