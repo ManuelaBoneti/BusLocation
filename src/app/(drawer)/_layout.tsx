@@ -32,8 +32,8 @@ export default function Layout() {
                     drawerLabelStyle: {
                         color: "#fff"
                     },
-                    drawerIcon: ({ color, size }) => (
-                        <Ionicons name="bus-outline" size={size} color={color} />
+                    drawerIcon: () => (
+                        <Ionicons name="bus-outline"  />
                       ),
                    
                 }}
@@ -47,8 +47,8 @@ export default function Layout() {
                     drawerLabelStyle: {
                         color: "#fff"
                     },
-                    drawerIcon: ({ color, size }) => (
-                        <Ionicons name="card-outline" size={size} color={color} />
+                    drawerIcon: () => (
+                        <Ionicons name="card-outline"  />
                       ),
                 }}
             />

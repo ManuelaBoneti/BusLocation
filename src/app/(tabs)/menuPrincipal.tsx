@@ -16,7 +16,9 @@ export default function menuPrincipal() {
 
             <View style={styles.gridContainer}>
                 <View style={styles.caixaIcon}>
-                    <FontAwesome6 name="map-location-dot" size={60} color={'white'} />
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/trajeto')}>
+                        <FontAwesome6 name="map-location-dot" size={60} color={'white'} />
+                    </TouchableOpacity>
                     <Text style={styles.subtitulo}>Trajeto</Text>
                 </View>
 
