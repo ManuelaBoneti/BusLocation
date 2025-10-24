@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { FaMapLocationDot } from "react-icons/fa6";
+import { Back } from "@/components/Back";
 
 
 
 export default function menuPrincipal(){
     return(
         <View style={styles.container}>
+            <Back />
             <View >
                 <Text style={styles.title}>MENU</Text>
             </View>
