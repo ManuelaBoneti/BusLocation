@@ -1,5 +1,5 @@
-import { MaterialIcons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { router, Tabs } from "expo-router";
 
 export default function TabsLayout(){
     return (
@@ -22,9 +22,8 @@ export default function TabsLayout(){
             <Tabs.Screen
                 name="esqueciSenha"
                 options={{
-                    tabBarLabel: "",
-                    headerShown: false,
-                    tabBarItemStyle: {display: "none"},
+                    tabBarItemStyle: { display: "none" },
+                    title: ""
                 }}
             />
 
@@ -34,14 +33,28 @@ export default function TabsLayout(){
                     tabBarLabel: "",
                     headerShown: false,
                     tabBarItemStyle: {display: "none"}
+                    
                 }}
+                
             />
 
             <Tabs.Screen
                 name="menuPrincipal"
                 options={{
                     tabBarLabel: "Menu principal",
+                    tabBarIcon: ({color, size}) => <MaterialIcons 
+                    name="home" color={color} size={size} />
             
+                }}
+            />
+
+            <Tabs.Screen
+                name="codigoSenha"
+                options={{
+                    tabBarLabel: "",
+                    headerShown: false,
+                    tabBarItemStyle: {display: "none"}
+
                 }}
             />
         </Tabs>
