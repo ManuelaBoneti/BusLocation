@@ -19,11 +19,12 @@ export const Back = () => {
 
 const styles = StyleSheet.create({
     containerIcon: {
-        marginRight: 350,
-        marginBottom: 50
+        position: 'absolute', 
+        top: 0, 
+        left: 20
     },
     icon: {
-        marginTop: -150
+        marginTop: 60
     },
 
 });
