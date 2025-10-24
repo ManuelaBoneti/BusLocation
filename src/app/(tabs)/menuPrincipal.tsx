@@ -3,84 +3,99 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { Back } from "@/components/Back";
 import { router } from "expo-router";
+<<<<<<< HEAD
 import { MaterialIcons } from "@expo/vector-icons";
+=======
+import Icon from 'react-native-vector-icons/MaterialIcons';
+>>>>>>> ff88d2c537f7004d5e048437a3721f9308fd8f12
 
 
-
-export default function menuPrincipal(){
-    return(
+export default function menuPrincipal() {
+    return (
         <View style={styles.container}>
+<<<<<<< HEAD
             <Back />
             <View >
                 <Text style={styles.title}>MENU</Text>
             </View>
+=======
+            <Text style={styles.title}>MENU</Text>
+>>>>>>> ff88d2c537f7004d5e048437a3721f9308fd8f12
 
-            <View style={styles.caixaIcon}>
-            <FontAwesome6 name="map-location-dot" size={60} color={'white'}/>
-            <Text style={styles.subtitulo}>Trajeto</Text>
+            <View style={styles.gridContainer}>
+                <View style={styles.caixaIcon}>
+                    <FontAwesome6 name="map-location-dot" size={60} color={'white'} />
+                    <Text style={styles.subtitulo}>Trajeto</Text>
+                </View>
+
+                <View style={styles.caixaIcon}>
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/visualizacaoOnibus')}>
+                        <FontAwesome6 name="bus" size={60} color={'white'} />
+                    </TouchableOpacity>
+                    <Text style={styles.subtitulo}>Visualização</Text>
+                </View>
+
+                <View style={styles.caixaIcon}>
+                    <FontAwesome6 name="star" size={60} color={'white'} />
+                    <Text style={styles.subtitulo}>Avaliações</Text>
+                </View>
+
+                <View style={styles.caixaIcon}>
+                    <Icon name="chat" size={60} color="#fff" />
+                    <Text style={styles.subtitulo}>Chat</Text>
+                </View>
+
+                <View style={styles.caixaIcon}>
+                    <FontAwesome6 name="address-card" size={60} color={'white'} />
+                    <Text style={styles.subtitulo}>Passe Virtual</Text>
+                </View>
+
+               
+                    <View style={styles.caixaIcon}>
+                    <TouchableOpacity  onPress={() => router.navigate('/(drawer)/CadastroPasse')}>
+                        <FontAwesome6 name="id-card" size={60} color={'white'} />
+                        </TouchableOpacity>
+                        <Text style={styles.subtitulo}>Cadastro do Passe</Text>
+                    </View>
+               
             </View>
-
-            <View style={styles.caixaIcon}>
-            <TouchableOpacity onPress={()=> 
-                router.navigate('/(drawer)/visualizacaoOnibus')
-            }>
-                <FontAwesome6 name="bus" size={60} color={'white'}/>
-            </TouchableOpacity>
-            <Text style={styles.subtitulo}>Visualização Onibus</Text>
-            </View>
-
-            <View style={styles.caixaIcon}>
-            <FontAwesome6 name="star" size={60} color={'white'}/>
-            <Text style={styles.subtitulo}>Avaliações</Text>
-            </View>
-
-            <View style={styles.caixaIcon}>
-            <MaterialIcons style={styles.icon} name='home' size={16} />
-            <Text style={styles.subtitulo}>Chat</Text>
-            </View>
-
-            <View style={styles.caixaIcon}>
-            {/* <MaterialIcons style={styles.icon} name='location' size={16} /> */}
-            <Text style={styles.subtitulo}>Passe virtual</Text>
-            </View>
-
-            <View style={styles.caixaIcon}>
-            {/* <MaterialIcons style={styles.icon} name='location' size={16} /> */}
-            <Text style={styles.subtitulo}>Cadastro do passe</Text>
-            </View>
-
-            
         </View>
-    )
+    );
 }
-
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#033b85"
+        backgroundColor: "#033b85",
+        alignItems: "center",
+        paddingTop: 100,
     },
-    title:{
-        fontSize: 30,
+    title: {
+        fontSize: 36,
         color: "#fff",
-        fontWeight: 'bold',
-
+        fontWeight: "bold",
+        marginBottom: 40, 
     },
-    subtitulo:{
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#fff',
-
+    gridContainer: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
     },
-    caixaIcon:{
-        flex: 1,
-        marginLeft: 40,
-        marginTop: 20,
-       
+    caixaIcon: {
+        width: "42%", 
+        height: 180,
+        alignItems: "center",
+        justifyContent: "center",
+        margin: 10,
+        backgroundColor: "rgba(255,255,255,0.1)",
+        borderRadius: 15,
+        paddingVertical: 20,
     },
-    icon:{
-        marginBottom: 10,
-    }
-
-
-})
+    subtitulo: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#fff",
+        marginTop: 12,
+        textAlign: "center",
+    },
+});
