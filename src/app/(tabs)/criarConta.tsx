@@ -13,32 +13,30 @@ export default function criarConta(){
 
         <Back /> 
 
-            <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
-            <View style={styles.section}>
-                <View style={styles.inputContainer}>
-                    <MaterialIcons style={styles.icon} name='email' size={16} />
-                    <TextInput style={styles.textInput} placeholder="Email:" />
-                </View>
-
-                <View style={styles.inputContainer}>
-                    <MaterialIcons style={styles.icon} name='person' size={16} />
-                    <TextInput style={styles.textInput} placeholder="Nome completo:" />
-                </View>
-
-                <View style={styles.inputContainer}>
-                    <MaterialIcons style={styles.icon} name='person' size={16} />
-                    <TextInput style={styles.textInput} placeholder="Nome do usuário:" />
-                </View>
-
-                <View style={styles.inputContainer}>
-                    <MaterialIcons style={styles.icon} name='password' size={16} />
-                    <TextInput style={styles.textInput} placeholder="Senha:" />
-                </View>
-
-                <TouchableOpacity onPress={menuPrincipal}style={styles.button} >
-                    <Text style={styles.textButton}>Login</Text>
-                </TouchableOpacity>
+            <View style={styles.content}>
+                <Image style={styles.tela} source={require('@/assets/telaInicial.png')} />
+                <View style={styles.section}>
+                    <View style={styles.inputContainer}>
+                        <MaterialIcons  name='email' size={16} />
+                        <TextInput style={styles.textInput} placeholder="Email:" />
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <MaterialIcons  name='person' size={16} />
+                        <TextInput style={styles.textInput} placeholder="Nome completo:" />
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <MaterialIcons  name='person' size={16} />
+                        <TextInput style={styles.textInput} placeholder="Nome do usuário:" />
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <MaterialIcons name='password' size={16} />
+                        <TextInput style={styles.textInput} placeholder="Senha:" />
+                    </View>
+                    <TouchableOpacity onPress={menuPrincipal}style={styles.button} >
+                        <Text style={styles.textButton}>Login</Text>
+                    </TouchableOpacity>
                 
+                </View>
             </View>
             
         </View>
@@ -51,13 +49,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: "#033b85",
     },
-    icon: {
-        margin: 10
+    content: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
     },
     tela : {
         width: 340,
         height: 370,
-        marginBottom: -10,
+        marginBottom: -90,
+        marginTop: 20
     },
     section: {
         backgroundColor: '#ffff',
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         width: 300,
         height: 450,
-        marginBlock: -90,
     },
     inputContainer : {
         flexDirection: 'row',

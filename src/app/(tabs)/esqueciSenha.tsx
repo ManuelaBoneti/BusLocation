@@ -1,12 +1,14 @@
 import { Back } from '@/components/Back';
 import { router } from 'expo-router';
+import { Back } from '@/components/Back';
+
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
 
 export default function EsqueciSenha() {
   return (
     <View style={styles.container}>
-
+      
       <Back />
 
       <Text style={styles.title}>ESQUECI A SENHA</Text>
@@ -27,7 +29,7 @@ export default function EsqueciSenha() {
         keyboardType="email-address"
       />
 
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/(tabs)/codigoSenha')}>
+      <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Enviar código</Text>
       </TouchableOpacity>
 
@@ -42,7 +44,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    marginTop: 20
+  },
+  content: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
   },
   title: {
     color: '#fff',

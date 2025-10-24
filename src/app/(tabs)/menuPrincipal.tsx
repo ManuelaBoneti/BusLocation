@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { FaMapLocationDot } from "react-icons/fa6";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Back } from "@/components/Back";
 import { router } from "expo-router";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -9,7 +9,10 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default function menuPrincipal() {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>MENU</Text>
+            <Back />
+            <View >
+                <Text style={styles.title}>MENU</Text>
+            </View>
 
             <View style={styles.gridContainer}>
                 <View style={styles.caixaIcon}>
