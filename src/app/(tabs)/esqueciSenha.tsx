@@ -1,5 +1,4 @@
-
-import { Back } from '@/components/Back';
+import { router } from 'expo-router';
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
 
@@ -9,27 +8,27 @@ export default function EsqueciSenha() {
       
       <Back />
 
-        <View style={styles.content}>
-          <Text style={styles.title}>ESQUECI A SENHA</Text>
-          
-          <Image style={styles.Image} source={require('@/assets/Cadeado.png')} />
-          <Text style={styles.esqueceuSenha}>
-            Esqueceu a senha?
-          </Text>
-          <Text style={styles.informacao}>
-          Informe seu e-mail para enviarmos o código de recuperação.
-          </Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite seu e-mail"
-            placeholderTextColor="#999"
-            keyboardType="email-address"
-          />
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Enviar código</Text>
-          </TouchableOpacity>
-        </View>
+      <Text style={styles.title}>ESQUECI A SENHA</Text>
       
+      <Image style={styles.Image} source={require('@/assets/Cadeado.png')} />
+
+      <Text style={styles.esqueceuSenha}>
+        Esqueceu a senha?
+      </Text>
+      <Text style={styles.informacao}>
+      Informe seu e-mail para enviarmos o código de recuperação.
+      </Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Digite seu e-mail"
+        placeholderTextColor="#999"
+        keyboardType="email-address"
+      />
+
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Enviar código</Text>
+      </TouchableOpacity>
 
     </View>
   );
