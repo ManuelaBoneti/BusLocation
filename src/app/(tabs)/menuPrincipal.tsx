@@ -1,8 +1,7 @@
 import { Back } from "@/components/Back";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { router } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 export default function menuPrincipal() {
