@@ -1,37 +1,55 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 
 export default function Layout() {
     return (
         <Drawer
             screenOptions={{
+                headerTitle: "",
+                drawerPosition: "right",
                 drawerStyle: {
-                    backgroundColor: "#677db0"
+                    backgroundColor: "#677db0",
+                    width: 300,
+                    paddingTop: 40,
                 },
                 drawerLabelStyle: {
-                    color: "#fff"
+                    color: "#fff",
                 },
                 headerStyle: {
-                    backgroundColor: "#677db0"
+                    backgroundColor: "#677db0",
+                    width: 10
                 },
-                headerTintColor: "#fff"
-                
+                headerTintColor: "#fff",
+               
                 
             }}>
+
             <Drawer.Screen
-                name="index"
+                name="visualizacaoOnibus"
                 options={{
-                    headerShown: false,
-                    drawerItemStyle: { display: "none" }
+                    drawerActiveTintColor: "#fff",
+                    drawerLabel: "Ônibus 3d",
+                    drawerLabelStyle: {
+                        color: "#fff"
+                    },
+                    drawerIcon: ({ color, size }) => (
+                        <Ionicons name="bus-outline" size={size} color={color} />
+                      ),
+                   
                 }}
             />
            
             <Drawer.Screen
-                name="add-Task/index"
+                name="cadastroPasse"
                 options={{
-                    drawerItemStyle: { display: "none" },
-                    title: "",
+                    drawerActiveTintColor: "#fff",
+                    drawerLabel: "Cadastro do Passe Virtual",
+                    drawerLabelStyle: {
+                        color: "#fff"
+                    },
+                    drawerIcon: ({ color, size }) => (
+                        <Ionicons name="card-outline" size={size} color={color} />
+                      ),
                 }}
             />
 

@@ -3,24 +3,16 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { Back } from "@/components/Back";
 import { router } from "expo-router";
-<<<<<<< HEAD
-import { MaterialIcons } from "@expo/vector-icons";
-=======
 import Icon from 'react-native-vector-icons/MaterialIcons';
->>>>>>> ff88d2c537f7004d5e048437a3721f9308fd8f12
 
 
 export default function menuPrincipal() {
     return (
         <View style={styles.container}>
-<<<<<<< HEAD
             <Back />
             <View >
                 <Text style={styles.title}>MENU</Text>
             </View>
-=======
-            <Text style={styles.title}>MENU</Text>
->>>>>>> ff88d2c537f7004d5e048437a3721f9308fd8f12
 
             <View style={styles.gridContainer}>
                 <View style={styles.caixaIcon}>
