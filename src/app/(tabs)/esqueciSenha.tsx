@@ -1,5 +1,4 @@
-
-import { Back } from '@/components/Back';
+import { router } from 'expo-router';
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
 
@@ -27,7 +26,7 @@ export default function EsqueciSenha() {
         keyboardType="email-address"
       />
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/(tabs)/codigoSenha')}>
         <Text style={styles.buttonText}>Enviar código</Text>
       </TouchableOpacity>
 

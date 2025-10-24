@@ -21,8 +21,7 @@ export default function Index() {
     return(
         <View style={styles.container}>
             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
-            <View style={styles.section}>
-                <Text style={styles.title}>Entrar</Text>
+            <View style={styles.section}>,
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='email' size={16} />
                     <TextInput style={styles.textInput} placeholder="Email:"  />
@@ -34,7 +33,7 @@ export default function Index() {
                 </View>
 
                 <TouchableOpacity onPress={menuPrincipal} style={styles.button} >
-                    <Text style={styles.textButton}>Login</Text>
+                    <Text style={styles.textButton}>Entrar</Text>
                 </TouchableOpacity>
 
                 <View style={styles.links}>
