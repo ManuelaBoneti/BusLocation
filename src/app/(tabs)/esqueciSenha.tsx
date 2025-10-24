@@ -6,7 +6,6 @@ export default function EsqueciSenha() {
   return (
     <View style={styles.container}>
 
-      <Back />
 
       <Text style={styles.title}>ESQUECI A SENHA</Text>
       
