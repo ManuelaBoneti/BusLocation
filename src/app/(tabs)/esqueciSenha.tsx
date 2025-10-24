@@ -1,3 +1,4 @@
+import { Back } from '@/components/Back';
 import { router } from 'expo-router';
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
