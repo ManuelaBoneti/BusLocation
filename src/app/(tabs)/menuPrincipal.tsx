@@ -1,9 +1,8 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import { FaMapLocationDot } from "react-icons/fa6";
 import { Back } from "@/components/Back";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { router } from "expo-router";
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 
 export default function menuPrincipal() {
@@ -21,7 +20,7 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
-                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/visualizacaoOnibus')}>
+                    <TouchableOpacity onPress={() => router.navigate('/visualizacaoOnibus' as any)}>
                         <FontAwesome6 name="bus" size={60} color={'white'} />
                     </TouchableOpacity>
                     <Text style={styles.subtitulo}>Visualização</Text>
@@ -42,14 +41,12 @@ export default function menuPrincipal() {
                     <Text style={styles.subtitulo}>Passe Virtual</Text>
                 </View>
 
-               
-                    <View style={styles.caixaIcon}>
-                    <TouchableOpacity  onPress={() => router.navigate('/(drawer)/CadastroPasse')}>
+                <View style={styles.caixaIcon}>
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/CadastroPasse' as any)}>
                         <FontAwesome6 name="id-card" size={60} color={'white'} />
-                        </TouchableOpacity>
-                        <Text style={styles.subtitulo}>Cadastro do Passe</Text>
-                    </View>
-               
+                    </TouchableOpacity>
+                    <Text style={styles.subtitulo}>Cadastro do Passe</Text>
+                </View>
             </View>
         </View>
     );
