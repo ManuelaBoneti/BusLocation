@@ -1,5 +1,5 @@
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { router, Tabs } from "expo-router";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
 
 export default function TabsLayout(){
     return (

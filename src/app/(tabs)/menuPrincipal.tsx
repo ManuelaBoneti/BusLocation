@@ -1,6 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { FaMapLocationDot } from "react-icons/fa6";
+import { Back } from "@/components/Back";
+import { router } from "expo-router";
+import { MaterialIcons } from "@expo/vector-icons";
 
 
 
