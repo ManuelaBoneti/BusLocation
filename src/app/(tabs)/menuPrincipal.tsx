@@ -39,7 +39,9 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
+                <TouchableOpacity onPress={() => router.navigate('/(drawer)/passeVirtual' as any)}>
                     <FontAwesome6 name="address-card" size={60} color={'white'} />
+                </TouchableOpacity>
                     <Text style={styles.subtitulo}>Passe Virtual</Text>
                 </View>
 

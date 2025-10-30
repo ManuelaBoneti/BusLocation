@@ -1,35 +1,23 @@
+import { Back } from "@/components/Back";
 import { router } from "expo-router";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function CadastroPasse() {
-    const menuPrincipal = () => {
-        router.navigate("/(tabs)/menuPrincipal")
-    }
+     const menuPrincipal = () => {
+            router.navigate("/(tabs)/menuPrincipal")
+        }
+
+       <Back /> 
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Cadastro do Passe</Text>
-
-            <View style={styles.inputContainer}>
-                <TextInput style={styles.textInput} placeholder="Nome Completo: " />
-            </View>
-
-            <View style={styles.inputContainer}>
-                <TextInput style={styles.textInput} placeholder="Data de nascimento: " />
-            </View>
-
-            <View style={styles.inputContainer}>
-                <TextInput style={styles.textInput} placeholder="Código do passe físico: " />
-            </View>
-
-              <TouchableOpacity onPress={menuPrincipal}style={styles.button} >
-                  <Text style={styles.textButton}>Criar</Text>
-              </TouchableOpacity>
-
-
+        <View  style={styles.container}>
+            <Text style={styles.title}>Passe Virtual</Text>
         </View>
+        
+
     )
 }
+
 
 const styles = StyleSheet.create({
     container: {
@@ -81,4 +69,3 @@ const styles = StyleSheet.create({
     },
 
 })
-
