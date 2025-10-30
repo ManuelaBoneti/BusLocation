@@ -1,7 +1,9 @@
 import { router } from "expo-router";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+
 
 export default function CadastroPasse() {
+    
     const menuPrincipal = () => {
         router.navigate("/(tabs)/menuPrincipal")
     }
@@ -80,5 +82,4 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
 
-})
-
+});
