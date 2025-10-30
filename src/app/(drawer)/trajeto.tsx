@@ -1,17 +1,18 @@
 import { Back } from "@/components/Back";
 import { MaterialIcons } from "@expo/vector-icons";
-import { router } from "expo-router";
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
-export default function trajeto(){
+
+
+export default function Trajeto(){
     return(
         <View style={styles.container}>
             <Text style={styles.title}>TRAJETO</Text>
-       <Back /> 
+            <Back />
 
-           
+
             <View style={styles.section}>
                 <View style={styles.inputContainer}>
-                   
+
                     <MaterialIcons style={styles.icon} name='pin-drop' size={16} />
                     <TextInput style={styles.textInput} placeholder="Insira sua localização atual:" />
                 </View>
@@ -27,8 +28,6 @@ export default function trajeto(){
                 </View>
 
             </View>
-          
-            
         </View>
     )
 }

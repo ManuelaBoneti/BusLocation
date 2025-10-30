@@ -1,8 +1,6 @@
 
-import { router } from 'expo-router';
 import { Back } from '@/components/Back';
 import { router } from 'expo-router';
-
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
 
@@ -10,9 +8,9 @@ export default function EsqueciSenha() {
   return (
     <View style={styles.container}>
       
-
+    <Back />
+    
       <Text style={styles.title}>ESQUECI A SENHA</Text>
-      
       <Image style={styles.Image} source={require('@/assets/Cadeado.png')} />
 
       <Text style={styles.esqueceuSenha}>
