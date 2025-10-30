@@ -29,7 +29,9 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/avaliacoes' as any)}>
                     <FontAwesome6 name="star" size={60} color={'white'} />
+                    </TouchableOpacity>
                     <Text style={styles.subtitulo}>Avaliações</Text>
                 </View>
 
