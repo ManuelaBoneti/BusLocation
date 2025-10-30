@@ -14,7 +14,7 @@
     "@fortawesome/react-native-fontawesome": "^0.3.2",
     "@react-icons/all-files": "^4.1.0",
     "@react-native-vector-icons/material-icons": "^12.3.0",
-    "@react-navigation/drawer": "^7.6.0",
+    "@react-navigation/drawer": "^7.7.1",
     "@react-navigation/native": "^7.1.8",
     "expo": "~54.0.12",
     "expo-constants": "~18.0.9",

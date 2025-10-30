@@ -1,4 +1,5 @@
 import { Back } from "@/components/Back";
+import { Button } from "@/components/Button";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
@@ -27,6 +28,7 @@ export default function trajeto(){
                 </View>
 
             </View>
+            <Button/>
           
             
         </View>
@@ -46,9 +48,9 @@ const styles = StyleSheet.create({
         fontSize: 35,
         color: "#fff",
         fontWeight: "bold",
-        marginTop: 250,
+        marginTop: 120,
         marginBottom: -250,
-    },
+        paddingBottom: 50,   },
     tela : {
         width: 340,
         height: 370,
