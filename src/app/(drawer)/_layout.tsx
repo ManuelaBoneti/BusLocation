@@ -33,7 +33,8 @@ export default function Layout() {
                         color: "#fff"
                     },
                     drawerIcon: () => (
-                        <Ionicons name="bus-outline"  />
+                        <Ionicons name="bus-outline" 
+                        size={22} />
                       ),
                    
                 }}
@@ -48,8 +49,24 @@ export default function Layout() {
                         color: "#fff"
                     },
                     drawerIcon: () => (
-                        <Ionicons name="card-outline"  />
+                        <Ionicons name="card-outline"
+                        size={22}  />
                       ),
+                }}
+            />
+
+            <Drawer.Screen
+                name="trajeto"
+                options={{
+                    drawerActiveTintColor: "#fff",
+                    drawerLabel: "Trajeto",
+                    drawerLabelStyle: {
+                        color: "#fff"
+                    },
+                    drawerIcon: () => (
+                        <Ionicons name="location-outline" 
+                        size={22}/>
+                    ),
                 }}
             />
 

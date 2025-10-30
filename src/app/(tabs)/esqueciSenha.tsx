@@ -6,8 +6,9 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react
 export default function EsqueciSenha() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ESQUECI A SENHA</Text>
       
+
+      <Text style={styles.title}>ESQUECI A SENHA</Text>
       <Image style={styles.Image} source={require('@/assets/Cadeado.png')} />
 
       <Text style={styles.esqueceuSenha}>
