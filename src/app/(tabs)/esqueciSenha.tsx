@@ -9,7 +9,6 @@ export default function EsqueciSenha() {
       
 
       <Text style={styles.title}>ESQUECI A SENHA</Text>
-      
       <Image style={styles.Image} source={require('@/assets/Cadeado.png')} />
 
       <Text style={styles.esqueceuSenha}>
