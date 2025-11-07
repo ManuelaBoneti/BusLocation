@@ -29,7 +29,9 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/avaliacoes' as any)}>
                     <FontAwesome6 name="star" size={60} color={'white'} />
+                    </TouchableOpacity>
                     <Text style={styles.subtitulo}>Avaliações</Text>
                 </View>
 
@@ -39,7 +41,9 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
+                <TouchableOpacity onPress={() => router.navigate('/(drawer)/passeVirtual' as any)}>
                     <FontAwesome6 name="address-card" size={60} color={'white'} />
+                </TouchableOpacity>
                     <Text style={styles.subtitulo}>Passe Virtual</Text>
                 </View>
 
