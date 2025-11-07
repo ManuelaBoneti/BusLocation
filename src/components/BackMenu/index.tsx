@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 
-export const Back = () => {
+export const BackMenu = () => {
     return(
         <View style={styles.containerIcon}>
             <TouchableOpacity onPress={() => router.navigate("/telaInicial")}>

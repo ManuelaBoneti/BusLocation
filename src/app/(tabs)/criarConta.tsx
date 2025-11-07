@@ -1,7 +1,7 @@
-import { Back } from "@/components/Back";
+import { BackNavigation } from "@/components/BackNavigation";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function criarConta(){
     function menuPrincipal(){
@@ -11,7 +11,7 @@ export default function criarConta(){
     return(
         <View style={styles.container}>
 
-        <Back /> 
+        <BackNavigation /> 
 
             <View style={styles.content}>
                 <Image style={styles.tela} source={require('@/assets/telaInicial.png')} />
