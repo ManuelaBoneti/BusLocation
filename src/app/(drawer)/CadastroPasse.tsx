@@ -1,15 +1,12 @@
-import { Back } from "@/components/Back";
-import { Button } from "@/components/Button";
-import { MaterialIcons } from "@expo/vector-icons";
+import { BackNavigation } from "@/components/BackNavigation";
+import { router } from "expo-router";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
 
 export default function CadastroPasse(){
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>Não tem um passe? comece cadastrando!</Text>
-            <Back />
-
+            <Text style={styles.title}>Cadastro do Passe</Text>
 
             <View style={styles.section}>
                 <View style={styles.inputContainer}>
@@ -90,6 +87,10 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 60,
         marginLeft: 5,
-        fontSize: 16,
-    }
-})
+        fontSize: 20,
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center",
+    },
+
+});

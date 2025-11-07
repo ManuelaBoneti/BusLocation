@@ -1,14 +1,14 @@
-import { Back } from "@/components/Back";
+import {BackMenu } from "@/components/BackMenu";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { router } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 
 export default function menuPrincipal() {
     return (
         <View style={styles.container}>
-            <Back />
+            <BackMenu />
             <View >
                 <Text style={styles.title}>MENU</Text>
             </View>
@@ -29,7 +29,9 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/avaliacoes' as any)}>
                     <FontAwesome6 name="star" size={60} color={'white'} />
+                    </TouchableOpacity>
                     <Text style={styles.subtitulo}>Avaliações</Text>
                 </View>
 
@@ -39,7 +41,9 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
+                <TouchableOpacity onPress={() => router.navigate('/(drawer)/passeVirtual' as any)}>
                     <FontAwesome6 name="address-card" size={60} color={'white'} />
+                </TouchableOpacity>
                     <Text style={styles.subtitulo}>Passe Virtual</Text>
                 </View>
 
