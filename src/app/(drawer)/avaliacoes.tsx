@@ -1,7 +1,7 @@
 import {View,Text, StyleSheet, Alert} from "react-native";
 import Start from "../../components/Back/Star";
 import { TouchableOpacity } from "react-native";
-import { Back } from "@/components/Back";
+import { BackNavigation } from "@/components/BackNavigation";
 import { useState } from "react";
 
 export default function avaliacoes(){
@@ -22,7 +22,7 @@ export default function avaliacoes(){
     }
     return(
         <View style={styles.container}>
-            <Back/>
+            <BackNavigation/>
             <Text style={styles.tituloPrincipal}>Avaliações</Text>
             <View style={styles.inner}>
                 <Start
