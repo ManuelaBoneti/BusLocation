@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginTop: 120,
         marginBottom: -250,
-        paddingBottom: 50,   },
+        paddingBottom: 50,  
+     },
     tela : {
         width: 340,
         height: 370,
