@@ -1,4 +1,5 @@
-import { Back } from "@/components/Back";
+
+import { BackNavigation } from "@/components/BackNavigation";
 import { router } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -7,7 +8,7 @@ export default function CadastroPasse() {
             router.navigate("/(tabs)/menuPrincipal")
         }
 
-       <Back /> 
+       <BackNavigation /> 
 
     return (
         <View  style={styles.container}>

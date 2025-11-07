@@ -41,10 +41,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: '#fff',
-        textAlign: 'center',
         letterSpacing: 1,
         textTransform: 'uppercase',
-        marginLeft: 34,
-        
+        marginLeft: 30
     }
 });
