@@ -1,7 +1,7 @@
 import { Back } from "@/components/Back";
 import { Button } from "@/components/Button";
 import { MaterialIcons } from "@expo/vector-icons";
-import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
 
 export default function CadastroPasse(){
