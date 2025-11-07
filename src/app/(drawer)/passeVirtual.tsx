@@ -5,46 +5,16 @@ import { BackNavigation } from "@/components/BackNavigation";
 
 const { width: screenWidth } = Dimensions.get("window");
 
-export default function PasseVirtual() {
-  const data = [
-    { image: require("@/assets/passeVirtualFrente.png") },
-    { image: require("@/assets/passeVirtualVerso.png") },
-  ];
+import { BackNavigation } from "@/components/BackNavigation";
+import { router } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const translateX = useRef(new Animated.Value(0)).current;
+export default function CadastroPasse() {
+     const menuPrincipal = () => {
+            router.navigate("/(tabs)/menuPrincipal")
+        }
 
-  const handleTransition = (nextIndex: number, direction: "left" | "right") => {
-    Animated.sequence([
-      Animated.timing(translateX, {
-        toValue: direction === "left" ? -screenWidth : screenWidth,
-        duration: 250,
-        useNativeDriver: true,
-      }),
-      Animated.timing(translateX, {
-        toValue: direction === "left" ? screenWidth : -screenWidth,
-        duration: 0,
-        useNativeDriver: true,
-      }),
-      Animated.timing(translateX, {
-        toValue: 0,
-        duration: 250,
-        useNativeDriver: true,
-      }),
-    ]).start();
-
-    setCurrentIndex(nextIndex);
-  };
-
-  const handleNext = () => {
-    const nextIndex = currentIndex === data.length - 1 ? 0 : currentIndex + 1;
-    handleTransition(nextIndex, "left");
-  };
-
-  const handlePrev = () => {
-    const prevIndex = currentIndex === 0 ? data.length - 1 : currentIndex - 1;
-    handleTransition(prevIndex, "right");
-  };
+       <Back /> 
 
   return (
     <View style={styles.container}>

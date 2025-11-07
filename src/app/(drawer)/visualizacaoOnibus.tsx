@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: "600",
         marginBottom: 20,
-        marginTop: -30,
+        marginTop: -80,
     },
     carouselContainer: {
         position: "relative",
