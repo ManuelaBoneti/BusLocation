@@ -1,3 +1,4 @@
+import { BackNavigation } from "@/components/BackNavigation";
 import { router } from "expo-router";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
@@ -11,6 +12,8 @@ export default function CadastroPasse() {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Cadastro do Passe</Text>
+
+            <BackNavigation />
 
             <View style={styles.inputContainer}>
                 <TextInput style={styles.textInput} placeholder="Nome Completo: " />

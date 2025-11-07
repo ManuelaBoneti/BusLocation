@@ -1,14 +1,14 @@
-import { Back } from "@/components/Back";
+import {BackMenu } from "@/components/BackMenu";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { router } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 
 export default function menuPrincipal() {
     return (
         <View style={styles.container}>
-            <Back />
+            <BackMenu />
             <View >
                 <Text style={styles.title}>MENU</Text>
             </View>

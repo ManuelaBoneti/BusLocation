@@ -1,15 +1,15 @@
-import { Back } from "@/components/Back";
+import { BackNavigation } from "@/components/BackNavigation";
 import { Button } from "@/components/Button";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
 
 export default function Trajeto(){
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>TRAJETO</Text>
-            <Back />
+            <Text style={styles.title}>Trajeto</Text>
 
+            <BackNavigation />
 
             <View style={styles.section}>
                 <View style={styles.inputContainer}>
@@ -27,6 +27,8 @@ export default function Trajeto(){
                     <MaterialIcons style={styles.icon} name='schedule' size={16} />
                     <TextInput style={styles.textInput} placeholder="Horário:" />
                 </View>
+
+                <Button/>
 
             </View>
           
@@ -65,8 +67,8 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
-        width: 300,
-        height: 380,
+        width: 360,
+        height: 430,
         marginBlock: 250,
     },
     inputContainer : {
