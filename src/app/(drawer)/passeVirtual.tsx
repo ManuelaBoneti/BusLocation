@@ -89,7 +89,7 @@ export default function PasseVirtual() {
       </View>
  
       {/* Indicadores */}
-      <View style={styles.indicatorContainer}>
+      <View >
         {data.map((_, index) => (
           <View
             key={index}
