@@ -58,9 +58,9 @@ export default function PasseVirtual() {
         style={styles.tela}
         source={require("@/assets/telaInicial.png")}
       />
- 
-      <Text style={styles.title}>PASSE VIRTUAL</Text>
- 
+
+      <Text style={styles.title}>Passe Virtual</Text>
+
       <View style={styles.carouselContainer}>
         <Animated.View
           style={[
@@ -105,79 +105,52 @@ export default function PasseVirtual() {
 }
  
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    backgroundColor: "#033b85",
-    paddingTop: 70,
-  },
-  tela: {
-    width: 220,
-    height: 280,
-    marginTop: -60,
-  },
-  title: {
-    color: "#fff",
-    fontSize: 26,
-    fontWeight: "600",
-    marginBottom: 20,
-    marginTop: -30,
-    fontFamily: 'Quicksand_700Bold',
-  },
-  carouselContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-  },
-  slideWrapper: {
-    width: screenWidth * 0.9,
-    height: 260,
-    borderRadius: 20,
-    overflow: "hidden",
-    backgroundColor: "transparent", // 🔹 sem fundo branco
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
-    elevation: 8,
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "contain", // 🔹 mantém proporção e centraliza
-  },
-  navButton: {
-    position: "absolute",
-    top: "45%",
-    backgroundColor: "rgba(0,0,0,0.4)",
-    padding: 8,
-    borderRadius: 30,
-    zIndex: 2,
-  },
-  leftButton: {
-    left: 20,
-  },
-  rightButton: {
-    right: 20,
-  },
-  indicatorContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 16,
-  },
-  indicator: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "rgba(255,255,255,0.5)",
-    marginHorizontal: 4,
-  },
-  indicatorActive: {
-    backgroundColor: "#fff",
-    width: 12,
-  },
-});
+    container: {
+        flex: 1,
+        backgroundColor: "#033b85",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    title: {
+        fontSize: 40,
+        fontWeight: "bold",
+        color: "white",
+        marginBottom: 90,
+    },
+    textInput: {
+        flex: 1,
+        height: 40,
+        width: 200
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 30,
+        paddingHorizontal: 10,
+        marginBottom: 20,
+        marginTop: 20,
+        backgroundColor: '#fff',
+    },
+    button : {
+        backgroundColor: "#677db0",
+        borderRadius: 30,
+        paddingVertical: 12,
+        paddingHorizontal: 36,
+        marginTop: 10,
+        width: 200,
+        alignItems: "center",
+        height: 50,
+    },
+    textButton : {
+        flex: 1,
+        height: 40,
+        marginLeft: 5,
+        fontSize: 20,
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center",
+    },
+
+})
