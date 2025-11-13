@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 27,
         color: "#fff",
-        fontWeight: "bold",
+       fontFamily: 'Quicksand_700Bold',
         marginBottom: 30, // espaço entre o título e a section
         marginTop: -50,
         alignItems: 'center',

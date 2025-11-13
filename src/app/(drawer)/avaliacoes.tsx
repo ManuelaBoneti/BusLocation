@@ -1,7 +1,6 @@
 import {View,Text, StyleSheet, Alert, Image, TextInput} from "react-native";
 import Start from "../../components/Back/Star";
 import { TouchableOpacity } from "react-native";
-
 import { useState } from "react";
 
 export default function avaliacoes(){
@@ -10,16 +9,16 @@ export default function avaliacoes(){
     const AvaliacaoEnviada = () =>{
         if(nota === 0){
             Alert.alert(
-            "Selecione uma nota antes de enviar a avaliação."
-            );
+            "Selecione uma nota antes de enviar a avaliação.");
+        
         }else
         Alert.alert(
             "Avaliação enviada com sucesso!"
-
-        );
+            );
+            setNota(0);
         
-        setNota(0);
-    }
+
+    };
     return(
         <View style={styles.container}>
             
@@ -40,7 +39,6 @@ export default function avaliacoes(){
                     Avaliar agora
                 </Text>
             </TouchableOpacity>
-
         </View>
     )
 }
@@ -56,6 +54,7 @@ const styles = StyleSheet.create({
     title:{
         fontSize: 22,
         color: "#ffffff",
+        fontWeight: 'bold',
         textAlign: 'center',
         fontFamily: 'Quicksand_700Bold', 
         marginLeft: 20,
@@ -93,8 +92,8 @@ const styles = StyleSheet.create({
     tituloButton:{
         fontSize: 20,
         color: "#ffffff",
+        fontWeight: 'bold',
         textAlign: 'center',
-        fontFamily: 'Quicksand_700Bold', 
     },
 
 })

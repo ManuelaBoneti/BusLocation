@@ -105,10 +105,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#033b85",
         paddingTop: 70,
     },
-    tela: {
+    tela : {
         width: 220,
         height: 280,
-        marginTop: -60,
+       marginBottom: 30,
     },
     title: {
         color: "#fff",
