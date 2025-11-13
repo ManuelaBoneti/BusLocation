@@ -27,7 +27,7 @@ export default function avaliacoes(){
                             style={styles.tela} source={require('@/assets/telaInicial.png')} 
                         />
       
-            <Text style={styles.tituloPrincipal}>Avaliações</Text>
+            <Text style={styles.tituloPrincipal}>Deixe uma avaliação do nosso aplicativo para melhorias!</Text>
             <View style={styles.inner}>
                 <Start
                 onChange={setNota}
@@ -53,16 +53,16 @@ const styles = StyleSheet.create({
         gap: 32,
     },
     tituloPrincipal:{
-        fontSize: 40,
+        fontSize: 30,
         color: "#ffffff",
         textAlign: 'center',
         fontFamily: 'Quicksand_700Bold', 
         marginTop: -60,  
     },
     tela : {
-        width: 220,
-        height: 280,
-       marginBottom: 10,
+        width: 320,
+        height: 300,
+       marginBottom: -50,
     },
     inner:{
         backgroundColor: "#e1e6eb",
