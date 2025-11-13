@@ -1,15 +1,17 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
-import {StyleSheet,Text,TextInput,TouchableOpacity,View,Modal, Image} from "react-native";
+import { Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
-export default function CadastroPasse() {
+export default function CadastroPasse(){
+
   const [nota, setNota] = useState(0);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  
 
   const PasseCadastrado = () => {
     if (nota === 0) {
-      setAlertMessage("Preencha os campos acima para criar o cadastro.");
+      setAlertMessage("Preencha todos os campos acima para criar o cadastro.");
       setAlertVisible(true);
     } else {
       setAlertMessage("Cadastro concluído!");
@@ -18,12 +20,13 @@ export default function CadastroPasse() {
     }
   };
 
-  return (
-    <View style={styles.container}>
-      
-      <Image
-        style={styles.tela} source={require('@/assets/telaInicial.png')}
-      />
+    return(
+        <View style={styles.container}>
+            <Image
+                style={styles.tela} source={require('@/assets/telaInicial.png')}
+            />
+         
+            <Text style={styles.title}>Cadastro do Passe</Text>
 
       <Text style={styles.title}>Cadastro do Passe</Text>
 
@@ -135,7 +138,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Quicksand_700Bold',
     textAlign: "center",
   },
-
   // alert
   overlay: {
     flex: 1,
@@ -172,3 +174,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Quicksand_700Bold',
   },
 });
+  }
+
