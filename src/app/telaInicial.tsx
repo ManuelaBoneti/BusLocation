@@ -1,90 +1,55 @@
+import {Text, View, StyleSheet, Image, TextInput, TouchableOpacity,Alert} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from 'expo-router';
-import React, { useState } from "react";
-import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react';
 
 // No additional imports or code are needed at this placeholder.
 export default function Index() {
     const router = useRouter();
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
 
     function esqueciSenha(){
         router.navigate("/(tabs)/esqueciSenha")
     }
 
-    function criarCadastro (){
-        router.navigate("/(tabs)/criarConta")
+    function criarCadastro() {
+        router.navigate("/(tabs)/criarConta");
     }
 
-    async function menuPrincipal(){
-        if (!email.trim() || !senha.trim()) {
-            Alert.alert("Erro", "Preencha todos os campos.");
-            return;
-        }
-
-        try {
-            const storedData = await AsyncStorage.getItem("usuario_dados");
-            if (storedData) {
-                const parsed = JSON.parse(storedData);
-                if (parsed.email === email && parsed.senha === senha) {
-                    router.navigate("/(tabs)/menuPrincipal");
-                } else {
-                    Alert.alert("Erro", "E-mail ou senha incorretos.");
-                }
-            } else {
-                Alert.alert("Erro", "Conta não encontrada. Crie uma conta primeiro.");
-            }
-        } catch (error) {
-            Alert.alert("Erro", "Não foi possível fazer login.");
-        }
+    function menuPrincipal(){
+        router.navigate("/(tabs)/menuPrincipal")
     }
 
-    return(
+    return (
         <View style={styles.container}>
             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
-            <View style={styles.section}>
+            <View style={styles.section}>,
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='email' size={16} />
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Email:"
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        autoCapitalize="none"
-                    />
+                    <TextInput style={styles.textInput} placeholder="Email:"  />
                 </View>
 
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='lock' size={16}/>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Senha:"
-                        value={senha}
-                        onChangeText={setSenha}
-                        secureTextEntry
-                    />
+                    <TextInput style={styles.textInput}placeholder="Senha:" />
                 </View>
 
-                <TouchableOpacity onPress={menuPrincipal} style={styles.button} >
+                <TouchableOpacity onPress={validarLogin} style={styles.button}>
                     <Text style={styles.textButton}>Entrar</Text>
                 </TouchableOpacity>
 
                 <View style={styles.links}>
                     <TouchableOpacity onPress={esqueciSenha}>
                         <Text style={styles.title}>Esqueceu a senha?</Text>
-                    </TouchableOpacity >
+                    </TouchableOpacity>
 
                     <TouchableOpacity onPress={criarCadastro}>
                         <Text style={styles.title}>Criar uma nova conta</Text>
                     </TouchableOpacity>
-
                 </View>
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
