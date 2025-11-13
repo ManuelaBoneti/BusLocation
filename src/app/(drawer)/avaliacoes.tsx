@@ -1,4 +1,5 @@
-import {View,Text, StyleSheet, Alert} from "react-native";
+import {View,Text, StyleSheet, Alert, Image} from "react-native";
+
 import { TouchableOpacity } from "react-native";
 import { BackNavigation } from "@/components/BackNavigation";
 import { useState } from "react";

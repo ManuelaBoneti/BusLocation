@@ -1,4 +1,4 @@
-import { BackNavigation } from "@/components/BackNavigation";
+
 import { Ionicons } from "@expo/vector-icons";
 import { useRef, useState } from "react";
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -34,7 +34,7 @@ export default function VizualizacaoOnibus() {
 
     return (
         <View style={styles.container}>
-            <BackNavigation />
+            
 
             <Image 
                 style={styles.tela} source={require('@/assets/telaInicial.png')} 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     tela : {
         width: 220,
         height: 280,
-        marginTop: -60,
+       marginBottom: 30,
     },
     title: {
         color: "#fff",
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         marginBottom: 20,
         marginTop: -80,
+        fontFamily: 'Quicksand_700Bold', 
     },
     carouselContainer: {
         position: "relative",

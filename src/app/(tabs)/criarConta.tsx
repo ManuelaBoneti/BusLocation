@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginTop: 15,
         color: "black",
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand_700Bold', 
         textDecorationStyle: 'solid',
         textAlign: 'center',
     },

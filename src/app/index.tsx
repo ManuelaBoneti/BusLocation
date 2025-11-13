@@ -1,7 +1,20 @@
 import { router } from 'expo-router';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import { useFonts } from 'expo-font';
+import {Quicksand_400Regular, Quicksand_700Bold } from '@expo-google-fonts/quicksand';
+// import { AppLoading } from 'expo';
+
 
 export default function Index() {
+  
+    const [fontsLoaded] = useFonts({
+        Quicksand_400Regular, Quicksand_700Bold    
+      });
+    
+    //   if (!fontsLoaded) {
+    //     return <AppLoading />;
+    //   }
+      
     function cadastro(){
         router.navigate("/telaInicial")
     }
@@ -25,6 +38,7 @@ const styles = StyleSheet.create({
     title: {
         color: "#fff",
         fontSize: 30,
+        fontFamily: 'Quicksand_700Bold', 
     },
     tela : {
         width: 440,
@@ -44,7 +58,7 @@ const styles = StyleSheet.create({
     },
     textButton : {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand_500Medium', 
         color: '#000000',
         textAlign: 'center',
         letterSpacing: 1,
