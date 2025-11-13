@@ -1,6 +1,5 @@
 import {View,Text,Image, TouchableOpacity, Dimensions, StyleSheet,Animated,} from "react-native";
-  import { Ionicons } from "@expo/vector-icons";
-  import { BackNavigation } from "@/components/BackNavigation";
+import { Ionicons } from "@expo/vector-icons";
 import { useRef, useState } from "react";
    
   const { width: screenWidth } = Dimensions.get("window");

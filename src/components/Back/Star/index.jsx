@@ -10,7 +10,7 @@ export default function StarRating({ value = 0, onChange }) {
           <MaterialCommunityIcons
             name="star"
             size={40}
-            color={star <= rating ? '#FFD700' : '#FFFFFF'}
+            color={star <= rating ? '#ffee8c' : '#FFFFFF'}
           />
         </TouchableOpacity>
       ))}
