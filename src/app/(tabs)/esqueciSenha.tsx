@@ -12,10 +12,10 @@ export default function EsqueciSenha() {
       <Image style={styles.Image} source={require('@/assets/Cadeado.png')} />
 
       <Text style={styles.esqueceuSenha}>
-        Esqueceu a senha?
+         Esqueceu a senha?
       </Text>
       <Text style={styles.informacao}>
-      Informe seu e-mail para enviarmos o código de recuperação.
+        Informe seu e-mail para enviarmos o código de recuperação.
       </Text>
 
       <TextInput

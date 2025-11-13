@@ -1,12 +1,19 @@
 import { BackNavigation } from "@/components/BackNavigation";
-import { router } from "expo-router";
+import { MaterialIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
 
+
 export default function CadastroPasse(){
+
+
+
+
     return(
         <View style={styles.container}>
+            <BackNavigation />
             <Text style={styles.title}>Cadastro do Passe</Text>
+
 
             <View style={styles.section}>
                 <View style={styles.inputContainer}>
@@ -27,7 +34,6 @@ export default function CadastroPasse(){
 
             </View>
           
-            
         </View>
     )
 }
@@ -49,8 +55,7 @@ const styles = StyleSheet.create({
         marginTop: 120,
         marginBottom: -250,
         paddingBottom: 50,
-        fontFamily: 'Trebuchet MS', 
-      
+        fontFamily: 'Quicksand_400Regular', 
         textAlign: 'center',
   },
 
@@ -87,10 +92,10 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 60,
         marginLeft: 5,
-        fontSize: 20,
+        fontSize: 18,
         color: "white",
         fontWeight: "bold",
-        textAlign: "center",
+        
     },
 
 });
