@@ -1,7 +1,6 @@
-import menuPrincipal from "@/app/(tabs)/menuPrincipal";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export const Button = () => {
 
@@ -11,15 +10,20 @@ export const Button = () => {
 
     return (
         <View>
-            <TouchableOpacity onPress={IrParaTrajeto} style={styles.button} >
-                <Text style={styles.textButton}>PROCURAR</Text>
+            <Pressable 
+                onPress={IrParaTrajeto} 
+                style={({ pressed }) => [
+                    styles.button,
+                    pressed ? styles.buttonPressed : null
+                ]} >
+                <Text style={styles.textButton}>Criar</Text>
                 <Ionicons
                     name="search"
                     size={22}
                     color="#fff"
                     style={{ marginLeft: 10, marginTop: 2 }}
                 />
-            </TouchableOpacity>
+            </Pressable>
         </View>
     )
 }
@@ -35,7 +39,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 3,
         flexDirection: 'row',
-        
+    },
+    buttonPressed: {
+        backgroundColor: "gray",
+        transform: [{ scale: 0.97 }], 
     },
     textButton : {
         fontSize: 18,
@@ -44,5 +51,5 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         textTransform: 'uppercase',
         marginLeft: 30
-    }
+    },
 });
