@@ -1,5 +1,4 @@
-
-import { BackNavigation } from "@/components/BackNavigation";
+import { Back } from "@/components/Back";
 import { router } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -8,17 +7,60 @@ export default function CadastroPasse() {
             router.navigate("/(tabs)/menuPrincipal")
         }
 
-       <BackNavigation /> 
+       <Back /> 
 
-    return (
-        <View  style={styles.container}>
-            <Text style={styles.title}>Passe Virtual</Text>
-        </View>
-        
+  return (
+    <View style={styles.container}>
+      <BackNavigation />
+      <Image
+        style={styles.tela}
+        source={require("@/assets/telaInicial.png")}
+      />
 
-    )
+      <Text style={styles.title}>Passe Virtual</Text>
+
+      <View style={styles.carouselContainer}>
+        <Animated.View
+          style={[
+            styles.slideWrapper,
+            { transform: [{ translateX }] },
+          ]}
+        >
+          <Image source={data[currentIndex].image} style={styles.image} />
+        </Animated.View>
+
+        {/* Botão anterior */}
+        <TouchableOpacity
+          style={[styles.navButton, styles.leftButton]}
+          onPress={handlePrev}
+        >
+          <Ionicons name="chevron-back" size={28} color="#fff" />
+        </TouchableOpacity>
+
+        {/* Botão próximo */}
+        <TouchableOpacity
+          style={[styles.navButton, styles.rightButton]}
+          onPress={handleNext}
+        >
+          <Ionicons name="chevron-forward" size={28} color="#fff" />
+        </TouchableOpacity>
+      </View>
+
+      {/* Indicadores */}
+      <View style={styles.indicatorContainer}>
+        {data.map((_, index) => (
+          <View
+            key={index}
+            style={[
+              styles.indicator,
+              currentIndex === index && styles.indicatorActive,
+            ]}
+          />
+        ))}
+      </View>
+    </View>
+  );
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -35,8 +77,8 @@ const styles = StyleSheet.create({
     },
     textInput: {
         flex: 1,
-        height: 30,
-        width: 200,
+        height: 40,
+        width: 200
     },
     inputContainer: {
         flexDirection: 'row',

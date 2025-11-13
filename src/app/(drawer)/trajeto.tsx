@@ -1,25 +1,33 @@
-import { BackNavigation } from "@/components/BackNavigation";
-import { Button } from "@/components/Button";
-import { MaterialIcons } from "@expo/vector-icons";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { BackNavigation } from '@/components/BackNavigation';
+import { Button } from '@/components/Button';
 
+export default function Trajeto() {
 
-export default function Trajeto(){
-    return(
+    return (
         <View style={styles.container}>
+            
+            <View style={{ alignItems: 'center', marginTop: -110 }}>
+                <Image
+                    style={styles.logo}
+                    source={require('@/assets/telaInicial.png')}
+                />
+            </View>
+
             <Text style={styles.title}>Trajeto</Text>
 
             <BackNavigation />
 
             <View style={styles.section}>
                 <View style={styles.inputContainer}>
-
                     <MaterialIcons style={styles.icon} name='pin-drop' size={16} />
                     <TextInput style={styles.textInput} placeholder="Insira sua localização atual:" />
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <MaterialIcons style={styles.icon} name='person' size={16} />
+                    <MaterialIcons style={styles.icon} name='pin-drop' size={16} />
                     <TextInput style={styles.textInput} placeholder="Selecione seu destino:" />
                 </View>
 
@@ -28,39 +36,44 @@ export default function Trajeto(){
                     <TextInput style={styles.textInput} placeholder="Horário:" />
                 </View>
 
-                <Button/>
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.textInput} placeholder="" />
+                </View>
+
+                <Button />
 
             </View>
-          
-            
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
         backgroundColor: "#033b85",
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    icon: {
-        margin: 10
+    logo: {
+        width: 300,
+        height: 360,
+        resizeMode: 'contain',
+        marginBottom: -100, // pequeno espaçamento entre logo e título
     },
-    title:{
+    title: {
         fontSize: 35,
         color: "#fff",
         fontWeight: "bold",
         marginTop: 120,
         marginBottom: -250,
-        paddingBottom: 50,  
-     },
+        paddingBottom: 50,   },
     tela : {
         width: 340,
         height: 370,
         marginBottom: -10,
     },
     section: {
-        backgroundColor: '#ffff',
+        backgroundColor: '#fff',
         borderRadius: 10,
         padding: 15,
         elevation: 2,
@@ -70,9 +83,10 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         width: 360,
         height: 430,
-        marginBlock: 250,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    inputContainer : {
+    inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         borderColor: '#ccc',
@@ -80,13 +94,33 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         paddingHorizontal: 10,
         marginBottom: 20,
-        marginTop: 20,
         backgroundColor: '#fff',
     },
-    textInput : {
+    textInput: {
         flex: 1,
         height: 60,
         marginLeft: 5,
         fontSize: 16,
-    }
-})
+    },
+    listTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#033b85',
+        marginTop: 10,
+        marginBottom: 5,
+    },
+    busOption: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 3,
+        paddingVertical: 6,
+        paddingHorizontal: 10,
+        borderRadius: 8,
+        backgroundColor: '#f2f2f2',
+    },
+    busText: {
+        fontSize: 16,
+        color: '#333',
+        marginLeft: 8,
+    },
+});
