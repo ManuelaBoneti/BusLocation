@@ -92,7 +92,7 @@ import { useRef, useState } from "react";
           ))}
         </View>
       </View>
-    </View>
+  
   );
 }
  
