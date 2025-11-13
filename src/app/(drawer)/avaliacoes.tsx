@@ -1,8 +1,10 @@
-import {View,Text, StyleSheet, Alert} from "react-native";
-import Start from "../../components/Back/Star";
+import {View,Text, StyleSheet, Alert, Image} from "react-native";
+
 import { TouchableOpacity } from "react-native";
 import { BackNavigation } from "@/components/BackNavigation";
 import { useState } from "react";
+import StarRating from "@/components/Back/Star";
+
 
 export default function avaliacoes(){
     const [nota, setNota] = useState(0);
@@ -10,23 +12,25 @@ export default function avaliacoes(){
     const AvaliacaoEnviada = () =>{
         if(nota === 0){
             Alert.alert(
-            "Selecione uma nota antes de enviar a avaliação."
-            );
+            "Selecione uma nota antes de enviar a avaliação.");
+        
         }else
         Alert.alert(
             "Avaliação enviada com sucesso!"
-
-        );
+            );
+            setNota(0);
         
-        setNota(0);
-    }
+
+    };
     return(
         <View style={styles.container}>
             <BackNavigation/>
             <Text style={styles.tituloPrincipal}>Avaliações</Text>
             <View style={styles.inner}>
-                <Start
+                <StarRating
+                value={nota}
                 onChange={setNota}
+                
                 />
             </View>
             <TouchableOpacity style={styles.button}onPress={AvaliacaoEnviada}>

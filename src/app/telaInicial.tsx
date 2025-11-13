@@ -99,10 +99,11 @@ const styles = StyleSheet.create({
         fontSize: 12,
         marginTop: 10,
         color: "#033b85",
-        fontWeight: 'bold',
+       
         textDecorationLine: 'underline',
         textDecorationStyle: 'solid',
         textAlign: 'center',
+        fontFamily: 'Quicksand_700Bold', 
     },
  
     button : {
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     },
     textButton : {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand_700Bold', 
         color: '#fff',
         textAlign: 'center',
         letterSpacing: 1,

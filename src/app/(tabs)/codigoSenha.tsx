@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     tituloPrincipal:{
         fontSize: 20,
         color: "#ffffff",
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand_700Bold', 
         textAlign: 'center',
         marginTop: -150,
         
@@ -54,13 +54,14 @@ const styles = StyleSheet.create({
     title:{
         fontSize: 15,
         color: "#d33333",
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand_700Bold', 
         textAlign: 'center',
     },
     text:{
         fontSize: 12,
         color: "#000",
         textAlign: 'center',
+        fontFamily: 'Quicksand_500Medium', 
     },
     button:{
         backgroundColor: "#d33333",
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     buttonText:{
         fontSize: 12,
         color: "white",
-        fontWeight: 'bold', 
+        fontFamily: 'Quicksand_500Medium', 
         textAlign: 'center',
     }
 
