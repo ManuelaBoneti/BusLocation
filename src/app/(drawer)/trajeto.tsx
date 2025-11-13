@@ -1,10 +1,33 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { BackNavigation } from '@/components/BackNavigation';
 import { Button } from '@/components/Button';
 
 export default function Trajeto() {
+
+    const [busLines, setBusLines] = useState([
+        '001 - Centro / Leonor Mendes',
+        '002 - Centro / Cidade nova',
+        '003 - Centro / Facciolo',
+        '004 - Leonor Mendes / Cidade nova',
+        '005 - Leonor Mendes / Facciolo',
+        '006 - Leonor Mendes / Centro',
+        '007 - Cidade nova / Leonor Mendes',
+        '008 - Cidade nova / Facciolo',
+        '009 - Cidade nova / Centro',
+        '010 - Facciolo / Leonor Mendes',
+        '011 - Facciolo / Cidade nova',
+        '012 - Facciolo / Centro',
+    ]);
+
+    const [search, setSearch] = useState('');
+    const [selectedLine, setSelectedLine] = useState('');
+
+    // Filtra a lista conforme o texto digitado
+    const filteredLines = busLines.filter(line =>
+        line.toLowerCase().includes(search.toLowerCase())
+    );
 
     return (
         <View style={styles.container}>
@@ -26,18 +49,42 @@ export default function Trajeto() {
                     <TextInput style={styles.textInput} placeholder="Insira sua localização atual:" />
                 </View>
 
-                <View style={styles.inputContainer}>
-                    <MaterialIcons style={styles.icon} name='pin-drop' size={16} />
-                    <TextInput style={styles.textInput} placeholder="Selecione seu destino:" />
+                <View style={{ position: 'relative', width: '100%' }}>
+                    <View style={styles.inputContainer}>
+                        <MaterialIcons style={styles.icon} name='directions-bus' size={16} />
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Selecione a linha de ônibus:"
+                            value={search}
+                            onChangeText={setSearch}
+                        />
+                    </View>
+
+                    {/* Dropdown suspenso */}
+                    {search.length > 0 && (
+                        <View style={styles.dropdownContainer}>
+                            <FlatList
+                                data={filteredLines}
+                                keyExtractor={(item) => item}
+                                renderItem={({ item }) => (
+                                    <TouchableOpacity
+                                        style={styles.option}
+                                        onPress={() => {
+                                            setSelectedLine(item);
+                                            setSearch(item); // Preenche o campo com o item selecionado
+                                        }}
+                                    >
+                                        <Text style={styles.optionText}>{item}</Text>
+                                    </TouchableOpacity>
+                                )}
+                            />
+                        </View>
+                    )}
                 </View>
 
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='schedule' size={16} />
                     <TextInput style={styles.textInput} placeholder="Horário:" />
-                </View>
-
-                <View style={styles.inputContainer}>
-                    <TextInput style={styles.textInput} placeholder="" />
                 </View>
 
                 <Button />
@@ -58,7 +105,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 360,
         resizeMode: 'contain',
-        marginBottom: -100, // pequeno espaçamento entre logo e título
+        marginBottom: -130, // pequeno espaçamento entre logo e título
     },
     title: {
         fontSize: 35,
@@ -68,6 +115,8 @@ const styles = StyleSheet.create({
     },
     icon: {
         margin: 10,
+        marginRight: 8,
+        color: '#555',
     },
     section: {
         backgroundColor: '#fff',
@@ -79,9 +128,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 2,
         width: 360,
-        height: 430,
         alignItems: 'center',
-        justifyContent: 'center',
     },
     inputContainer: {
         flexDirection: 'row',
@@ -99,25 +146,32 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         fontSize: 16,
     },
-    listTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#033b85',
-        marginTop: 10,
-        marginBottom: 5,
-    },
-    busOption: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 3,
-        paddingVertical: 6,
-        paddingHorizontal: 10,
+    dropdownContainer: {
+        position: 'absolute',
+        top: 65, // distância do topo do input (ajuste fino se quiser)
+        left: 0,
+        right: 0,
+        backgroundColor: '#fff',
         borderRadius: 8,
-        backgroundColor: '#f2f2f2',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        zIndex: 20, // garante que aparece sobre outros componentes
+        elevation: 10, // sombra no Android
+        shadowColor: '#000',
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        maxHeight: 200, // rolagem se houver muitas opções
     },
-    busText: {
+
+    option: {
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: '#eee',
+    },
+
+    optionText: {
         fontSize: 16,
         color: '#333',
-        marginLeft: 8,
     },
 });
