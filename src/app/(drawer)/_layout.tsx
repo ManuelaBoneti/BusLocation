@@ -99,7 +99,7 @@ export default function Layout() {
             />
            
             <Drawer.Screen
-                name="CadastroPasse"
+                name="cadastroPasse"
                 options={{
                     drawerActiveTintColor: "#fff",
                     drawerLabel: "Cadastro do Passe Virtual",

@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     marginBottom: 20,
     marginTop: -30,
+    fontFamily: 'Quicksand_700Bold',
   },
   carouselContainer: {
     alignItems: "center",

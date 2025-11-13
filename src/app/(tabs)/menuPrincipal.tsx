@@ -48,7 +48,7 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
-                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/CadastroPasse' as any)}>
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/cadastroPasse' as any)}>
                         <FontAwesome6 name="id-card" size={60} color={'white'} />
                     </TouchableOpacity>
                     <Text style={styles.subtitulo}>Cadastro do Passe</Text>

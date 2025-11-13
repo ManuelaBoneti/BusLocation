@@ -1,9 +1,10 @@
-import {View,Text, StyleSheet, Alert, Image, TextInput} from "react-native";
-import Start from "../../components/Back/Star";
+import {View,Text, StyleSheet, Alert, Image} from "react-native";
 import { TouchableOpacity } from "react-native";
 import { useState } from "react";
+import StarRating from "@/components/Back/Star";
+import { TextInput } from "react-native";
 
-export default function avaliacoes(){
+export default function Avaliacoes(){
     const [nota, setNota] = useState(0);
 
     const AvaliacaoEnviada = () =>{
@@ -29,7 +30,9 @@ export default function avaliacoes(){
             <TextInput style={styles.textInput} placeholder="Escreva aqui..."></TextInput>
 
             <View style={styles.inner}>
-                <Start onChange={setNota}/>
+                <StarRating 
+                    onChange={setNota} 
+                />
             </View>
             
             <TouchableOpacity style={styles.button}onPress={AvaliacaoEnviada}>
