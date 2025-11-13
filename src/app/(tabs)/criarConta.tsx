@@ -1,44 +1,105 @@
 import { BackNavigation } from "@/components/BackNavigation";
 import { MaterialIcons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function criarConta(){
-    function menuPrincipal(){
-        router.navigate("/(tabs)/menuPrincipal")
+    const [email, setEmail] = useState("");
+    const [nomeCompleto, setNomeCompleto] = useState("");
+    const [nomeUsuario, setNomeUsuario] = useState("");
+    const [senha, setSenha] = useState("");
+
+    const validateInputs = () => {
+        if (!email.trim() || !nomeCompleto.trim() || !nomeUsuario.trim() || !senha.trim()) {
+            Alert.alert("Erro", "Todos os campos são obrigatórios.");
+            return false;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            Alert.alert("Erro", "E-mail inválido.");
+            return false;
+        }
+        if (senha.length < 6) {
+            Alert.alert("Erro", "A senha deve ter pelo menos 6 caracteres.");
+            return false;
+        }
+        return true;
+    };
+
+    async function criarConta(){
+        if (!validateInputs()) return;
+
+        try {
+            const userData = {
+                nomeCompleto,
+                email,
+                senha,
+                avatar: null,
+            };
+            await AsyncStorage.setItem("usuario_dados", JSON.stringify(userData));
+            Alert.alert("Sucesso", "Conta criada com sucesso!");
+            router.navigate("/(tabs)/menuPrincipal");
+        } catch (error) {
+            Alert.alert("Erro", "Não foi possível criar a conta.");
+        }
     }
 
     return(
         <View style={styles.container}>
 
-        <BackNavigation /> 
+        <BackNavigation />
 
             <View style={styles.content}>
                 <Image style={styles.tela} source={require('@/assets/telaInicial.png')} />
                 <View style={styles.section}>
                     <View style={styles.inputContainer}>
                         <MaterialIcons  name='email' size={16} />
-                        <TextInput style={styles.textInput} placeholder="Email:" />
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Email:"
+                            value={email}
+                            onChangeText={setEmail}
+                            keyboardType="email-address"
+                            autoCapitalize="none"
+                        />
                     </View>
                     <View style={styles.inputContainer}>
                         <MaterialIcons  name='person' size={16} />
-                        <TextInput style={styles.textInput} placeholder="Nome completo:" />
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Nome completo:"
+                            value={nomeCompleto}
+                            onChangeText={setNomeCompleto}
+                        />
                     </View>
                     <View style={styles.inputContainer}>
                         <MaterialIcons  name='person' size={16} />
-                        <TextInput style={styles.textInput} placeholder="Nome do usuário:" />
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Nome do usuário:"
+                            value={nomeUsuario}
+                            onChangeText={setNomeUsuario}
+                        />
                     </View>
                     <View style={styles.inputContainer}>
                         <MaterialIcons name='password' size={16} />
-                        <TextInput style={styles.textInput} placeholder="Senha:" />
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Senha:"
+                            value={senha}
+                            onChangeText={setSenha}
+                            secureTextEntry
+                        />
                     </View>
-                    <TouchableOpacity onPress={menuPrincipal}style={styles.button} >
-                        <Text style={styles.textButton}>Login</Text>
+                    <TouchableOpacity onPress={criarConta} style={styles.button} >
+                        <Text style={styles.textButton}>Criar Conta</Text>
                     </TouchableOpacity>
-                
+
                 </View>
             </View>
-            
+
         </View>
     )
 }

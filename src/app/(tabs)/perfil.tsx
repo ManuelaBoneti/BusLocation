@@ -1,22 +1,32 @@
-import React, { useState, useEffect, JSX } from "react";
+import { MaterialIcons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as ImagePicker from "expo-image-picker";
+import { router } from "expo-router";
+import React, { JSX, useEffect, useState } from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
+  ActivityIndicator,
+  Alert,
   Image,
+  StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
-  Alert,
+  View
 } from "react-native";
-import * as ImagePicker from "react-native-image-picker";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { MaterialIcons } from "@expo/vector-icons";
 
 type UserData = {
   nomeCompleto: string;
   email: string;
   senha: string;
   avatar: string | number;
+};
+
+type EditData = {
+  nomeCompleto: string;
+  email: string;
+  senhaAtual: string;
+  novaSenha: string;
+  confirmarSenha: string;
 };
 
 export default function Perfil(): JSX.Element {
@@ -30,6 +40,14 @@ export default function Perfil(): JSX.Element {
   });
 
   const [editando, setEditando] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [editData, setEditData] = useState<EditData>({
+    nomeCompleto: "",
+    email: "",
+    senhaAtual: "",
+    novaSenha: "",
+    confirmarSenha: "",
+  });
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -51,21 +69,78 @@ export default function Perfil(): JSX.Element {
     loadUserData();
   }, []);
 
-  const handleAvatarChange = () => {
-    ImagePicker.launchImageLibrary({ mediaType: "photo" }, (response) => {
-      if (response.didCancel || response.errorCode) return;
-      const uri = response.assets?.[0]?.uri;
-      if (uri) {
-        setUserData((prev) => ({ ...prev, avatar: uri }));
+  const handleAvatarChange = async (fromCamera: boolean = false) => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (permissionResult.granted === false) {
+      Alert.alert("Permissão necessária", "Precisamos de permissão para acessar suas fotos.");
+      return;
+    }
+
+    if (fromCamera) {
+      const cameraPermission = await ImagePicker.requestCameraPermissionsAsync();
+      if (cameraPermission.granted === false) {
+        Alert.alert("Permissão necessária", "Precisamos de permissão para acessar a câmera.");
+        return;
       }
-    });
+    }
+
+    const result = fromCamera
+      ? await ImagePicker.launchCameraAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 0.8,
+          base64: true,
+        })
+      : await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [1, 1],
+          quality: 0.8,
+          base64: true,
+        });
+
+    if (!result.canceled) {
+      const asset = result.assets[0];
+      if (asset.base64) {
+        setUserData((prev) => ({ ...prev, avatar: `data:image/jpeg;base64,${asset.base64}` }));
+      } else {
+        setUserData((prev) => ({ ...prev, avatar: asset.uri }));
+      }
+    }
   };
 
   const handleAvatarClear = () => {
     setUserData((prev) => ({ ...prev, avatar: imagemPadrao }));
   };
 
+  const validateInputs = () => {
+    const errors: string[] = [];
+
+    if (!userData.nomeCompleto.trim()) {
+      errors.push("Nome completo é obrigatório.");
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(userData.email)) {
+      errors.push("E-mail inválido.");
+    }
+
+    if (userData.senha && userData.senha.length < 6) {
+      errors.push("A senha deve ter pelo menos 6 caracteres.");
+    }
+
+    return errors;
+  };
+
   const handleSalvar = async () => {
+    const errors = validateInputs();
+    if (errors.length > 0) {
+      Alert.alert("Erros de validação", errors.join("\n"));
+      return;
+    }
+
+    setLoading(true);
     try {
       const dataToSave = {
         ...userData,
@@ -76,20 +151,46 @@ export default function Perfil(): JSX.Element {
       setEditando(false);
     } catch (error) {
       Alert.alert("Erro", "Não foi possível salvar os dados.");
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handleLogout = async () => {
+    Alert.alert(
+      "Confirmar Logout",
+      "Tem certeza que deseja sair?",
+      [
+        { text: "Cancelar", style: "cancel" },
+        {
+          text: "Sair",
+          style: "destructive",
+          onPress: async () => {
+            try {
+              await AsyncStorage.removeItem("usuario_dados");
+              router.replace("/");
+            } catch (error) {
+              Alert.alert("Erro", "Não foi possível fazer logout.");
+            }
+          },
+        },
+      ]
+    );
   };
 
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.imagem}
-        source={
-          typeof userData.avatar === "string"
-            ? { uri: userData.avatar }
-            : userData.avatar
-        }
-      />
-      <Text style={styles.title}>Perfil do Usuário</Text>
+      <View style={styles.header}>
+        <Image
+          style={styles.imagem}
+          source={
+            typeof userData.avatar === "string"
+              ? { uri: userData.avatar }
+              : userData.avatar
+          }
+        />
+        <Text style={styles.title}>Perfil do Usuário</Text>
+      </View>
 
       <View style={styles.section}>
         <View style={styles.inputContainer}>
@@ -152,16 +253,26 @@ export default function Perfil(): JSX.Element {
           <View style={styles.avatarButtons}>
             <TouchableOpacity
               style={styles.avatarButton}
-              onPress={handleAvatarChange}
+              onPress={() => {
+                Alert.alert(
+                  "Adicionar Foto",
+                  "Escolha a fonte da imagem",
+                  [
+                    { text: "Galeria", onPress: () => handleAvatarChange(false) },
+                    { text: "Câmera", onPress: () => handleAvatarChange(true) },
+                    { text: "Cancelar", style: "cancel" },
+                  ]
+                );
+              }}
             >
-              <Text style={styles.avatarButtonText}>Alterar Foto</Text>
+              <Text style={styles.avatarButtonText}>Adicionar Foto</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[styles.avatarButton, styles.removeButton]}
               onPress={handleAvatarClear}
             >
-              <Text style={styles.avatarButtonText}>Remover</Text>
+              <Text style={styles.avatarButtonText}>Remover Foto</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -180,11 +291,25 @@ export default function Perfil(): JSX.Element {
             <TouchableOpacity
               style={[styles.button, styles.saveButton]}
               onPress={handleSalvar}
+              disabled={loading}
             >
-              <Text style={styles.buttonText}>Salvar</Text>
+              {loading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text style={styles.buttonText}>Salvar</Text>
+              )}
             </TouchableOpacity>
           )}
         </View>
+
+        {!editando && (
+          <TouchableOpacity
+            style={[styles.button, styles.logoutButton]}
+            onPress={handleLogout}
+          >
+            <Text style={styles.buttonText}>Logout</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -193,93 +318,146 @@ export default function Perfil(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#f5f7fa",
+    paddingTop: 50,
+  },
+  header: {
     alignItems: "center",
-    backgroundColor: "#033b85",
-    paddingTop: 60,
+    paddingVertical: 30,
+    backgroundColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 8,
   },
   imagem: {
-    width: 130,
-    height: 130,
-    borderRadius: 65,
-    marginBottom: 20,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 4,
+    borderColor: "#fff",
+    marginBottom: 15,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     color: "#fff",
-    fontWeight: "bold",
-    marginBottom: 20,
+    fontWeight: "700",
+    letterSpacing: 0.5,
   },
   section: {
     backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 20,
-    width: 320,
-    elevation: 2,
+    borderRadius: 20,
+    padding: 25,
+    marginHorizontal: 20,
+    marginTop: -20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "#ccc",
+    borderColor: "#e1e5e9",
     borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 20,
-    backgroundColor: "#fff",
+    borderRadius: 12,
+    paddingHorizontal: 15,
+    marginBottom: 18,
+    backgroundColor: "#fafbfc",
+    height: 55,
   },
   icon: {
-    marginRight: 10,
+    marginRight: 12,
+    color: "#6c757d",
   },
   textInput: {
     flex: 1,
-    height: 50,
     fontSize: 16,
-    color: "#333",
+    color: "#495057",
+    fontWeight: "500",
   },
   value: {
     flex: 1,
     fontSize: 16,
-    color: "#000",
+    color: "#212529",
+    fontWeight: "500",
   },
   avatarButtons: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 20,
+    justifyContent: "space-around",
+    marginBottom: 25,
   },
   avatarButton: {
-    backgroundColor: "#2a58b5",
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 8,
-    marginHorizontal: 5,
+    backgroundColor: "#007bff",
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 25,
+    minWidth: 120,
+    alignItems: "center",
+    shadowColor: "#007bff",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
   },
   removeButton: {
-    backgroundColor: "#d9534f",
+    backgroundColor: "#dc3545",
   },
   avatarButtonText: {
     color: "#fff",
-    fontWeight: "bold",
+    fontWeight: "600",
+    fontSize: 14,
   },
   actions: {
     flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 10,
+    justifyContent: "space-between",
+    marginTop: 20,
   },
   button: {
-    borderRadius: 12,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    borderRadius: 25,
+    paddingVertical: 14,
+    paddingHorizontal: 30,
+    flex: 1,
     marginHorizontal: 5,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
     elevation: 3,
   },
   editButton: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#28a745",
   },
   saveButton: {
-    backgroundColor: "#28a745",
+    backgroundColor: "#007bff",
   },
   buttonText: {
     color: "#fff",
-    fontWeight: "bold",
-    textTransform: "uppercase",
+    fontWeight: "700",
+    fontSize: 14,
+    letterSpacing: 0.5,
+  },
+  logoutButton: {
+    backgroundColor: "#dc3545",
+    marginTop: 25,
+    borderRadius: 25,
+    paddingVertical: 14,
+    paddingHorizontal: 30,
+    alignItems: "center",
+    shadowColor: "#dc3545",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
   },
 });
