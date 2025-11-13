@@ -142,7 +142,15 @@ export default function Perfil(): JSX.Element {
               secureTextEntry
             />
           ) : userData.senha ? (
-            <Text style={styles.value}>••••••••</Text>
+
+
+
+            <Text style={styles.value}>Senha não </Text>
+
+
+
+
+            
           ) : (
             <Text style={styles.value}>Senha não definida</Text>
           )}

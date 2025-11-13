@@ -19,7 +19,7 @@ export default function EsqueciSenha() {
       return;
     }
 
-    // Alert.alert("Sucesso", "O código foi enviado para seu e-mail!");
+
     router.push("/codigoSenha");
   };
 
