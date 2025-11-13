@@ -4,14 +4,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
 
-
 export default function CadastroPasse(){
 
     return(
         <View style={styles.container}>
-            <Image 
-                            style={styles.tela} source={require('@/assets/telaInicial.png')} 
-                        />
+            <Image
+                style={styles.tela} source={require('@/assets/telaInicial.png')}
+            />
          
             <Text style={styles.title}>Cadastro do Passe</Text>
 
@@ -25,7 +24,7 @@ export default function CadastroPasse(){
 
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='person' size={16} />
-                    <TextInput style={styles.textInput} placeholder="data de nascimento:" />
+                    <TextInput style={styles.textInput} placeholder="Data de nascimento:" />
                 </View>
 
                 <View style={styles.inputContainer}>
@@ -46,23 +45,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: "#033b85",
     },
-    icon: {
-        margin: 10
+    tela : {
+        width: 220,
+        height: 280,
+        marginTop: -4,
     },
     title: {
-        fontSize: 35,
+        fontSize: 22,
         color: "#fff",
-        marginTop: 120,
-        marginBottom: -250,
-        paddingBottom: 50,
-        fontFamily: 'Quicksand_700Bold', 
-        textAlign: 'center',
-  },
-
-    tela : {
-        width: 340,
-        height: 370,
-        marginBottom: -240,
+        fontWeight: "bold",
+        fontFamily: 'Quicksand_700Bold',
+        marginBottom: 30, 
+        marginTop: -50,
+    },
+    icon: {
+        margin: 10,
     },
     section: {
         backgroundColor: '#ffff',
@@ -73,9 +70,11 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
-        width: 300,
+        width: 390,
         height: 400,
+        alignItems: 'center',
         marginBlock: 250,
+        marginTop: 10,
     },
     inputContainer: {
         flexDirection: 'row',
@@ -92,9 +91,8 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 60,
         marginLeft: 5,
-        fontSize: 18,
+        fontSize: 16,
         color: "white",
-        fontWeight: "bold"
     }
 })
 
