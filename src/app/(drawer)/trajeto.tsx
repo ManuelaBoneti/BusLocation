@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { BackNavigation } from '@/components/BackNavigation';
+
 import { Button } from '@/components/Button';
 
 export default function Trajeto() {
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
         height: 60,
         marginLeft: 5,
         fontSize: 16,
+
     },
     dropdownContainer: {
         position: 'absolute',

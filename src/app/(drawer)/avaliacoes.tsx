@@ -1,7 +1,7 @@
-import {View,Text, StyleSheet, Alert} from "react-native";
+import {View,Text, StyleSheet, Alert, Image} from "react-native";
 import Start from "../../components/Back/Star";
 import { TouchableOpacity } from "react-native";
-import { BackNavigation } from "@/components/BackNavigation";
+
 import { useState } from "react";
 
 export default function avaliacoes(){
@@ -22,8 +22,12 @@ export default function avaliacoes(){
     }
     return(
         <View style={styles.container}>
-            <BackNavigation/>
-            <Text style={styles.tituloPrincipal}>Avaliações</Text>
+            
+             <Image 
+                            style={styles.tela} source={require('@/assets/telaInicial.png')} 
+                        />
+      
+            <Text style={styles.tituloPrincipal}>Deixe uma avaliação do nosso aplicativo para melhorias!</Text>
             <View style={styles.inner}>
                 <Start
                 onChange={setNota}
@@ -49,11 +53,16 @@ const styles = StyleSheet.create({
         gap: 32,
     },
     tituloPrincipal:{
-        fontSize: 40,
+        fontSize: 30,
         color: "#ffffff",
-        fontWeight: 'bold',
         textAlign: 'center',
-        marginTop: -10,  
+        fontFamily: 'Quicksand_700Bold', 
+        marginTop: -60,  
+    },
+    tela : {
+        width: 320,
+        height: 300,
+       marginBottom: -50,
     },
     inner:{
         backgroundColor: "#e1e6eb",
@@ -74,8 +83,8 @@ const styles = StyleSheet.create({
     tituloButton:{
         fontSize: 20,
         color: "#ffffff",
-        fontWeight: 'bold',
         textAlign: 'center',
+        fontFamily: 'Quicksand_700Bold', 
     },
 
 })

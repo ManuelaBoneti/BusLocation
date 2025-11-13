@@ -68,8 +68,9 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 36,
         color: "#fff",
-        fontWeight: "bold",
+       
         marginBottom: 40, 
+        fontFamily: 'Quicksand_700Bold', 
     },
     gridContainer: {
         flexDirection: "row",
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     },
     subtitulo: {
         fontSize: 18,
-        fontWeight: "bold",
+        fontFamily: 'Quicksand_500Medium', 
         color: "#fff",
         marginTop: 12,
         textAlign: "center",
