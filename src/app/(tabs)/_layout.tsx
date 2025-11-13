@@ -57,6 +57,17 @@ export default function TabsLayout(){
 
                 }}
             />
+
+            {/* <Tabs.Screen
+                name="(drawer)"
+                options={{
+                    tabBarLabel: "menu",
+                    tabBarIcon: ({color, size}) => <MaterialIcons 
+                    name="menu" color={color} size={size} />
+
+                }}
+            /> */}
+            
         </Tabs>
     )
 }
