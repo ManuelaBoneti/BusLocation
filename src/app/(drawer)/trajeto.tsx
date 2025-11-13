@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, FlatList } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-
-import { Button } from '@/components/Button';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { router } from 'expo-router';
+import { Pressable } from 'react-native';
 
 export default function Trajeto() {
 
@@ -27,6 +27,17 @@ export default function Trajeto() {
     const filteredLines = busLines.filter(line =>
         line.toLowerCase().includes(search.toLowerCase())
     );
+
+    const handleContinue = () => {
+        if (selectedLine) {
+            router.push({
+                pathname: '/(drawer)/visualizacaoOnibus',
+                params: { linhaEscolhida: selectedLine },
+            });
+        } else {
+            Alert.alert('Atenção', 'Selecione uma linha antes de continuar.');
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -83,7 +94,22 @@ export default function Trajeto() {
                     <TextInput style={styles.textInput} placeholder="Horário:" />
                 </View>
 
-                <Button />
+                <View>
+                    <Pressable
+                        onPress={handleContinue}
+                        style={({ pressed }) => [
+                            styles.button,
+                            pressed ? styles.buttonPressed : null
+                        ]} >
+                        <Text style={styles.textButton}>PROCURAR</Text>
+                        <Ionicons
+                            name="search"
+                            size={22}
+                            color="#fff"
+                            style={{ marginLeft: 10, marginTop: 2 }}
+                        />
+                    </Pressable>
+                </View>
 
             </View>
         </View>
@@ -103,25 +129,26 @@ const styles = StyleSheet.create({
         marginTop: -4,
     },
     title: {
-        fontSize: 35,
+        fontSize: 27,
         color: "#fff",
-        fontWeight: "bold",
+       fontFamily: 'Quicksand_700Bold',
         marginBottom: 30, // espaço entre o título e a section
         marginTop: -50,
+        alignItems: 'center',
     },
     icon: {
         margin: 10,
     },
     section: {
         backgroundColor: '#fff',
-        borderRadius: 10,
-        padding: 5,
+        borderRadius: 15,
+        padding: 13,
         elevation: 2,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
-        width: 380,
+        width: 390,
         height: 400,
         alignItems: 'center',
     },
@@ -133,6 +160,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         paddingHorizontal: 10,
         marginBottom: 20,
+        marginTop: 20,
         backgroundColor: '#fff',
     },
     textInput: {
@@ -140,7 +168,6 @@ const styles = StyleSheet.create({
         height: 60,
         marginLeft: 5,
         fontSize: 16,
-
     },
     dropdownContainer: {
         position: 'absolute',
@@ -158,16 +185,38 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         maxHeight: 200, 
     },
-
     option: {
         paddingVertical: 10,
         paddingHorizontal: 12,
         borderBottomWidth: 1,
         borderBottomColor: '#eee',
     },
-
     optionText: {
         fontSize: 16,
         color: '#333',
+    },
+    button : {
+        backgroundColor: "#ccc",
+        borderRadius: 12,
+        paddingVertical: 12,
+        paddingHorizontal: 36,
+        marginTop: 10,
+        elevation: 4,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        flexDirection: 'row',
+    },
+    buttonPressed: {
+        backgroundColor: "gray",
+        transform: [{ scale: 0.97 }], 
+    },
+    textButton : {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#fff',
+        letterSpacing: 1,
+        textTransform: 'uppercase',
+        marginLeft: 30
     },
 });

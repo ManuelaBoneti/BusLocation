@@ -1,54 +1,83 @@
-import {Text, View, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Image, TextInput, TouchableOpacity,Alert} from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
 
 // No additional imports or code are needed at this placeholder.
 export default function Index() {
     const router = useRouter();
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
 
-    function esqueciSenha(){
-        router.navigate("/(tabs)/esqueciSenha")
+    function validarLogin() {
+        if (email === '' || senha === '') {
+            Alert.alert("Campos obrigatórios", "Digite seu e-mail e senha para continuar.");
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            Alert.alert("E-mail inválido", "Por favor, insira um e-mail válido.");
+            return;
+        }
+        
+        menuPrincipal();
     }
 
-    function criarCadastro (){
-        router.navigate("/(tabs)/criarConta")
+    function esqueciSenha() {
+        router.navigate("/(tabs)/esqueciSenha");
     }
 
-    function menuPrincipal(){
-        router.navigate("/(tabs)/menuPrincipal")
+    function criarCadastro() {
+        router.navigate("/(tabs)/criarConta");
     }
 
-    return(
+    function menuPrincipal() {
+        router.navigate("/(tabs)/menuPrincipal");
+    }
+
+    return (
         <View style={styles.container}>
-            <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
-            <View style={styles.section}>,
+            <Image style={styles.tela} source={require('@/assets/telaInicial.png')} />
+            <View style={styles.section}>
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='email' size={16} />
-                    <TextInput style={styles.textInput} placeholder="Email:"  />
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Email:"
+                        keyboardType="email-address"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <MaterialIcons style={styles.icon} name='lock' size={16}/>
-                    <TextInput style={styles.textInput}placeholder="Senha:" />
+                    <MaterialIcons style={styles.icon} name='lock' size={16} />
+                    <TextInput
+                        style={styles.textInput}
+                        placeholder="Senha:"
+                        secureTextEntry
+                        value={senha}
+                        onChangeText={setSenha}
+                    />
                 </View>
 
-                <TouchableOpacity onPress={menuPrincipal} style={styles.button} >
+                <TouchableOpacity onPress={validarLogin} style={styles.button}>
                     <Text style={styles.textButton}>Entrar</Text>
                 </TouchableOpacity>
 
                 <View style={styles.links}>
                     <TouchableOpacity onPress={esqueciSenha}>
                         <Text style={styles.title}>Esqueceu a senha?</Text>
-                    </TouchableOpacity >
+                    </TouchableOpacity>
 
                     <TouchableOpacity onPress={criarCadastro}>
                         <Text style={styles.title}>Criar uma nova conta</Text>
                     </TouchableOpacity>
-
                 </View>
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({

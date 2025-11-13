@@ -1,9 +1,8 @@
-import {View,Text, StyleSheet, Alert, Image, Modal} from "react-native";
+import {View,Text, StyleSheet, Alert, Image, TextInput} from "react-native";
+import Start from "../../components/Back/Star";
 import { TouchableOpacity } from "react-native";
-import { BackNavigation } from "@/components/BackNavigation";
 import { useState } from "react";
-import StarRating from "@/components/Back/Star";
-
+import { Modal } from "react-native";
 
 export default function avaliacoes(){
 
@@ -24,15 +23,19 @@ export default function avaliacoes(){
   };
     return(
         <View style={styles.container}>
-            <BackNavigation/>
-            <Text style={styles.tituloPrincipal}>Avaliações</Text>
+            
+            <Image
+                style={styles.tela} source={require('@/assets/telaInicial.png')}
+            />
+      
+            <Text style={styles.title}>Deixe uma avaliação do nosso aplicativo para melhorias!</Text>
+
+            <TextInput style={styles.textInput} placeholder="Escreva aqui..."></TextInput>
+
             <View style={styles.inner}>
-                <StarRating
-                value={nota}
-                onChange={setNota}
-                
-                />
+                <Start onChange={setNota}/>
             </View>
+            
             <TouchableOpacity style={styles.button}onPress={AvaliacaoEnviada}>
                 <Text style={styles.tituloButton}>
                     Avaliar agora
@@ -69,20 +72,35 @@ const styles = StyleSheet.create({
         backgroundColor: "#033b85",
         gap: 32,
     },
-    tituloPrincipal:{
-        fontSize: 40,
+    title:{
+        fontSize: 22,
         color: "#ffffff",
         fontWeight: 'bold',
         textAlign: 'center',
-        marginTop: -10,  
+        fontFamily: 'Quicksand_700Bold', 
+        marginLeft: 20,
+        marginTop: -90
+    },
+    tela: {
+        width: 220,
+        height: 280,
+        marginTop: -90,
+    },
+    textInput:{
+        backgroundColor: "#ffffff",
+        width: 320,
+        height: 180,
+        borderRadius: 10,
+        padding: 10,
+        fontSize: 16,
+        fontFamily: 'Quicksand_400Regular', 
+        textAlignVertical: 'top',
     },
     inner:{
-        backgroundColor: "#e1e6eb",
         padding: 15,
         borderRadius: 10,
         width: '80%',
         alignItems: 'center',
-         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         gap: 20,
     },
     button:{
