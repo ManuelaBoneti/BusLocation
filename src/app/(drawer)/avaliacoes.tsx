@@ -16,8 +16,6 @@ export default function avaliacoes(){
             "Avaliação enviada com sucesso!"
             );
             setNota(0);
-        
-
     };
     return(
         <View style={styles.container}>
