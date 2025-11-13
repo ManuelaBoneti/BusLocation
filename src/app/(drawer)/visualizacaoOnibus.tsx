@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
         paddingTop: 70,
     },
     tela : {
-        width: 220,
-        height: 280,
+        width: 320,
+        height: 300,
        marginBottom: 30,
     },
     title: {

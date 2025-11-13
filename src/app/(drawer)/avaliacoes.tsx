@@ -32,12 +32,13 @@ export default function avaliacoes(){
                 <Start
                 onChange={setNota}
                 />
-            </View>
-            <TouchableOpacity style={styles.button}onPress={AvaliacaoEnviada}>
+                 <TouchableOpacity style={styles.button}onPress={AvaliacaoEnviada}>
                 <Text style={styles.tituloButton}>
                     Avaliar agora
                 </Text>
             </TouchableOpacity>
+            </View>
+           
 
 
         </View>
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
         width: 320,
         height: 300,
        marginBottom: -50,
+       marginTop: -160,
     },
     inner:{
         backgroundColor: "#e1e6eb",
