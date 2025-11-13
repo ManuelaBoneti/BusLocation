@@ -24,7 +24,6 @@ export default function Trajeto() {
     const [search, setSearch] = useState('');
     const [selectedLine, setSelectedLine] = useState('');
 
-    // Filtra a lista conforme o texto digitado
     const filteredLines = busLines.filter(line =>
         line.toLowerCase().includes(search.toLowerCase())
     );
@@ -34,14 +33,12 @@ export default function Trajeto() {
             
             <View style={{ alignItems: 'center', marginTop: -110 }}>
                 <Image
-                    style={styles.logo}
+                    style={styles.tela}
                     source={require('@/assets/telaInicial.png')}
                 />
             </View>
 
             <Text style={styles.title}>Trajeto</Text>
-
-            <BackNavigation />
 
             <View style={styles.section}>
                 <View style={styles.inputContainer}>
@@ -60,7 +57,6 @@ export default function Trajeto() {
                         />
                     </View>
 
-                    {/* Dropdown suspenso */}
                     {search.length > 0 && (
                         <View style={styles.dropdownContainer}>
                             <FlatList
@@ -71,7 +67,7 @@ export default function Trajeto() {
                                         style={styles.option}
                                         onPress={() => {
                                             setSelectedLine(item);
-                                            setSearch(item); // Preenche o campo com o item selecionado
+                                            setSearch(item); 
                                         }}
                                     >
                                         <Text style={styles.optionText}>{item}</Text>
@@ -101,17 +97,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    logo: {
-        width: 300,
-        height: 360,
-        resizeMode: 'contain',
-        marginBottom: -130, // pequeno espaçamento entre logo e título
+    tela : {
+        width: 220,
+        height: 280,
+        marginTop: -4,
     },
     title: {
         fontSize: 35,
         color: "#fff",
         fontWeight: "bold",
         marginBottom: 30, // espaço entre o título e a section
+        marginTop: -50,
     },
     icon: {
         margin: 10,
@@ -119,13 +115,14 @@ const styles = StyleSheet.create({
     section: {
         backgroundColor: '#fff',
         borderRadius: 10,
-        padding: 15,
+        padding: 5,
         elevation: 2,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
-        width: 360,
+        width: 380,
+        height: 400,
         alignItems: 'center',
     },
     inputContainer: {
@@ -146,19 +143,19 @@ const styles = StyleSheet.create({
     },
     dropdownContainer: {
         position: 'absolute',
-        top: 65, // distância do topo do input (ajuste fino se quiser)
+        top: 65, // distância do topo do input 
         left: 0,
         right: 0,
         backgroundColor: '#fff',
         borderRadius: 8,
         borderWidth: 1,
         borderColor: '#ccc',
-        zIndex: 20, // garante que aparece sobre outros componentes
-        elevation: 10, // sombra no Android
+        zIndex: 20, 
+        elevation: 10, 
         shadowColor: '#000',
         shadowOpacity: 0.2,
         shadowRadius: 4,
-        maxHeight: 200, // rolagem se houver muitas opções
+        maxHeight: 200, 
     },
 
     option: {

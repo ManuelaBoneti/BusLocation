@@ -1,30 +1,22 @@
 import React, { useRef, useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-  StyleSheet,
-  Animated,
-} from "react-native";
+import {View,Text,Image,TouchableOpacity,Dimensions,StyleSheet,Animated} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { BackNavigation } from "@/components/BackNavigation";
- 
+
 const { width: screenWidth } = Dimensions.get("window");
- 
+
 export default function PasseVirtual() {
   const data = [
     { image: require("@/assets/passeVirtualFrente.png") },
     { image: require("@/assets/passeVirtualVerso.png") },
   ];
- 
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const translateX = useRef(new Animated.Value(0)).current;
- 
+
   const handleTransition = (nextIndex: number, direction: "left" | "right") => {
     const move = direction === "left" ? -screenWidth : screenWidth;
- 
+
     Animated.timing(translateX, {
       toValue: move,
       duration: 250,
@@ -32,7 +24,7 @@ export default function PasseVirtual() {
     }).start(() => {
       setCurrentIndex(nextIndex);
       translateX.setValue(-move);
- 
+
       Animated.timing(translateX, {
         toValue: 0,
         duration: 250,
@@ -40,17 +32,17 @@ export default function PasseVirtual() {
       }).start();
     });
   };
- 
+
   const handleNext = () => {
     const nextIndex = currentIndex === data.length - 1 ? 0 : currentIndex + 1;
     handleTransition(nextIndex, "left");
   };
- 
+
   const handlePrev = () => {
     const prevIndex = currentIndex === 0 ? data.length - 1 : currentIndex - 1;
     handleTransition(prevIndex, "right");
   };
- 
+
   return (
     <View style={styles.container}>
       <BackNavigation />
@@ -58,9 +50,9 @@ export default function PasseVirtual() {
         style={styles.tela}
         source={require("@/assets/telaInicial.png")}
       />
- 
+
       <Text style={styles.title}>Passe Virtual</Text>
- 
+
       <View style={styles.carouselContainer}>
         <Animated.View
           style={[
@@ -70,7 +62,7 @@ export default function PasseVirtual() {
         >
           <Image source={data[currentIndex].image} style={styles.image} />
         </Animated.View>
- 
+
         {/* Botão anterior */}
         <TouchableOpacity
           style={[styles.navButton, styles.leftButton]}
@@ -78,7 +70,7 @@ export default function PasseVirtual() {
         >
           <Ionicons name="chevron-back" size={28} color="#fff" />
         </TouchableOpacity>
- 
+
         {/* Botão próximo */}
         <TouchableOpacity
           style={[styles.navButton, styles.rightButton]}
@@ -87,7 +79,7 @@ export default function PasseVirtual() {
           <Ionicons name="chevron-forward" size={28} color="#fff" />
         </TouchableOpacity>
       </View>
- 
+
       {/* Indicadores */}
       <View style={styles.indicatorContainer}>
         {data.map((_, index) => (
@@ -103,7 +95,7 @@ export default function PasseVirtual() {
     </View>
   );
 }
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
