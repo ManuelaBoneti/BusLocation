@@ -1,8 +1,10 @@
 import {View,Text, StyleSheet, Alert, Image} from "react-native";
-import Start from "../../components/Back/Star";
-import { TouchableOpacity } from "react-native";
 
+import { TouchableOpacity } from "react-native";
+import { BackNavigation } from "@/components/BackNavigation";
 import { useState } from "react";
+import StarRating from "@/components/Back/Star";
+
 
 export default function avaliacoes(){
     const [nota, setNota] = useState(0);
@@ -10,27 +12,25 @@ export default function avaliacoes(){
     const AvaliacaoEnviada = () =>{
         if(nota === 0){
             Alert.alert(
-            "Selecione uma nota antes de enviar a avaliação."
-            );
+            "Selecione uma nota antes de enviar a avaliação.");
+        
         }else
         Alert.alert(
             "Avaliação enviada com sucesso!"
-
-        );
+            );
+            setNota(0);
         
-        setNota(0);
-    }
+
+    };
     return(
         <View style={styles.container}>
-            
-             <Image 
-                            style={styles.tela} source={require('@/assets/telaInicial.png')} 
-                        />
-      
-            <Text style={styles.tituloPrincipal}>Deixe uma avaliação do nosso aplicativo para melhorias!</Text>
+            <BackNavigation/>
+            <Text style={styles.tituloPrincipal}>Avaliações</Text>
             <View style={styles.inner}>
-                <Start
+                <StarRating
+                value={nota}
                 onChange={setNota}
+                
                 />
                  <TouchableOpacity style={styles.button}onPress={AvaliacaoEnviada}>
                 <Text style={styles.tituloButton}>
@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
         gap: 32,
     },
     tituloPrincipal:{
-        fontSize: 30,
+        fontSize: 40,
         color: "#ffffff",
+        fontWeight: 'bold',
         textAlign: 'center',
         fontFamily: 'Quicksand_700Bold', 
         marginTop: -60,  
@@ -85,8 +86,8 @@ const styles = StyleSheet.create({
     tituloButton:{
         fontSize: 20,
         color: "#ffffff",
+        fontWeight: 'bold',
         textAlign: 'center',
-        fontFamily: 'Quicksand_700Bold', 
     },
 
 })

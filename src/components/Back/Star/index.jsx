@@ -1,21 +1,12 @@
-import React, { useState} from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import React from "react";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function StarRating({ value = 0, onChange }) {
-  const [rating, setRating] = useState(value);
-
-  const handlePress = (value) => {
-    setRating(value);
-    if (onChange) {
-      onChange(value); 
-    }
-  };
-
   return (
     <View style={styles.container}>
       {[1, 2, 3, 4, 5].map((star) => (
-        <TouchableOpacity key={star} onPress={() => handlePress(star)}>
+        <TouchableOpacity key={star} onPress={() => onChange(star)}>
           <MaterialCommunityIcons
             name="star"
             size={40}
@@ -29,8 +20,9 @@ export default function StarRating({ value = 0, onChange }) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     marginVertical: 10,
   },
 });
+

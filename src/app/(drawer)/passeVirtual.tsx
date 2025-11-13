@@ -92,82 +92,83 @@ import { useRef, useState } from "react";
           ))}
         </View>
       </View>
-    );
-  }
-   
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      backgroundColor: "#033b85",
-      paddingTop: 70,
-    },
-    tela: {
-      width: 220,
-      height: 280,
-      marginTop: -60,
-    },
-    title: {
-      color: "#fff",
-      fontSize: 26,
-      fontWeight: "600",
-      marginBottom: 20,
-      marginTop: -30,
-    },
-    carouselContainer: {
-      alignItems: "center",
-      justifyContent: "center",
-      width: "100%",
-    },
-    slideWrapper: {
-      width: screenWidth * 0.9,
-      height: 260,
-      borderRadius: 20,
-      overflow: "hidden",
-      backgroundColor: "transparent", // 🔹 sem fundo branco
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.3,
-      shadowRadius: 6,
-      elevation: 8,
-      alignSelf: "center",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    image: {
-      width: "100%",
-      height: "100%",
-      resizeMode: "contain", // 🔹 mantém proporção e centraliza
-    },
-    navButton: {
-      position: "absolute",
-      top: "45%",
-      backgroundColor: "rgba(0,0,0,0.4)",
-      padding: 8,
-      borderRadius: 30,
-      zIndex: 2,
-    },
-    leftButton: {
-      left: 20,
-    },
-    rightButton: {
-      right: 20,
-    },
-    indicatorContainer: {
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 16,
-    },
-    indicator: {
-      width: 8,
-      height: 8,
-      borderRadius: 4,
-      backgroundColor: "rgba(255,255,255,0.5)",
-      marginHorizontal: 4,
-    },
-    indicatorActive: {
-      backgroundColor: "#fff",
-      width: 12,
-    },
-  });
+  
+  );
+}
+ 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#033b85",
+    paddingTop: 70,
+  },
+  tela: {
+    width: 220,
+    height: 280,
+    marginTop: -60,
+  },
+  title: {
+    color: "#fff",
+    fontSize: 26,
+    fontWeight: "600",
+    marginBottom: 20,
+    marginTop: -30,
+  },
+  carouselContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+  },
+  slideWrapper: {
+    width: screenWidth * 0.9,
+    height: 260,
+    borderRadius: 30,
+    overflow: "hidden",
+    backgroundColor: "transparent", 
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 8,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain", 
+  },
+  navButton: {
+    position: "absolute",
+    top: "45%",
+    backgroundColor: "rgba(0,0,0,0.4)",
+    padding: 8,
+    borderRadius: 30,
+    zIndex: 2,
+  },
+  leftButton: {
+    left: 20,
+  },
+  rightButton: {
+    right: 20,
+  },
+  indicatorContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 16,
+  },
+  indicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "rgba(255,255,255,0.5)",
+    marginHorizontal: 4,
+  },
+  indicatorActive: {
+    backgroundColor: "#fff",
+    width: 12,
+  },
+});

@@ -1,9 +1,28 @@
 
 import { router } from 'expo-router';
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert} from 'react-native';
 
 export default function EsqueciSenha() {
+
+  const [email, setEmail] = useState("");
+
+  const enviarCodigo = () => {
+    if (!email.trim()) {
+      Alert.alert("Campo obrigatório", "Digite seu e-mail para continuar.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert("E-mail inválido", "Por favor, digite um e-mail válido.");
+      return;
+    }
+
+    // Alert.alert("Sucesso", "O código foi enviado para seu e-mail!");
+    router.push("/codigoSenha");
+  };
+
   return (
     <View style={styles.container}>
       
@@ -23,9 +42,11 @@ export default function EsqueciSenha() {
         placeholder="Digite seu e-mail"
         placeholderTextColor="#999"
         keyboardType="email-address"
+        value={email}
+        onChangeText={setEmail}
       />
 
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/codigoSenha')}>
+<TouchableOpacity style={styles.button} onPress={enviarCodigo}>
         <Text style={styles.buttonText}>Enviar código</Text>
       </TouchableOpacity>
 
