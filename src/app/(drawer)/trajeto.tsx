@@ -115,8 +115,6 @@ const styles = StyleSheet.create({
     },
     icon: {
         margin: 10,
-        marginRight: 8,
-        color: '#555',
     },
     section: {
         backgroundColor: '#fff',

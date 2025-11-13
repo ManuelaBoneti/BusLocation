@@ -5,7 +5,7 @@ export default function Layout() {
     return (
         <Drawer
             screenOptions={{
-                headerTitle: "",
+                title:'',
                 drawerPosition: "right",
                 drawerStyle: {
                     backgroundColor: "#677db0",

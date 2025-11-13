@@ -5,7 +5,7 @@ import {View,Text,StyleSheet, Image,TouchableOpacity} from "react-native";
 export default function codigoSenha(){
     return(
         <View style={styles.container}>
-             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
+            <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
             <Text style={styles.tituloPrincipal}>ESQUECI SENHA</Text>
             <View style={styles.inner}>
                 <Text style={styles.title}>CÓDIGO ENVIADO!</Text>

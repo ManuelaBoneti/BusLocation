@@ -1,7 +1,20 @@
 import { router } from 'expo-router';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {useFonts, Quicksand_400Regular } from '@expo-google-fonts/quicksand';
+import AppLoading from 'expo-app-loading';
+
 
 export default function Index() {
+  
+    const [fontsLoaded] = useFonts({
+        Quicksand_400Regular
+    
+      });
+    
+      if (!fontsLoaded) {
+        return <AppLoading />;
+      }
+      
     function cadastro(){
         router.navigate("/telaInicial")
     }
