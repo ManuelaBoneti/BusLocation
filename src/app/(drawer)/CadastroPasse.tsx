@@ -1,6 +1,7 @@
-import { BackNavigation } from "@/components/BackNavigation";
+
+import { Button } from "@/components/Button";
 import { MaterialIcons } from "@expo/vector-icons";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
 
 
@@ -11,7 +12,10 @@ export default function CadastroPasse(){
 
     return(
         <View style={styles.container}>
-            <BackNavigation />
+            <Image 
+                            style={styles.tela} source={require('@/assets/telaInicial.png')} 
+                        />
+         
             <Text style={styles.title}>Cadastro do Passe</Text>
 
 
@@ -31,6 +35,7 @@ export default function CadastroPasse(){
                     <MaterialIcons style={styles.icon} name='search' size={16} />
                     <TextInput style={styles.textInput} placeholder="Código do passe fisíco:" />
                 </View>
+                   <Button />
 
             </View>
           
@@ -51,18 +56,17 @@ const styles = StyleSheet.create({
     title:{
         fontSize: 35,
         color: "#fff",
-        fontWeight: "bold",
         marginTop: 120,
         marginBottom: -250,
         paddingBottom: 50,
-        fontFamily: 'Quicksand_400Regular', 
+        fontFamily: 'Quicksand_700Bold', 
         textAlign: 'center',
   },
 
     tela : {
         width: 340,
         height: 370,
-        marginBottom: -10,
+        marginBottom: -240,
     },
     section: {
         backgroundColor: '#ffff',
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 2,
         width: 300,
-        height: 380,
+        height: 400,
         marginBlock: 250,
     },
     inputContainer : {

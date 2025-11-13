@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { BackNavigation } from '@/components/BackNavigation';
+
 import { Button } from '@/components/Button';
 
 export default function Trajeto() {
@@ -18,7 +18,7 @@ export default function Trajeto() {
 
             <Text style={styles.title}>Trajeto</Text>
 
-            <BackNavigation />
+       
 
             <View style={styles.section}>
                 <View style={styles.inputContainer}>
@@ -54,23 +54,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    icon:{
+
+    },
     logo: {
-        width: 300,
-        height: 360,
-        resizeMode: 'contain',
-        marginBottom: -100, // pequeno espaçamento entre logo e título
+        width: 220,
+        height: 280,
+       marginBottom: -50,
     },
     title: {
         fontSize: 35,
         color: "#fff",
-        fontWeight: "bold",
-        marginTop: 120,
-        marginBottom: -250,
-        paddingBottom: 50,   },
+       
+        // marginTop: 120,
+        // marginBottom: -250,
+        paddingBottom: 20,  
+        fontFamily: 'Quicksand_700Bold',  },
+        
     tela : {
-        width: 340,
-        height: 370,
-        marginBottom: -10,
+        width: 220,
+        height: 280,
+       marginBottom: 40,
     },
     section: {
         backgroundColor: '#fff',
@@ -101,6 +105,7 @@ const styles = StyleSheet.create({
         height: 60,
         marginLeft: 5,
         fontSize: 16,
+
     },
     listTitle: {
         fontSize: 18,

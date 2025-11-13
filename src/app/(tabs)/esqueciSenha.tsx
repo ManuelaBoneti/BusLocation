@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#fff',
     fontSize: 25,
-    fontWeight: 'bold',
+    fontFamily: 'Quicksand_700Bold', 
     marginBottom: 30,
     marginTop: -130
   },
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
     fontSize:22,
-    fontWeight: 'bold'
+    fontFamily: 'Quicksand_700Bold', 
   },
   informacao: {
     color: '#fff',
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontFamily: 'Quicksand_500Medium', 
     fontSize: 16,
   }
 });
