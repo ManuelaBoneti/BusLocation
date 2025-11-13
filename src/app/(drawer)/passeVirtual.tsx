@@ -131,9 +131,9 @@ const styles = StyleSheet.create({
   slideWrapper: {
     width: screenWidth * 0.9,
     height: 260,
-    borderRadius: 20,
+    borderRadius: 30,
     overflow: "hidden",
-    backgroundColor: "transparent", // 🔹 sem fundo branco
+    backgroundColor: "transparent", 
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "contain", // 🔹 mantém proporção e centraliza
+    resizeMode: "contain", 
   },
   navButton: {
     position: "absolute",
