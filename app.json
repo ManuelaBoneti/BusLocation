@@ -31,7 +31,14 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Permite acessar suas fotos para alterar o avatar.",
+          "cameraPermission": "Permite tirar fotos para alterar o avatar."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
