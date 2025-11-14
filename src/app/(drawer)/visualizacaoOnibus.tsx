@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     tela : {
         width: 220,
         height: 280,
-       marginBottom: 30,
+        marginTop: -80,
     },
     title: {
         color: "#fff",
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         width: 390,
         height: 40,
+        textAlign: "center",
     },
     boxTitle: {
         backgroundColor: 'rgba(0, 0, 0, 0.3)',

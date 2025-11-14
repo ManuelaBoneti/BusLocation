@@ -47,9 +47,9 @@ export default function EsqueciSenha() {
         onChangeText={setEmail}
       />
 
-<TouchableOpacity style={styles.button} onPress={enviarCodigo}>
+    <TouchableOpacity style={styles.button} onPress={enviarCodigo}>
         <Text style={styles.buttonText}>Enviar código</Text>
-      </TouchableOpacity>
+    </TouchableOpacity>
       
     </View>
   );
@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     marginBottom: 30,
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: 'Quicksand_400Regular'
   },
   input: {
     width: '100%',

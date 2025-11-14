@@ -108,11 +108,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     width: 390,
-    height: 450,
+    height: 490,
     marginBlock: 250,
     alignItems: "center",
     marginTop: -20,
-    
     
   },
   inputContainer: {
@@ -138,7 +137,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 30,
-    marginTop: 10,
   },
   tituloButton: {
     fontSize: 20,

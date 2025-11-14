@@ -1,4 +1,4 @@
-import { BackNavigation } from "@/components/BackNavigation";
+import { BackMenu } from "@/components/BackMenu";
 import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
@@ -49,7 +49,7 @@ export default function criarConta(){
     return(
         <View style={styles.container}>
 
-        <BackNavigation /> 
+        <BackMenu /> 
 
             <View style={styles.content}>
                 <Image style={styles.tela} source={require('@/assets/telaInicial.png')} />

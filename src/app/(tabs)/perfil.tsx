@@ -312,7 +312,7 @@ export default function Perfil(): JSX.Element {
 
         {!editando && (
           <TouchableOpacity
-            style={[styles.button, styles.logoutButton]}
+            style={ styles.logoutButton}
             onPress={handleLogout}
           >
             <Text style={styles.buttonText}>Logout</Text>
@@ -456,17 +456,16 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   logoutButton: {
-    backgroundColor:"#B0BEC5",
+    backgroundColor:"#ccc", /*Botão logout*/
     marginTop: 25,
     borderRadius: 25,
     paddingVertical: 14,
     paddingHorizontal: 30,
     alignItems: "center",
-    shadowColor: "#B42323",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 3,
-    color: "#fff",
   },
 });

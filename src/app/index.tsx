@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { Redirect, router } from 'expo-router';
 import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import { useFonts } from 'expo-font';
 import {Quicksand_400Regular, Quicksand_700Bold } from '@expo-google-fonts/quicksand';
@@ -15,14 +15,15 @@ export default function Index() {
     //     return <AppLoading />;
     //   }
       
-    function cadastro(){
+    function Cadastro(){
         router.navigate("/telaInicial")
     }
 
-    return(
+    return (
         <View style={styles.container}>
             <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
-            <TouchableOpacity style={styles.button} onPress={cadastro}>
+
+            <TouchableOpacity style={styles.button} onPress={Cadastro}>
                 <Text style={styles.textButton}>Entrar</Text>
             </TouchableOpacity>
         </View>
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     },
     textButton : {
         fontSize: 18,
-        fontFamily: 'Quicksand_500Medium', 
+        fontFamily: 'Quicksand_700Bold',
         color: '#000000',
         textAlign: 'center',
         letterSpacing: 1,
