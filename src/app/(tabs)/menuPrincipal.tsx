@@ -35,8 +35,10 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
-                    <Icon name="chat" size={60} color="#fff" />
-                    <Text style={styles.subtitulo}>Chat</Text>
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/chat' as any)}>
+                        <Icon name="chat" size={60} color="#fff" />
+                        <Text style={styles.subtitulo}>Chat</Text>
+                    </TouchableOpacity>
                 </View>
 
                 <View style={styles.caixaIcon}>

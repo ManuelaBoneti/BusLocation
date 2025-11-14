@@ -91,7 +91,7 @@ import { useRef, useState } from "react";
           ))}
         </View>
       </View>
-  
+ 
   );
 }
  
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     height: 260,
     borderRadius: 30,
     overflow: "hidden",
-    backgroundColor: "transparent", 
+    backgroundColor: "transparent",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "contain", 
+    resizeMode: "contain",
   },
   navButton: {
     position: "absolute",
@@ -172,3 +172,4 @@ const styles = StyleSheet.create({
     width: 12,
   },
 });
+ 

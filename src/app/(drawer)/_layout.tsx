@@ -97,6 +97,31 @@ export default function Layout() {
                    
                 }}
             />
+
+<Drawer.Screen
+                name="chat"
+                options={{
+                    drawerActiveTintColor: "#fff",
+                    drawerLabel: "Chat de Conversa",
+                    drawerLabelStyle: {
+                        color: "#fff"
+                    },
+                    drawerIcon: () => (
+                        <Ionicons name="card-outline" 
+                        size={22} />
+                      ),
+                      headerLeft: () => {
+                        return <Ionicons
+                                    name="arrow-back"
+                                    size={30}
+                                    color="#fff"
+                                    style={{ marginLeft: 20 }}
+                                    onPress={() => router.navigate("/menuPrincipal")}
+                                />
+                    }
+                   
+                }}
+            />
            
             <Drawer.Screen
                 name="CadastroPasse"

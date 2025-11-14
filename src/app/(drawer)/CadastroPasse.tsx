@@ -1,14 +1,14 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
-
+ 
 export default function CadastroPasse(){
-
+ 
   const [nota, setNota] = useState(0);
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  
-
+ 
+ 
   const PasseCadastrado = () => {
     if (nota === 0) {
       setAlertMessage("Preencha todos os campos acima para criar o cadastro.");
@@ -19,7 +19,7 @@ export default function CadastroPasse(){
       setNota(0);
     }
   };
-
+ 
    return(
         <View style={styles.container}>
             <Image
@@ -27,42 +27,42 @@ export default function CadastroPasse(){
             />
          
             <Text style={styles.title}>Cadastre seu passe aqui: </Text>
-
-      
-
+ 
+     
+ 
       <View style={styles.section}>
         <View style={styles.inputContainer}>
           <MaterialIcons style={styles.icon} name="pin-drop" size={16} />
           <TextInput style={styles.textInput} placeholder="Nome completo:" placeholderTextColor="#aaa" />
         </View>
-
+ 
         <View style={styles.inputContainer}>
           <MaterialIcons style={styles.icon} name="person" size={16} />
           <TextInput style={styles.textInput} placeholder="Data de nascimento:" placeholderTextColor="#aaa" />
         </View>
-
-        
+ 
+       
         <View style={styles.inputContainer}>
           <MaterialIcons style={styles.icon} name="search" size={16} />
           <TextInput style={styles.textInput} placeholder="Data de validade do passe físico:" placeholderTextColor="#aaa" />
         </View>
-
+ 
         <View style={styles.inputContainer}>
           <MaterialIcons style={styles.icon} name="search" size={16} />
           <TextInput style={styles.textInput} placeholder="Código do passe físico:" placeholderTextColor="#aaa" />
         </View>
-
+ 
         <TouchableOpacity style={styles.button} onPress={PasseCadastrado}>
           <Text style={styles.tituloButton}>Cadastrar</Text>
         </TouchableOpacity>
       </View>
-
+ 
       {/* alert */}
       <Modal transparent visible={alertVisible} animationType="fade">
         <View style={styles.overlay}>
           <View style={styles.alertBox}>
             <Text style={styles.alertText}>{alertMessage}</Text>
-
+ 
             <TouchableOpacity
               style={styles.okButton}
               onPress={() => setAlertVisible(false)}
@@ -75,7 +75,7 @@ export default function CadastroPasse(){
     </View>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -180,4 +180,4 @@ const styles = StyleSheet.create({
     fontFamily: 'Quicksand_700Bold',
   },
 });
-
+ 

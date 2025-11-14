@@ -4,9 +4,10 @@ import { useFonts } from 'expo-font';
 import {Quicksand_400Regular, Quicksand_700Bold } from '@expo-google-fonts/quicksand';
 // import { AppLoading } from 'expo';
 
-
 export default function Index() {
-  
+    
+
+    
     const [fontsLoaded] = useFonts({
         Quicksand_400Regular, Quicksand_700Bold    
       });
@@ -17,7 +18,7 @@ export default function Index() {
       
     function Cadastro(){
         router.navigate("/telaInicial")
-    }
+
 
     return (
         <View style={styles.container}>
@@ -30,6 +31,7 @@ export default function Index() {
     )
 }
 
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,
