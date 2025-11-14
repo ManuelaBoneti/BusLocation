@@ -107,12 +107,12 @@ const styles = StyleSheet.create({
   },
  
   userMsg: {
-    backgroundColor: "#fff",
+    backgroundColor: "#cfe8ff",
     alignSelf: "flex-end",
   },
  
   botMsg: {
-    backgroundColor: "#cfe8ff",
+    backgroundColor: "#5A7BAA",
     alignSelf: "flex-start",
     borderRadius: 10,
   },
