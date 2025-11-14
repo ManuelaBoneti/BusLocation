@@ -168,7 +168,7 @@ export default function Perfil(): JSX.Element {
           onPress: async () => {
             try {
               await AsyncStorage.removeItem("usuario_dados");
-              router.replace("/");
+              router.navigate("/telaInicial");
             } catch (error) {
               Alert.alert("Erro", "Não foi possível fazer logout.");
             }
@@ -246,7 +246,7 @@ export default function Perfil(): JSX.Element {
 
 
 
-            <Text style={styles.value}>Senha não </Text>
+            <Text style={styles.value}>Senha </Text>
 
 
 
@@ -326,7 +326,7 @@ export default function Perfil(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f7fa",
+    backgroundColor: "#033b85",
     paddingTop: 50,
   },
   header: {
@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 25,
     marginHorizontal: 20,
-    marginTop: -20,
+    marginTop: 35,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -375,12 +375,12 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "#e1e5e9",
+    borderColor: "#fff",
     borderWidth: 1,
     borderRadius: 12,
     paddingHorizontal: 15,
     marginBottom: 18,
-    backgroundColor: "#fafbfc",
+    backgroundColor: "rgba(111, 111, 111, 0.1)",
     height: 55,
   },
   icon: {
@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     fontSize: 16,
-    color: "#495057",
+    color: "#495056",
     fontWeight: "500",
   },
   value: {
@@ -405,20 +405,20 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   avatarButton: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#1A8754", /*Botão adicionar foto*/
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 25,
     minWidth: 120,
     alignItems: "center",
-    shadowColor: "#007bff",
+    shadowColor: "#007bf9", 
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 3,
   },
   removeButton: {
-    backgroundColor: "#dc3545",
+    backgroundColor: "#A62929", /*Botão remover foto*/ 
   },
   avatarButtonText: {
     color: "#fff",
@@ -444,10 +444,10 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   editButton: {
-    backgroundColor: "#28a745",
+    backgroundColor: "#5A7BAA", /*Botão cancelar*/
   },
   saveButton: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#1E63B1", /*Botão salvar*/
   },
   buttonText: {
     color: "#fff",
@@ -456,16 +456,17 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   logoutButton: {
-    backgroundColor: "#dc3545",
+    backgroundColor:"#B0BEC5",
     marginTop: 25,
     borderRadius: 25,
     paddingVertical: 14,
     paddingHorizontal: 30,
     alignItems: "center",
-    shadowColor: "#dc3545",
+    shadowColor: "#B42323",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 3,
+    color: "#fff",
   },
 });

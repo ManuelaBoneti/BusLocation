@@ -1,9 +1,10 @@
 
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert, Modal} from 'react-native';
 
 export default function EsqueciSenha() {
+
 
   const [email, setEmail] = useState("");
 
@@ -49,7 +50,7 @@ export default function EsqueciSenha() {
 <TouchableOpacity style={styles.button} onPress={enviarCodigo}>
         <Text style={styles.buttonText}>Enviar código</Text>
       </TouchableOpacity>
-
+      
     </View>
   );
 }
