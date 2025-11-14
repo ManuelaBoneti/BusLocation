@@ -20,15 +20,15 @@ export default function CadastroPasse(){
     }
   };
 
-    return(
+   return(
         <View style={styles.container}>
             <Image
                 style={styles.tela} source={require('@/assets/telaInicial.png')}
             />
          
-            <Text style={styles.title}>Cadastro do Passe</Text>
+            <Text style={styles.title}>Cadastre seu passe aqui: </Text>
 
-      <Text style={styles.title}>Cadastro do Passe</Text>
+      
 
       <View style={styles.section}>
         <View style={styles.inputContainer}>
@@ -39,6 +39,12 @@ export default function CadastroPasse(){
         <View style={styles.inputContainer}>
           <MaterialIcons style={styles.icon} name="person" size={16} />
           <TextInput style={styles.textInput} placeholder="Data de nascimento:" placeholderTextColor="#aaa" />
+        </View>
+
+        
+        <View style={styles.inputContainer}>
+          <MaterialIcons style={styles.icon} name="search" size={16} />
+          <TextInput style={styles.textInput} placeholder="Data de validade do passe físico:" placeholderTextColor="#aaa" />
         </View>
 
         <View style={styles.inputContainer}>
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     color: "#fff",
-    marginTop: -40,
+    marginTop: -62,
     paddingBottom: 50,
     textAlign: "center",
     fontFamily: 'Quicksand_700Bold',
@@ -102,10 +108,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     width: 390,
-    height: 400,
+    height: 450,
     marginBlock: 250,
     alignItems: "center",
-    marginTop: 8
+    marginTop: -20,
+    
+    
   },
   inputContainer: {
     flexDirection: "row",

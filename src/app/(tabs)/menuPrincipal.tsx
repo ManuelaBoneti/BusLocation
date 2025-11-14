@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 export default function menuPrincipal() {
     return (
         <View style={styles.container}>
-            <BackMenu />
+
             <View >
                 <Text style={styles.title}>MENU</Text>
             </View>
@@ -48,7 +48,7 @@ export default function menuPrincipal() {
                 </View>
 
                 <View style={styles.caixaIcon}>
-                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/cadastroPasse' as any)}>
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/CadastroPasse' as any)}>
                         <FontAwesome6 name="id-card" size={60} color={'white'} />
                     </TouchableOpacity>
                     <Text style={styles.subtitulo}>Cadastro do Passe</Text>
