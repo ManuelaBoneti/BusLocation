@@ -91,14 +91,6 @@ const styles = StyleSheet.create({
     marginBottom: -30,
     marginLeft: 95,
     },
-//   header:{
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     backgroundColor: "#fff",
-//     padding: 10,
-//     borderTopColor: '#000',
-//     borderTopWidth: 1,
-//   },
   headerText: {
     color: '#fff',
     fontSize: 25,
