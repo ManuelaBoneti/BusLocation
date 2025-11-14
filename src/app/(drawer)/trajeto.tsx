@@ -31,7 +31,7 @@ export default function Trajeto() {
     const handleContinue = () => {
         if (selectedLine) {
             router.push({
-                pathname: '',
+                pathname: '/visualizacaoOnibus',
                 params: { linhaEscolhida: selectedLine },
             });
         } else {
