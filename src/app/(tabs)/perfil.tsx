@@ -246,7 +246,7 @@ export default function Perfil(): JSX.Element {
 
 
 
-            <Text style={styles.value}>Senha não </Text>
+            <Text style={styles.value}>Senha </Text>
 
 
 
