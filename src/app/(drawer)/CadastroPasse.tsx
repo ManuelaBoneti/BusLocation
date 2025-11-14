@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 30,
-    marginTop: 10,
+    marginTop: 62,
   },
   tituloButton: {
     fontSize: 20,
@@ -182,5 +182,4 @@ const styles = StyleSheet.create({
     fontFamily: 'Quicksand_700Bold',
   },
 });
-
 
