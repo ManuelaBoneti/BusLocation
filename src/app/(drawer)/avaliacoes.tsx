@@ -20,16 +20,20 @@ export default function Avaliacoes() {
 
     return (
         <View style={styles.container}>
-
             <Image
                 style={styles.tela}
                 source={require('@/assets/telaInicial.png')}
             />
-
             <Text style={styles.title}>
                 Deixe uma avaliação do nosso aplicativo para melhorias!
             </Text>
-
+            
+            <View style={styles.inner}>
+                <StarRating
+                    value={nota}
+                    onChange={setNota}
+                />
+            </View>
             <TextInput
                 style={styles.textInput}
                 placeholder="Escreva aqui..."
@@ -37,14 +41,6 @@ export default function Avaliacoes() {
                 onChangeText={setTexto}
                 multiline
             />
-
-            <View style={styles.inner}>
-                <StarRating
-                    value={nota}
-                    onChange={setNota}
-                />
-            </View>
-
             <TouchableOpacity style={styles.button} onPress={AvaliacaoEnviada}>
                 <Text style={styles.tituloButton}>
                     Avaliar agora
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
         width: 320,
         height: 180,
         borderRadius: 10,
-        padding: 10,
+        padding: 15,
         fontSize: 16,
         fontFamily: 'Quicksand_400Regular',
         textAlignVertical: 'top',
