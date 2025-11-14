@@ -174,5 +174,4 @@ const styles = StyleSheet.create({
     fontFamily: 'Quicksand_700Bold',
   },
 });
-  }
 
