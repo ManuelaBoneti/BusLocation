@@ -1,54 +1,55 @@
-import { Redirect, router } from 'expo-router';
-import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import { useFonts } from 'expo-font';
-import {Quicksand_400Regular, Quicksand_700Bold } from '@expo-google-fonts/quicksand';
-// import { AppLoading } from 'expo';
+import { router } from 'expo-router';
+import { Text, View, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { useFonts, Quicksand_400Regular, Quicksand_700Bold } from '@expo-google-fonts/quicksand';
 
 export default function Index() {
-    
-
-    
+    // 1. Carregamento das Fontes
     const [fontsLoaded] = useFonts({
-        Quicksand_400Regular, Quicksand_700Bold    
-      });
-    
-    //   if (!fontsLoaded) {
-    //     return <AppLoading />;
-    //   }
-      
-    function Cadastro(){
-        router.navigate("/telaInicial")
+        Quicksand_400Regular,
+        Quicksand_700Bold
+    });
 
+    // 2. Função de Navegação
+    function handleCadastro() {
+        // Certifique-se que a rota '/telaInicial' existe dentro da pasta app
+        router.push("/telaInicial"); 
+    }
 
+    // 3. Proteção: Enquanto a fonte não carrega, mostramos um loading ou nada.
+    // Sem isso, o app quebra ao tentar aplicar o estilo do texto.
+    if (!fontsLoaded) {
+        return <ActivityIndicator size="large" color="#0000ff" style={{flex: 1, justifyContent:'center'}}/>;
+    }
+
+    // 4. Renderização (O return deve estar AQUI, fora da função handleCadastro)
     return (
         <View style={styles.container}>
-            <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
+            {/* Adicionei resizeMode para a imagem não distorcer */}
+            <Image 
+                style={styles.tela} 
+                source={require('@/assets/telaInicial.png')} 
+                resizeMode="contain"
+            />
 
-            <TouchableOpacity style={styles.button} onPress={Cadastro}>
+            <TouchableOpacity style={styles.button} onPress={handleCadastro}>
                 <Text style={styles.textButton}>Entrar</Text>
             </TouchableOpacity>
         </View>
-    )
+    );
 }
 
-}
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
         backgroundColor: "#033b85"
     },
-    title: {
-        color: "#fff",
-        fontSize: 30,
-        fontFamily: 'Quicksand_700Bold', 
-    },
-    tela : {
+    tela: {
         width: 440,
         height: 370,
-        marginTop: 200,
+        marginTop: 100, // Ajustei um pouco para não sair da tela em celulares pequenos
     },
-    button : {
+    button: {
         backgroundColor: "#ffffff",
         borderRadius: 12,
         paddingVertical: 12,
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 3,
     },
-    textButton : {
+    textButton: {
         fontSize: 18,
         fontFamily: 'Quicksand_700Bold',
         color: '#000000',
@@ -67,4 +68,4 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         textTransform: 'uppercase'
     }
-})
+});
