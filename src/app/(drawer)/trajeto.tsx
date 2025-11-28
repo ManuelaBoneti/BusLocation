@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, FlatList, A
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Pressable } from 'react-native';
+import localizacao from './localizacao';
 
 export default function Trajeto() {
 
@@ -38,6 +39,7 @@ export default function Trajeto() {
             Alert.alert('Atenção', 'Selecione uma linha antes de continuar.');
         }
     };
+   
 
     return (
         <View style={styles.container}>
@@ -109,6 +111,7 @@ export default function Trajeto() {
                             style={{ marginLeft: 10, marginTop: 2 }}
                         />
                     </Pressable>
+                    
                 </View>
 
             </View>

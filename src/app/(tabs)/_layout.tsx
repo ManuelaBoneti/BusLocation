@@ -13,18 +13,17 @@ export default function TabsLayout(){
             <Tabs.Screen
                 name="criarConta"
                 options={{
-                    tabBarLabel: "",
-                    headerShown: false,
-                    tabBarItemStyle: {display: "none"}
-                }}
+                    href: null,      
+                    tabBarStyle: { display: "none" },
+                  }}
             />
 
             <Tabs.Screen
-                name="esqueciSenha"
-                options={{
-                    tabBarItemStyle: { display: "none" },
-                    title: ""
-                }}
+             name="esqueciSenha"
+             options={{
+               href: null,      
+               tabBarStyle: { display: "none" },
+             }}
             />
 
             <Tabs.Screen
@@ -49,13 +48,11 @@ export default function TabsLayout(){
             />
 
             <Tabs.Screen
-                name="codigoSenha"
+                name="novaSenha"
                 options={{
-                    tabBarLabel: "",
-                    headerShown: false,
-                    tabBarItemStyle: {display: "none"}
-
-                }}
+                    href: null,      
+                    tabBarStyle: { display: "none" },
+                  }}
             />
 
             <Tabs.Screen

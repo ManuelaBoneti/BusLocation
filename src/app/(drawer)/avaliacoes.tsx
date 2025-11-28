@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         fontWeight: 'bold',
         textAlign: 'center',
-        fontFamily: 'Quicksand_700Bold',
+        fontFamily: 'Quicksand_400Regular',
         marginLeft: 20,
         marginTop: -90
     },
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     tituloButton: {
         fontSize: 20,
         color: "#ffffff",
-        fontWeight: 'bold',
+        fontFamily: 'Quicksand_700Bold',
         textAlign: 'center',
     },
       // alert
@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#333",
     marginBottom: 20,
+    fontFamily: 'Quicksand_400Regular',
   },
   okButton: {
     paddingVertical: 8,

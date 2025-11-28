@@ -1,24 +1,40 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from 'expo-router';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-// No additional imports or code are needed at this placeholder.
 export default function Index() {
     const router = useRouter();
+
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [lembrar, setLembrar] = useState(false);
 
-    function esqueciSenha(){
-        router.navigate("/(tabs)/esqueciSenha")
+    useEffect(() => {
+        async function carregarLogin() {
+            const dados = await AsyncStorage.getItem("usuario_logado");
+
+            if (dados) {
+                const usuario = JSON.parse(dados);
+                setEmail(usuario.email);
+                setSenha(usuario.senha);
+                setLembrar(true);
+            }
+        }
+
+        carregarLogin();
+    }, []);
+
+    function esqueciSenha() {
+        router.navigate("/(tabs)/esqueciSenha");
     }
 
-    function criarCadastro (){
-        router.navigate("/(tabs)/criarConta")
+    function criarCadastro() {
+        router.navigate("/(tabs)/criarConta");
     }
 
-    async function menuPrincipal(){
+    async function menuPrincipal() {
         if (!email.trim() || !senha.trim()) {
             Alert.alert("Erro", "Preencha todos os campos.");
             return;
@@ -26,25 +42,42 @@ export default function Index() {
 
         try {
             const storedData = await AsyncStorage.getItem("usuario_dados");
+
             if (storedData) {
                 const parsed = JSON.parse(storedData);
+
                 if (parsed.email === email && parsed.senha === senha) {
+
+                    if (lembrar) {
+                        await AsyncStorage.setItem("usuario_logado", JSON.stringify({
+                            email: email,
+                            senha: senha
+                        }));
+                    } else {
+                        await AsyncStorage.removeItem("usuario_logado");
+                    }
+
                     router.navigate("/(tabs)/menuPrincipal");
+
                 } else {
                     Alert.alert("Erro", "E-mail ou senha incorretos.");
                 }
+
             } else {
-                Alert.alert("Erro", "Conta não encontrada. Crie uma conta primeiro.");
+                Alert.alert("Erro", "Conta não encontrada.");
             }
-        } catch (error) {
+
+        } catch {
             Alert.alert("Erro", "Não foi possível fazer login.");
         }
     }
 
-    return(
+    return (
         <View style={styles.container}>
-            <Image style={styles.tela}source={require('@/assets/telaInicial.png')} />
+            <Image style={styles.tela} source={require('@/assets/telaInicial.png')} />
+
             <View style={styles.section}>
+
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='email' size={16} />
                     <TextInput
@@ -58,7 +91,7 @@ export default function Index() {
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <MaterialIcons style={styles.icon} name='lock' size={16}/>
+                    <MaterialIcons style={styles.icon} name='lock' size={16} />
                     <TextInput
                         style={styles.textInput}
                         placeholder="Senha:"
@@ -68,23 +101,34 @@ export default function Index() {
                     />
                 </View>
 
-                <TouchableOpacity onPress={menuPrincipal} style={styles.button} >
+                <TouchableOpacity
+                    activeOpacity={1}
+                    style={styles.lembrarContainer}
+                    onPress={() => setLembrar(!lembrar)}
+                >
+                    <View style={styles.checkbox}>
+                        {lembrar && <MaterialIcons name="check" size={12} color="#033b85" />}
+                    </View>
+                    <Text style={styles.lembrarTexto}>Lembrar de mim</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={menuPrincipal} style={styles.button}>
                     <Text style={styles.textButton}>Entrar</Text>
                 </TouchableOpacity>
 
                 <View style={styles.links}>
                     <TouchableOpacity onPress={esqueciSenha}>
                         <Text style={styles.title}>Esqueceu a senha?</Text>
-                    </TouchableOpacity >
+                    </TouchableOpacity>
 
                     <TouchableOpacity onPress={criarCadastro}>
                         <Text style={styles.title}>Criar uma nova conta</Text>
                     </TouchableOpacity>
-
                 </View>
+
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -93,77 +137,91 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: "#033b85",
     },
-    tela : {
+    tela: {
         width: 340,
         height: 370,
         marginTop: 40,
     },
     section: {
-        backgroundColor: '#ffff',
+        backgroundColor: '#fff',
         borderRadius: 10,
         padding: 15,
-        elevation: 2,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
         width: 300,
-        height: 360,
+        height: 380,
         marginBlock: -70,
+        elevation: 3
     },
-    inputContainer : {
+    inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         borderColor: '#ccc',
         borderWidth: 1,
         borderRadius: 8,
         paddingHorizontal: 10,
-        marginBottom: 20,
-        marginTop: 20,
+        marginBottom: 0,
+        marginTop: 35,
         backgroundColor: '#fff',
     },
-    icon : {
-        marginLeft: 5,
+    icon: {
+        marginLeft: 2,
+        marginBottom: 2
     },
-    textInput : {
+    textInput: {
         flex: 1,
         height: 40,
         marginLeft: 5,
         fontSize: 16,
     },
-    title: {
-        fontSize: 12,
-        marginTop: 10,
-        color: "#033b85",
-       
-        textDecorationLine: 'underline',
-        textDecorationStyle: 'solid',
-        textAlign: 'center',
-        fontFamily: 'Quicksand_700Bold', 
+
+    lembrarContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 5,
+        marginBottom: 10
     },
- 
-    button : {
+    checkbox: {
+        width: 18,
+        height: 18,
+        borderWidth: 1.0,
+        borderColor: "#033b85",
+        borderRadius: 4,
+        alignItems: "center",
+        justifyContent: "center",
+        marginRight: 8,
+        marginTop: 10
+    },
+
+    lembrarTexto: {
+        fontSize: 13,
+        color: "#033b85",
+        marginTop: 10
+    },
+
+    button: {
         backgroundColor: "#677db0",
         borderRadius: 12,
         paddingVertical: 12,
-        paddingHorizontal: 36,
-        marginTop: 30,
-        elevation: 4,
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
+        marginTop: 15,
     },
-    textButton : {
+
+    textButton: {
         fontSize: 18,
-        fontFamily: 'Quicksand_700Bold', 
         color: '#fff',
         textAlign: 'center',
-        letterSpacing: 1,
-        textTransform: 'uppercase'
+        fontFamily: 'Quicksand_700Bold',
+        textTransform: "uppercase"
     },
-    links : {
+
+    links: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginLeft: 10,
+        marginTop: 10
+    },
+
+    title: {
+        fontSize: 12,
+        color: "#033b85",
+        textDecorationLine: 'underline',
+        fontFamily: 'Quicksand_700Bold'
     }
-})
+});
