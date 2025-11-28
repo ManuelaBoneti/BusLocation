@@ -49,6 +49,30 @@ export default function Layout() {
 
                     }}
                 />
+                 <Drawer.Screen
+                    name="localizacao"
+                    options={{
+                        drawerActiveTintColor: "#fff",
+                        drawerLabel: "Localização do ônibus",
+                        drawerLabelStyle: {
+                            color: "#fff"
+                        },
+                        drawerIcon: () => (
+                            <Ionicons name="bus-outline"
+                                size={22} />
+                        ),
+                        headerLeft: () => {
+                            return <Ionicons
+                                name="arrow-back"
+                                size={30}
+                                color="#fff"
+                                style={{ marginLeft: 20 }}
+                                onPress={() => router.navigate("/menuPrincipal")}
+                            />
+                        }
+
+                    }}
+                />
                 <Drawer.Screen
                     name="avaliacoes"
                     options={{
