@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
   },
     section: {
-      height: 367,
+      height: 340,
       width: 365,
       backgroundColor: '#ffff',
       borderRadius: 15,
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
         color: "#000",
         borderRadius: 12,
         padding: 15,
-        marginBottom: 15,
+        marginBottom: 25,
         fontSize: 16,
         borderWidth: 1,
         borderColor: "rgba(134, 121, 121, 0.52)",
