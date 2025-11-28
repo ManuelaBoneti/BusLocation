@@ -11,12 +11,10 @@ export default function Index() {
 
     // 2. Função de Navegação
     function handleCadastro() {
-        // Certifique-se que a rota '/telaInicial' existe dentro da pasta app
         router.push("/telaInicial"); 
     }
 
     // 3. Proteção: Enquanto a fonte não carrega, mostramos um loading ou nada.
-    // Sem isso, o app quebra ao tentar aplicar o estilo do texto.
     if (!fontsLoaded) {
         return <ActivityIndicator size="large" color="#0000ff" style={{flex: 1, justifyContent:'center'}}/>;
     }
@@ -24,7 +22,6 @@ export default function Index() {
     // 4. Renderização (O return deve estar AQUI, fora da função handleCadastro)
     return (
         <View style={styles.container}>
-            {/* Adicionei resizeMode para a imagem não distorcer */}
             <Image 
                 style={styles.tela} 
                 source={require('@/assets/telaInicial.png')} 
@@ -47,7 +44,7 @@ const styles = StyleSheet.create({
     tela: {
         width: 440,
         height: 370,
-        marginTop: 100, // Ajustei um pouco para não sair da tela em celulares pequenos
+        marginTop: 100, 
     },
     button: {
         backgroundColor: "#ffffff",

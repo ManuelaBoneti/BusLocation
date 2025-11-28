@@ -4,7 +4,6 @@ import { useRouter } from 'expo-router';
 import React, { useState } from "react";
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-// No additional imports or code are needed at this placeholder.
 export default function Index() {
     const router = useRouter();
     const [email, setEmail] = useState("");
