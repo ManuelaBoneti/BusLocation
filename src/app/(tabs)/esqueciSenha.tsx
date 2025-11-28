@@ -1,10 +1,8 @@
-
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert, Modal} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 
 export default function EsqueciSenha() {
-
 
   const [email, setEmail] = useState("");
 
@@ -20,13 +18,14 @@ export default function EsqueciSenha() {
       return;
     }
 
-
-    router.push("/codigoSenha");
+    router.push({
+      pathname: "/(tabs)/novaSenha",
+      params: { email }
+    });
   };
 
   return (
     <View style={styles.container}>
-      
 
       <Text style={styles.title}>ESQUECI A SENHA</Text>
       <Image style={styles.Image} source={require('@/assets/Cadeado.png')} />
@@ -34,8 +33,9 @@ export default function EsqueciSenha() {
       <Text style={styles.esqueceuSenha}>
          Esqueceu a senha?
       </Text>
+
       <Text style={styles.informacao}>
-        Informe seu e-mail para enviarmos o código de recuperação.
+        Informe seu e-mail para criar uma nova senha.
       </Text>
 
       <TextInput
@@ -45,11 +45,12 @@ export default function EsqueciSenha() {
         keyboardType="email-address"
         value={email}
         onChangeText={setEmail}
+        autoCapitalize="none"
       />
 
-    <TouchableOpacity style={styles.button} onPress={enviarCodigo}>
-        <Text style={styles.buttonText}>Enviar código</Text>
-    </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={enviarCodigo}>
+        <Text style={styles.buttonText}>Continuar</Text>
+      </TouchableOpacity>
       
     </View>
   );
@@ -62,11 +63,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-  },
-  content: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
   },
   title: {
     color: '#fff',
