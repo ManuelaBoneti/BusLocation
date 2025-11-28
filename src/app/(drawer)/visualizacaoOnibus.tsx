@@ -77,9 +77,10 @@ const styles = StyleSheet.create({
     },
   title: { 
     color: "#fff", 
-    fontSize: 20, 
+    fontSize: 23, 
+    fontFamily: 'Quicksand_700Bold',
     fontWeight: "600", 
-    marginBottom: 15
+    marginBottom: 20
  },
   viewerContainer: {
     height: 260,
@@ -100,7 +101,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 30,
-    marginTop: 10,
+    marginTop:  80,
+    
 },
 tituloButton: {
     fontSize: 20,
@@ -111,7 +113,8 @@ tituloButton: {
   tela : {
     width: 220,
     height: 280,
-    marginTop: -110,
+    marginTop: -180,
+ 
 },
   viewerImage: { width: "100%", height: "100%", resizeMode: "contain" },
   navButton: {
