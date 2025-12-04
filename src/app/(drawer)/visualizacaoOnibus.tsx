@@ -1,100 +1,92 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
-import { Dimensions, Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useState, useEffect } from "react";
+import { Dimensions, Image, TouchableOpacity, StyleSheet, Text, View, Modal, Pressable } from "react-native";
+import { router, useLocalSearchParams } from "expo-router";
 import localizacao from "./localizacao";
-import { router } from "expo-router";
- 
+
 export default function CarrosselOnibusModerno() {
   const { width: screenWidth } = Dimensions.get("window");
- 
-  // ---- Array de imagens diretamente nesta página ----
+  const { linhaEscolhida } = useLocalSearchParams();
+  const localizacao = () => {
+    router.push('/(drawer)/localizacao');
+  }
+  const [showWarning, setShowWarning] = useState(false);
+
+  useEffect(() => {
+    if (!linhaEscolhida) {
+      setShowWarning(true);
+    }
+  }, []);
+
   const frames = [
     require('@/assets/bus_360/bus_01.png'),
     require('@/assets/bus_360/bus_04.png'),
-   
     require('@/assets/bus_360/bus_06.png'),
     require('@/assets/bus_360/bus_03in.png'),
     require('@/assets/bus_360/bus_09.png'),
     require('@/assets/bus_360/bus_07.png'),
     require('@/assets/bus_360/frente_180.png'),
     require('@/assets/bus_360/bus_07in.png'),
-   
   ];
- 
+
   const totalFrames = frames.length;
   const [currentFrame, setCurrentFrame] = useState(0);
- 
-  const irParaProximo = () => {
-    setCurrentFrame(prev => (prev + 1) % totalFrames);
-  };
- 
-  const irParaAnterior = () => {
-    setCurrentFrame(prev => (prev - 1 + totalFrames) % totalFrames);
-  };
-  const localizacao = () => {
-    router.push('/(drawer)/localizacao');
-    };
- 
+
+  const irParaProximo = () => setCurrentFrame(prev => (prev + 1) % totalFrames);
+  const irParaAnterior = () => setCurrentFrame(prev => (prev - 1 + totalFrames) % totalFrames);
+
   return (
-   
     <View style={styles.container}>
-        <Image
-                            style={styles.tela}
-                            source={require('@/assets/telaInicial.png')}
-                        />
+      
+      {/* --- MODAL PERSONALIZADO DE AVISO --- */}
+      <Modal visible={showWarning} transparent animationType="none">
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Aviso</Text>
+            <Text style={styles.modalText}>Você ainda não selecionou o trajeto.</Text>
+
+            <Pressable
+              style={styles.modalButton}
+              onPress={() => {
+                setShowWarning(false);
+                router.push("/(drawer)/trajeto");
+              }}
+            >
+              <Text style={styles.modalButtonText}>Selecionar</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Conteúdo da tela */}
+      <Image style={styles.tela} source={require('@/assets/telaInicial.png')} />
+
       <Text style={styles.title}>Visualização 360° do Ônibus</Text>
- 
-      {/* Container da imagem */}
+
       <View style={[styles.viewerContainer, { width: screenWidth * 0.9 }]}>
         <Image source={frames[currentFrame]} style={styles.viewerImage} />
- 
-        {/* Botão anterior */}
+
         <TouchableOpacity style={[styles.navButton, { left: 10 }]} onPress={irParaAnterior}>
           <Text style={styles.navButtonText}>◀</Text>
         </TouchableOpacity>
- 
-        {/* Botão próximo */}
+
         <TouchableOpacity style={[styles.navButton, { right: 10 }]} onPress={irParaProximo}>
           <Text style={styles.navButtonText}>▶</Text>
         </TouchableOpacity>
-        
       </View>
-     
-        <TouchableOpacity style={styles.button} onPress={localizacao}>
+      <TouchableOpacity style={styles.button} onPress={localizacao}>
             <Text style={styles.navButtonText}>Ver Trajeto</Text>
         </TouchableOpacity>
     </View>
   );
 }
- 
+
 const styles = StyleSheet.create({
   container: {
-     flex: 1, 
-     justifyContent: "center", 
-     alignItems: "center", 
-     backgroundColor: "#033b85", 
-     paddingVertical: 20 
-    },
-  title: { 
-    color: "#fff", 
-    fontSize: 23, 
-    fontFamily: 'Quicksand_700Bold',
-    fontWeight: "600", 
-    marginBottom: 20
- },
-  viewerContainer: {
-    height: 260,
-    // backgroundColor: "#fff",
-    borderRadius: 18,
-    overflow: "hidden",
+    flex: 1,
+    backgroundColor: "#033b85",
     justifyContent: "center",
-    alignItems: "center",
-    position: "relative",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 6,
+    alignItems: "center"
   },
   button: {
     backgroundColor: "#677db0",
@@ -104,19 +96,70 @@ const styles = StyleSheet.create({
     marginTop:  80,
     
 },
-tituloButton: {
-    fontSize: 20,
-    color: "#ffffff",
-    fontFamily: 'Quicksand_700Bold',
-    textAlign: 'center',
-},
-  tela : {
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",      // 👈 centraliza horizontalmente
+    backgroundColor: "rgba(0,0,0,0.45)",
+  },
+  modalContent: {
+    width: "90%",               // 👈 aumenta o tamanho
+    backgroundColor: "#fff",
+    paddingVertical: 40,        // 👈 mais espaço interno
+    paddingHorizontal: 30,
+    borderTopLeftRadius: 30,    // 👈 bordas maiores
+    borderTopRightRadius: 30,
+    elevation: 15,
+    marginBottom: 150,           // 👈 sobe um pouco o modal
+  },
+  modalTitle: {
+    fontSize: 26,               // 👈 maior
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 15,
+  },
+  modalText: {
+    fontSize: 18,               // 👈 maior
+    textAlign: "center",
+    marginBottom: 30,
+  },
+  modalButton: {
+    backgroundColor: "#033b85",
+    paddingVertical: 16,        // 👈 botão maior
+    borderRadius: 14,
+    alignItems: "center",
+  },
+  modalButtonText: {
+    color: "#fff",
+    fontSize: 18,               // 👈 texto maior
+    fontWeight: "bold",
+  },
+  
+
+  tela: {
     width: 220,
     height: 280,
-    marginTop: -180,
- 
-},
-  viewerImage: { width: "100%", height: "100%", resizeMode: "contain" },
+    marginTop: -150,
+  },
+  title: {
+    color: "#fff",
+    fontSize: 23,
+    marginBottom: 20,
+    fontFamily: "Quicksand_700Bold"
+  },
+  viewerContainer: {
+    height: 260,
+    borderRadius: 18,
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  viewerImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
+  },
   navButton: {
     position: "absolute",
     top: "40%",
@@ -125,7 +168,5 @@ tituloButton: {
     paddingHorizontal: 15,
     borderRadius: 30,
   },
-  navButtonText: { fontSize: 22, fontWeight: "bold", color: "#fff" },
+  navButtonText: { color: "#fff", fontSize: 22, fontWeight: "bold" },
 });
- 
- 
