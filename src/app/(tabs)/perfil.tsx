@@ -3,16 +3,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
 import React, { JSX, useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  Alert,
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View
-} from "react-native";
+import {ActivityIndicator,Alert,Image,StyleSheet,Text,TextInput,TouchableOpacity,View} from "react-native";
+import { useUser } from "../../components/Context/UserContext";
 
 type UserData = {
   nomeCompleto: string;
@@ -49,6 +41,8 @@ export default function Perfil(): JSX.Element {
     confirmarSenha: "",
   });
 
+  const { updateUser } = useUser();
+
   useEffect(() => {
     const loadUserData = async () => {
       try {
@@ -71,14 +65,14 @@ export default function Perfil(): JSX.Element {
 
   const handleAvatarChange = async (fromCamera: boolean = false) => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-    if (permissionResult.granted === false) {
+    if (!permissionResult.granted) {
       Alert.alert("Permissão necessária", "Precisamos de permissão para acessar suas fotos.");
       return;
     }
 
     if (fromCamera) {
       const cameraPermission = await ImagePicker.requestCameraPermissionsAsync();
-      if (cameraPermission.granted === false) {
+      if (!cameraPermission.granted) {
         Alert.alert("Permissão necessária", "Precisamos de permissão para acessar a câmera.");
         return;
       }
@@ -86,19 +80,19 @@ export default function Perfil(): JSX.Element {
 
     const result = fromCamera
       ? await ImagePicker.launchCameraAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
-          aspect: [1, 1],
-          quality: 0.8,
-          base64: true,
-        })
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.8,
+        base64: true,
+      })
       : await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
-          aspect: [1, 1],
-          quality: 0.8,
-          base64: true,
-        });
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.8,
+        base64: true,
+      });
 
     if (!result.canceled) {
       const asset = result.assets[0];
@@ -167,7 +161,17 @@ export default function Perfil(): JSX.Element {
           style: "destructive",
           onPress: async () => {
             try {
-              await AsyncStorage.removeItem("usuario_dados");
+              // Remove dados do usuário
+              await AsyncStorage.removeItem("userData");
+
+              // Zera o cartão virtual no contexto
+              await updateUser({
+                nome: "NOME DO USUÁRIO",
+                numeroCartao: "0000 0000 0000 0000",
+                nascimento: "MM/AA",
+                saldo: "R$ 0,00",
+              });
+
               router.navigate("/telaInicial");
             } catch (error) {
               Alert.alert("Erro", "Não foi possível fazer logout.");
@@ -243,15 +247,7 @@ export default function Perfil(): JSX.Element {
               secureTextEntry
             />
           ) : userData.senha ? (
-
-
-
             <Text style={styles.value}>Senha </Text>
-
-
-
-
-            
           ) : (
             <Text style={styles.value}>Senha não definida</Text>
           )}
@@ -312,7 +308,7 @@ export default function Perfil(): JSX.Element {
 
         {!editando && (
           <TouchableOpacity
-            style={ styles.logoutButton}
+            style={styles.logoutButton}
             onPress={handleLogout}
           >
             <Text style={styles.buttonText}>Logout</Text>
@@ -324,11 +320,7 @@ export default function Perfil(): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#033b85",
-    paddingTop: 50,
-  },
+  container: { flex: 1, backgroundColor: "#033b85", paddingTop: 50 },
   header: {
     alignItems: "center",
     paddingVertical: 30,
@@ -354,12 +346,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  title: {
-    fontSize: 24,
-    color: "#fff",
-    fontWeight: "700",
-    letterSpacing: 0.5,
-  },
+  title: { fontSize: 24, color: "#fff", fontWeight: "700", letterSpacing: 0.5 },
   section: {
     backgroundColor: "#fff",
     borderRadius: 20,
@@ -383,53 +370,26 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(111, 111, 111, 0.1)",
     height: 55,
   },
-  icon: {
-    marginRight: 12,
-    color: "#6c757d",
-  },
-  textInput: {
-    flex: 1,
-    fontSize: 16,
-    color: "#495056",
-    fontWeight: "500",
-  },
-  value: {
-    flex: 1,
-    fontSize: 16,
-    color: "#212529",
-    fontWeight: "500",
-  },
-  avatarButtons: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginBottom: 25,
-  },
+  icon: { marginRight: 12, color: "#6c757d" },
+  textInput: { flex: 1, fontSize: 16, color: "#495056", fontWeight: "500" },
+  value: { flex: 1, fontSize: 16, color: "#212529", fontWeight: "500" },
+  avatarButtons: { flexDirection: "row", justifyContent: "space-around", marginBottom: 25 },
   avatarButton: {
-    backgroundColor: "#1A8754", /*Botão adicionar foto*/
+    backgroundColor: "#1A8754",
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 25,
     minWidth: 120,
     alignItems: "center",
-    shadowColor: "#007bf9", 
+    shadowColor: "#007bf9",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 3,
   },
-  removeButton: {
-    backgroundColor: "#A62929", /*Botão remover foto*/ 
-  },
-  avatarButtonText: {
-    color: "#fff",
-    fontWeight: "600",
-    fontSize: 14,
-  },
-  actions: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
-  },
+  removeButton: { backgroundColor: "#A62929" },
+  avatarButtonText: { color: "#fff", fontWeight: "600", fontSize: 14 },
+  actions: { flexDirection: "row", justifyContent: "space-between", marginTop: 20 },
   button: {
     borderRadius: 25,
     paddingVertical: 14,
@@ -443,20 +403,11 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
-  editButton: {
-    backgroundColor: "#5A7BAA", /*Botão cancelar*/
-  },
-  saveButton: {
-    backgroundColor: "#1E63B1", /*Botão salvar*/
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "700",
-    fontSize: 14,
-    letterSpacing: 0.5,
-  },
+  editButton: { backgroundColor: "#5A7BAA" },
+  saveButton: { backgroundColor: "#1E63B1" },
+  buttonText: { color: "#fff", fontWeight: "700", fontSize: 14, letterSpacing: 0.5 },
   logoutButton: {
-    backgroundColor:"#ccc", /*Botão logout*/
+    backgroundColor: "#ccc",
     marginTop: 25,
     borderRadius: 25,
     paddingVertical: 14,

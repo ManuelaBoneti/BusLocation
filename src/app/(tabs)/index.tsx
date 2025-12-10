@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
 export default function Produtos(){
     return(
       <View style={styles.container}>
-         <Text>Pagina gggggg</Text>
+         <Text>Pagina</Text>
       </View>
  
     )

@@ -7,7 +7,7 @@ export interface VirtualCardProps {
     cardNumber: string;
     expiryDate: string;
     type: 'frente' | 'verso';
-    balance?: string; // Opcional: saldo do cartão
+    balance?: string; // saldo do cartão
 }
 
 const { width } = Dimensions.get('window');
@@ -49,7 +49,7 @@ export function VirtualCard({ holderName, cardNumber, expiryDate, type, balance 
                                 </View>
 
                                 <View style={{ alignItems: 'flex-end' }}>
-                                    <Text style={styles.label}>Validade</Text>
+                                    <Text style={styles.label}>Nascimento</Text>
                                     <Text style={styles.expiry}>{expiryDate || "MM/AA"}</Text>
                                 </View>
                             </View>
@@ -81,7 +81,6 @@ export function VirtualCard({ holderName, cardNumber, expiryDate, type, balance 
     );
 }
 
-// Função auxiliar para formatar o número (0000 0000 0000 0000)
 function formatCardNumber(number: string) {
     if (!number) return "**** **** **** ****";
     return number.replace(/(\d{4})/g, '$1 ').trim();
@@ -182,8 +181,8 @@ const styles = StyleSheet.create({
     magneticStrip: {
         height: 40,
         backgroundColor: '#000',
-        width: '120%',
-        marginLeft: -20,
+        width: '105%',
+        marginLeft: -8,
         marginTop: 10,
     },
     cvvContainer: {

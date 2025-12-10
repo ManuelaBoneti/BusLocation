@@ -1,280 +1,79 @@
-// import { MaterialIcons } from "@expo/vector-icons";
-// import { useState } from "react";
-// import { Image, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
- 
-// export default function CadastroPasse(){
- 
-//   const [nota, setNota] = useState(0);
-//   const [alertVisible, setAlertVisible] = useState(false);
-//   const [alertMessage, setAlertMessage] = useState("");
- 
- 
-//   const PasseCadastrado = () => {
-//     if (nota === 1) {
-//       setAlertMessage("Preencha todos os campos acima para criar o cadastro.");
-//       setAlertVisible(true);
-//     } else {
-//       setAlertMessage("Cadastro concluído!");
-//       setAlertVisible(true);
-//       setNota(0);
-//     }
-//   };
- 
-//    return(
-//         <View style={styles.container}>
-//             <Image
-//                 style={styles.tela} source={require('@/assets/telaInicial.png')}
-//             />
-         
-//             <Text style={styles.title}>Cadastre seu passe aqui: </Text>
- 
-//       <View style={styles.section}>
-//         <View style={styles.inputContainer}>
-//           <MaterialIcons style={styles.icon} name="pin-drop" size={16} />
-//           <TextInput style={styles.textInput} placeholder="Nome completo:" placeholderTextColor="#aaa" />
-//         </View>
- 
-//         <View style={styles.inputContainer}>
-//           <MaterialIcons style={styles.icon} name="person" size={16} />
-//           <TextInput style={styles.textInput} placeholder="Data de nascimento:" placeholderTextColor="#aaa" />
-//         </View>
- 
-       
-//         <View style={styles.inputContainer}>
-//           <MaterialIcons style={styles.icon} name="search" size={16} />
-//           <TextInput style={styles.textInput} placeholder="Data de validade do passe físico:" placeholderTextColor="#aaa" />
-//         </View>
- 
-//         <View style={styles.inputContainer}>
-//           <MaterialIcons style={styles.icon} name="search" size={16} />
-//           <TextInput style={styles.textInput} placeholder="Código do passe físico:" placeholderTextColor="#aaa" />
-//         </View>
- 
-//         <TouchableOpacity style={styles.button} onPress={PasseCadastrado}>
-//           <Text style={styles.tituloButton}>Cadastrar</Text>
-//         </TouchableOpacity>
-//       </View>
- 
-//       <Modal transparent visible={alertVisible}              animationType="fade">
-//         <View style={styles.overlay}>
-//           <View style={styles.alertBox}>
-//             <Text style={styles.alertText}>{alertMessage}</Text>
- 
-//             <TouchableOpacity
-//               style={styles.okButton}
-//               onPress={() => setAlertVisible(false)}
-//             >
-//               <Text style={styles.okText}>OK</Text>
-//             </TouchableOpacity>
-//           </View>
-//         </View>
-//       </Modal>
-//     </View>
-//   );
-// }
- 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: "center",
-//     backgroundColor: "#033b85",
-//   },
-//   tela: {
-//     width: 220,
-//     height: 280,
-//     marginTop: -23,
-//   },
-//   icon: {
-//     margin: 10,
-//   },
-//   title: {
-//     fontSize: 22,
-//     color: "#fff",
-//     marginTop: -62,
-//     paddingBottom: 50,
-//     textAlign: "center",
-//     fontFamily: 'Quicksand_700Bold',
-//   },
-//   section: {
-//     backgroundColor: "#fff",
-//     borderRadius: 10,
-//     padding: 15,
-//     elevation: 2,
-//     shadowColor: "#000",
-//     shadowOffset: { width: 0, height: 1 },
-//     shadowOpacity: 0.1,
-//     shadowRadius: 2,
-//     width: 390,
-//     height: 490,
-//     marginBlock: 250,
-//     alignItems: "center",
-//     marginTop: -20,
-    
-//   },
-//   inputContainer: {
-//     flexDirection: "row",
-//     alignItems: "center",
-//     borderColor: "#ccc",
-//     borderWidth: 1,
-//     borderRadius: 8,
-//     paddingHorizontal: 10,
-//     marginBottom: 20,
-//     marginTop: 20,
-//     backgroundColor: "#fff",
-//   },
-//   textInput: {
-//     flex: 1,
-//     height: 60,
-//     marginLeft: 5,
-//     fontSize: 18,
-//     color: "#000",
-//   },
-//   button: {
-//     backgroundColor: "#677db0",
-//     borderRadius: 12,
-//     paddingVertical: 10,
-//     paddingHorizontal: 30,
-//   },
-//   tituloButton: {
-//     fontSize: 20,
-//     color: "#ffffff",
-//     fontFamily: 'Quicksand_700Bold',
-//     textAlign: "center",
-//   },
-//   // alert
-//   overlay: {
-//     flex: 1,
-//     backgroundColor: "rgba(0,0,0,0.5)",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   alertBox: {
-//     width: 300,
-//     backgroundColor: "rgb(255, 255, 255)",
-//     borderRadius: 16,
-//     padding: 20,
-//     alignItems: "center",
-//     elevation: 5,
-//     shadowColor: "#000",
-//     shadowOpacity: 0.2,
-//     shadowOffset: { width: 0, height: 2 },
-//     shadowRadius: 4,
-//   },
-//   alertText: {
-//     fontSize: 16,
-//     textAlign: "center",
-//     color: "#333",
-//     marginBottom: 20,
-//   },
-//   okButton: {
-//     paddingVertical: 8,
-//     paddingHorizontal: 30,
-//   },
-//   okText: {
-//     fontSize: 16,
-//     color: "rgb(3, 83, 223)",
-//     fontWeight: "600",
-//     fontFamily: 'Quicksand_700Bold',
-//   },
-// });
-
-
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import { router } from 'expo-router';
-import { useUser } from '../context/UserContext'; 
+import React, { useState } from 'react';
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useUser } from '../../components/Context/UserContext';
 
 export default function CadastrePasseVirtual() {
-    const { updateUser } = useUser();
+  const { updateUser } = useUser();
 
-    const [nome, setNome] = useState('');
-    const [numero, setNumero] = useState('');
-    const [validade, setValidade] = useState('');
-    const [saldo, setSaldos] = useState('');
+  const [nome, setNome] = useState('');
+  const [numero, setNumero] = useState('');
+  const [nascimento, setNascimento] = useState('');
+  const [saldo, setSaldos] = useState('');
 
-    // Mascara: Numero
-    const mascaraCartao = (texto: string) => {
-      let novoTexto = texto.replace(/\D/g, ''); 
-      novoTexto = novoTexto.replace(/(\d{4})(?=\d)/g, '$1 ');
-      setNumero(novoTexto);
+  const mascaraCartao = (texto: string) => {
+    let cpf = texto.replace(/\D/g, '');
+    if (cpf.length > 11) cpf = cpf.slice(0, 11);
+    if (cpf.length > 9) cpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+    else if (cpf.length > 6) cpf = cpf.replace(/(\d{3})(\d{3})(\d{1,3})/, "$1.$2.$3");
+    else if (cpf.length > 3) cpf = cpf.replace(/(\d{3})(\d{1,3})/, "$1.$2");
+    setNumero(cpf); 
   };
 
-  // Mascara: MM/AA
   const mascaraData = (texto: string) => {
-      let novoTexto = texto.replace(/\D/g, '');
-      novoTexto = novoTexto.replace(/(\d{2})(\d)/, '$1/$2');
-      setValidade(novoTexto);
+    let novoTexto = texto.replace(/\D/g, '');
+    novoTexto = novoTexto.replace(/(\d{2})(\d)/, '$1/$2');
+    setNascimento(novoTexto);
   };
 
-    function handleSalvar() {
-        if (!nome || !numero || !validade) {
-            Alert.alert("Erro", "Preencha todos os campos!");
-            return;
-        }
+  const mascaraMoeda = (texto: string) => {
+    let numeros = texto.replace(/\D/g, '');
+    if (numeros.length === 0) {
+      setSaldos('');
+      return;
+    }
+    let valor = (parseInt(numeros, 10) / 100).toFixed(2);
+    valor = valor.replace('.', ',');
+    setSaldos(valor);
+  };
 
-        // 3. AQUI ESTÁ O SEGREDO: Enviamos os dados para o Contexto Global
-        updateUser({
-            nome: nome.toUpperCase(), 
-            numeroCartao: numero,
-            validade: validade,
-            saldo: saldo,     
-        });
-
-        Alert.alert("Sucesso", "Cartão cadastrado!");
-        
-        router.navigate("/(drawer)/passeVirtual"); 
+  const handleSalvar = async () => {
+    if (!nome || !numero || !nascimento || !saldo) {
+      Alert.alert("Erro", "Preencha todos os campos!");
+      return;
     }
 
-    return (
-        <View style={styles.container}>
+    try {
+      await updateUser({
+        nome: nome.toUpperCase(),
+        numeroCartao: numero,
+        nascimento: nascimento,
+        saldo: saldo,
+      });
 
-        <Image
-          style={styles.tela}
-          source={require("../../assets/telaInicial.png")}
-        />
-        
-        <Text style={styles.title}>Novo Cartão</Text>
+      Alert.alert("Sucesso", "Cartão cadastrado!");
+      router.navigate("/(drawer)/passeVirtual");
+    } catch (err) {
+      console.error(err);
+      Alert.alert("Erro", "Não foi possível salvar o cartão.");
+    }
+  };
 
-        <View style={styles.section}>
-          <TextInput
-            style={styles.input}
-            placeholder="Nome do Titular"
-            placeholderTextColor="#ccc"
-            value={nome}
-            onChangeText={setNome}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Número do Cartão (16 dígitos)"
-            placeholderTextColor="#ccc"
-            keyboardType="numeric"
-            maxLength={19}
-            value={numero}
-            onChangeText={mascaraCartao}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Validade (MM/AA)"
-            placeholderTextColor="#ccc"
-            maxLength={5}
-            value={validade}
-            onChangeText={mascaraData}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Quantidade de Créditos"
-            placeholderTextColor="#ccc"
-            maxLength={5}
-            value={saldo}
-            onChangeText={setSaldos}
-          />
-        </View>
-
-        <TouchableOpacity style={styles.button} onPress={handleSalvar}>
-          <Text style={styles.textButton}>SALVAR CARTÃO</Text>
-        </TouchableOpacity>
+  return (
+    <View style={styles.container}>
+      <Image style={styles.tela} source={require("../../assets/telaInicial.png")} />
+      <Text style={styles.title}>Novo Cartão</Text>
+      <View style={styles.section}>
+        <TextInput style={styles.input} placeholder="Nome do Titular" placeholderTextColor="#ccc" value={nome} onChangeText={setNome} />
+        <TextInput style={styles.input} placeholder="CPF" placeholderTextColor="#ccc" keyboardType="numeric" maxLength={19} value={numero} onChangeText={mascaraCartao} />
+        <TextInput style={styles.input} placeholder="Data de nascimento (MM/AA)" placeholderTextColor="#ccc" maxLength={5} value={nascimento} onChangeText={mascaraData} />
+        <TextInput style={styles.input} placeholder="Quantidade de Créditos" placeholderTextColor="#ccc" maxLength={5} value={saldo} keyboardType='numeric' onChangeText={mascaraMoeda} />
       </View>
-    );
+      <TouchableOpacity style={styles.button} onPress={handleSalvar}>
+        <Text style={styles.textButton}>SALVAR CARTÃO</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -329,4 +128,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
     }
 });
+
  

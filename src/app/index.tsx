@@ -1,6 +1,7 @@
+import { Quicksand_400Regular, Quicksand_700Bold, useFonts } from '@expo-google-fonts/quicksand';
 import { router } from 'expo-router';
-import { Text, View, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { useFonts, Quicksand_400Regular, Quicksand_700Bold } from '@expo-google-fonts/quicksand';
+import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { UserProvider } from '../components/Context/UserContext';
 
 export default function Index() {
     // 1. Carregamento das Fontes
@@ -21,17 +22,19 @@ export default function Index() {
 
     // 4. Renderização (O return deve estar AQUI, fora da função handleCadastro)
     return (
-        <View style={styles.container}>
-            <Image 
-                style={styles.tela} 
-                source={require('@/assets/telaInicial.png')} 
-                resizeMode="contain"
-            />
+        <UserProvider>
+            <View style={styles.container}>
+                <Image 
+                    style={styles.tela} 
+                    source={require('@/assets/telaInicial.png')} 
+                    resizeMode="contain"
+                />
 
-            <TouchableOpacity style={styles.button} onPress={handleCadastro}>
-                <Text style={styles.textButton}>Entrar</Text>
-            </TouchableOpacity>
-        </View>
+                <TouchableOpacity style={styles.button} onPress={handleCadastro}>
+                    <Text style={styles.textButton}>Entrar</Text>
+                </TouchableOpacity>
+            </View>
+        </UserProvider>
     );
 }
 
