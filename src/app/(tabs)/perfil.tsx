@@ -311,7 +311,7 @@ export default function Perfil(): JSX.Element {
             style={styles.logoutButton}
             onPress={handleLogout}
           >
-            <Text style={styles.buttonText}>Logout</Text>
+            <Text style={styles.buttonText}>Sair</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -407,7 +407,7 @@ const styles = StyleSheet.create({
   saveButton: { backgroundColor: "#1E63B1" },
   buttonText: { color: "#fff", fontWeight: "700", fontSize: 14, letterSpacing: 0.5 },
   logoutButton: {
-    backgroundColor: "#ccc",
+    backgroundColor:"#5A7BAA", /*Botão logout*/
     marginTop: 25,
     borderRadius: 25,
     paddingVertical: 14,

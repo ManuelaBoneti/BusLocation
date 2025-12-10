@@ -1,39 +1,54 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import {MaterialIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { Pressable } from 'react-native';
-import localizacao from './localizacao';
+
+const formatarHorario = (value: string) => {
+    let digits = value.replace(/\D/g, ''); 
+    
+    if (digits.length > 4) {
+        digits = digits.substring(0, 4);
+    }
+
+    if (digits.length > 2) {
+        return `${digits.substring(0, 2)}:${digits.substring(2)}`;
+    }
+
+    return digits;
+};
+
 
 export default function Trajeto() {
 
     const [busLines, setBusLines] = useState([
-        '001 - Centro / Leonor Mendes',
-        '002 - Centro / Cidade nova',
-        '003 - Centro / Facciolo',
-        '004 - Leonor Mendes / Cidade nova',
-        '005 - Leonor Mendes / Facciolo',
-        '006 - Leonor Mendes / Centro',
-        '007 - Cidade nova / Leonor Mendes',
-        '008 - Cidade nova / Facciolo',
-        '009 - Cidade nova / Centro',
-        '010 - Facciolo / Leonor Mendes',
-        '011 - Facciolo / Cidade nova',
-        '012 - Facciolo / Centro',
+
+        '001 - Centro / Leonor Mendes', '002 - Centro / Cidade nova', '003 - Centro / Facciolo',
+        '004 - Leonor Mendes / Cidade nova', '005 - Leonor Mendes / Facciolo', '006 - Leonor Mendes / Centro',
+        '007 - Cidade nova / Leonor Mendes', '008 - Cidade nova / Facciolo', '009 - Cidade nova / Centro',
+        '010 - Facciolo / Leonor Mendes', '011 - Facciolo / Cidade nova', '012 - Facciolo / Centro',
     ]);
 
     const [search, setSearch] = useState('');
     const [selectedLine, setSelectedLine] = useState('');
+    const [time, setTime] = useState(''); 
 
     const filteredLines = busLines.filter(line =>
         line.toLowerCase().includes(search.toLowerCase())
     );
 
+    const handleTimeChange = (text: string) => {
+        const maskedValue = formatarHorario(text);
+        setTime(maskedValue);
+    };
+
     const handleContinue = () => {
         if (selectedLine) {
             router.push({
                 pathname: '/(drawer)/visualizacaoOnibus',
-                params: { linhaEscolhida: selectedLine },
+                params: { 
+                    linhaEscolhida: selectedLine,
+                    horario: time, 
+                },
             });
         } else {
             Alert.alert('Atenção', 'Selecione uma linha antes de continuar.');
@@ -93,25 +108,20 @@ export default function Trajeto() {
 
                 <View style={styles.inputContainer}>
                     <MaterialIcons style={styles.icon} name='schedule' size={16} />
-                    <TextInput style={styles.textInput} placeholder="Horário:" />
+                    <TextInput 
+                        style={styles.textInput} 
+                        placeholder="Horário (HH:MM):" 
+                        keyboardType="numeric" 
+                        maxLength={5}
+                        value={time} 
+                        onChangeText={handleTimeChange} 
+                    />
                 </View>
 
                 <View>
-                    <Pressable
-                        onPress={handleContinue}
-                        style={({ pressed }) => [
-                            styles.button,
-                            pressed ? styles.buttonPressed : null
-                        ]} >
-                        <Text style={styles.textButton}>PROCURAR</Text>
-                        <Ionicons
-                            name="search"
-                            size={22}
-                            color="#fff"
-                            style={{ marginLeft: 10, marginTop: 2 }}
-                        />
-                    </Pressable>
-                    
+                    <TouchableOpacity style={styles.button} onPress={handleContinue}>
+                        <Text style={styles.textButton}>Procurar</Text>
+                    </TouchableOpacity>
                 </View>
 
             </View>
@@ -135,7 +145,7 @@ const styles = StyleSheet.create({
         fontSize: 27,
         color: "#fff",
        fontFamily: 'Quicksand_700Bold',
-        marginBottom: 30, // espaço entre o título e a section
+        marginBottom: 30, 
         marginTop: -50,
         alignItems: 'center',
     },
@@ -174,7 +184,7 @@ const styles = StyleSheet.create({
     },
     dropdownContainer: {
         position: 'absolute',
-        top: 65, // distância do topo do input 
+        top: 65, 
         left: 0,
         right: 0,
         backgroundColor: '#fff',
@@ -220,6 +230,5 @@ const styles = StyleSheet.create({
         color: '#fff',
         letterSpacing: 1,
         textTransform: 'uppercase',
-        marginLeft: 30
     },
 });
