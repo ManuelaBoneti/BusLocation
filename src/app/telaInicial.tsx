@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#033b85",
     },
     tela: {
-        width: 340,
+        width: 244,
         height: 370,
         marginTop: 40,
     },

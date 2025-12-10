@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
         color: "#033b85",
         fontWeight: 'bold',
         fontSize: 16,
+        letterSpacing: 1,
     }
 });
 

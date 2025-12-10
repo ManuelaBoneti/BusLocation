@@ -40,7 +40,7 @@ export default function criarConta(){
             };
             await AsyncStorage.setItem("usuario_dados", JSON.stringify(userData));
             Alert.alert("Sucesso", "Conta criada com sucesso!");
-            router.navigate("/(tabs)/menuPrincipal");
+            router.navigate("/telaInicial");
         } catch (error) {
             Alert.alert("Erro", "Não foi possível criar a conta.");
         }
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     tela : {
-        width: 340,
+        width: 240,
         height: 370,
         marginBottom: -90,
         marginTop: 20

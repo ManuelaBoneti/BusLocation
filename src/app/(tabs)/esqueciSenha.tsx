@@ -1,3 +1,4 @@
+import { BackMenu } from '@/components/BackMenu';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
@@ -27,12 +28,10 @@ export default function EsqueciSenha() {
   return (
     <View style={styles.container}>
 
+      <BackMenu />
+
       <Text style={styles.title}>ESQUECI A SENHA</Text>
       <Image style={styles.Image} source={require('@/assets/Cadeado.png')} />
-
-      <Text style={styles.esqueceuSenha}>
-         Esqueceu a senha?
-      </Text>
 
       <Text style={styles.informacao}>
         Informe seu e-mail para criar uma nova senha.
@@ -73,7 +72,8 @@ const styles = StyleSheet.create({
   },
   Image:{
     width: 200,
-    height: 200
+    height: 260,
+    marginLeft: 20,
   },
   esqueceuSenha: {
     color: '#000',

@@ -48,13 +48,30 @@ export default function Chat() {
       } else if (userText === "3") {
         botReply =
           "Para problemas com trajeto: verifique se o app tem permissão de GPS e se a conexão com a internet está estável ou informe qual linha está com problema e iremos analisar para você.";
-      } 
+      }
       else if (userText === "4") {
         botReply =
           "Para problemas com visualização dos ônibus: verifique se sua localização está ativada, se o app tem permissão de GPS e se a conexão com a internet está estável.";
-      }else if (userText === "5") {
-      botReply =
-        "Para problemas com o cadastro do passe: confirme se seus dados estão corretos (data de validade, nome e data de nascimento). Se o erro persistir, procure o guichê para validar o cadastro.";
+      } else if (userText === "5") {
+        botReply =
+          "Para problemas com o cadastro do passe: confirme se seus dados estão corretos (data de validade, nome e data de nascimento). Se o erro persistir, procure o guichê para validar o cadastro.";
+
+      } else if (userText === "Ola, bom dia" || userText === "oi" || userText === "bom dia" || userText === "ola" || userText === "Ola") {
+        botReply =
+          "Olá! Em que posso ajudar você hoje?";
+
+      } else if (userText === "Ainda nao esta funcionando" || userText === "nao está funcionando" || userText === "nao funcionou" || userText === "Ainda nao funcionou") {
+        botReply =
+          "Faça o logout e tente novamente. Se o problema persistir, entre em contato com o suporte.";
+
+      } else if (userText === "Qual o contato do suporte?" || userText === "Qual o numero do suporte?" || userText === "Qual o contato para o suporte?" || userText === "Contato do suporte") {
+        botReply =
+          "O número do suporte é: (14) 3283-9570. Estamos aqui para ajudar!";
+      
+      } else if (userText === "Obrigada" || userText === "Obrigado" || userText === "Valeu" || userText === "Obrigada!" || userText === "obrigada" || userText === "Valeu!") {
+        botReply =
+          "De nada! Se precisar de mais ajuda, é só chamar.";
+
     } else {
         botReply =
           "Infelizmente, ainda não sou capaz de responder suas perguntas. Mas qualquer dúvida entre em contato com o seguinte número: (14) 3283-9570";

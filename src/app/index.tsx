@@ -4,7 +4,6 @@ import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } fr
 import { UserProvider } from '../components/Context/UserContext';
 
 export default function Index() {
-    // 1. Carregamento das Fontes
     const [fontsLoaded] = useFonts({
         Quicksand_400Regular,
         Quicksand_700Bold
@@ -45,8 +44,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#033b85"
     },
     tela: {
-        width: 440,
-        height: 370,
+        width: 284,
+        height: 470,
         marginTop: 100, 
     },
     button: {
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         paddingVertical: 12,
         paddingHorizontal: 36,
-        marginTop: 30,
+        marginTop: 10,
         elevation: 4,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,

@@ -13,6 +13,21 @@ export default function menuPrincipal() {
             </View>
 
             <View style={styles.gridContainer}>
+
+            <View style={styles.caixaIcon}>
+                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/CadastroPasse' as any)}>
+                        <FontAwesome6 name="id-card" size={60} color={'white'} />
+                    </TouchableOpacity>
+                    <Text style={styles.subtitulo}>Cadastro do Passe</Text>
+                </View>
+
+                <View style={styles.caixaIcon}>
+                <TouchableOpacity onPress={() => router.navigate('/(drawer)/passeVirtual' as any)}>
+                    <FontAwesome6 name="address-card" size={60} color={'white'} />
+                </TouchableOpacity>
+                    <Text style={styles.subtitulo}>Passe Virtual</Text>
+                </View>
+
                 <View style={styles.caixaIcon}>
                     <TouchableOpacity onPress={() => router.navigate('/(drawer)/trajeto' as any)}>
                         <FontAwesome6 name="map-location-dot" size={60} color={'white'} />
@@ -41,19 +56,9 @@ export default function menuPrincipal() {
                     </TouchableOpacity>
                 </View>
 
-                <View style={styles.caixaIcon}>
-                <TouchableOpacity onPress={() => router.navigate('/(drawer)/passeVirtual' as any)}>
-                    <FontAwesome6 name="address-card" size={60} color={'white'} />
-                </TouchableOpacity>
-                    <Text style={styles.subtitulo}>Passe Virtual</Text>
-                </View>
+                
 
-                <View style={styles.caixaIcon}>
-                    <TouchableOpacity onPress={() => router.navigate('/(drawer)/CadastroPasse' as any)}>
-                        <FontAwesome6 name="id-card" size={60} color={'white'} />
-                    </TouchableOpacity>
-                    <Text style={styles.subtitulo}>Cadastro do Passe</Text>
-                </View>
+              
             </View>
         </View>
     );
