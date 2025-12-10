@@ -1,21 +1,67 @@
-import React from 'react';
-import { Image } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+// Remova "MapViewPropsAndMethods" daqui, pois não é reconhecido
+import MapView, { Marker } from 'react-native-maps'; 
 
-import { StyleSheet, Text, View } from 'react-native';
-import MapView from 'react-native-maps'; // Importe diretamente
+// 1. DEFINIÇÃO DO TIPO:
+type LocationData = {
+    bairro: string;
+    latitude: number;
+    longitude: number;
+};
+ 
+// Dados JSON fornecidos pelo usuário (agora tipados)
+const ubsData: LocationData[] = [
+    { bairro: "Centro", latitude: -22.351944, longitude: -48.775000 },
+    { bairro: "Cidade Nova", latitude: -22.32130532421314, longitude: -48.79683089338152 },
+    { bairro: "Facciollo", latitude: -22.37287893684414, longitude: -48.77365077334054 },
+    { bairro: "Leonor Mendes", latitude: -22.351667, longitude: -48.775000 }
+];
+
+const InitialRegion = {
+    latitude: ubsData[0].latitude, // Acesso seguro ao primeiro item
+    longitude: ubsData[0].longitude,
+    latitudeDelta: 0.1, 
+    longitudeDelta: 0.1, 
+};
 
 export default function Localizacao() {
+    // ⚠️ HOOKS DEVEM FICAR DENTRO DO COMPONENTE
+    // Use esta linha para tipar corretamente o mapRef:
+    const mapRef = useRef<MapView | null>(null); 
 
-    const InitialRegion = {
-        latitude: -22.3511,
-        longitude: -48.7749,
-        latitudeDelta: 0.05, // Zoom mais próximo
-        longitudeDelta: 0.05, // Zoom mais próximo
+    // Estado pode ser LocationData ou null
+    const [selectedLocation, setSelectedLocation] = useState<LocationData | null>(ubsData[0]); 
+
+    const handleLocationPress = (location: LocationData) => {
+        setSelectedLocation(location);
+        if (mapRef.current) {
+            // A tipagem MapView | null permite o acesso a animateToRegion
+            mapRef.current.animateToRegion({
+                latitude: location.latitude,
+                longitude: location.longitude,
+                latitudeDelta: 0.01, 
+                longitudeDelta: 0.01,
+            }, 1000); 
+        }
     };
+
+    // 3. TIPAGEM DA FUNÇÃO renderItem:
+    const renderLocationItem = ({ item }: { item: LocationData }) => (
+        <TouchableOpacity 
+            style={[
+                styles.option, 
+                selectedLocation && selectedLocation.bairro === item.bairro ? styles.selectedOption : {} 
+            ]}
+            onPress={() => handleLocationPress(item)}
+        >
+            <Text style={styles.optionText}>{item.bairro}</Text>
+        </TouchableOpacity>
+    );
 
     return (
         <View style={styles.container}>
-
+            
             <View style={{ alignItems: 'center', marginTop: -110 }}>
                 <Image
                     style={styles.tela}
@@ -24,18 +70,39 @@ export default function Localizacao() {
             </View>
             <Text style={styles.title}>Trajeto</Text>
 
-
             <MapView
+                ref={mapRef}
                 style={styles.map}
                 initialRegion={InitialRegion}
-            // NÃO precisa de provider={PROVIDER_GOOGLE} ou UrlTile
-            // O Expo gerencia a renderização nativa (sem chave do Google no Android)
-            />
+            >
+                {ubsData.map((location, index) => (
+                    <Marker
+                        key={index} 
+                        coordinate={{
+                            latitude: location.latitude,
+                            longitude: location.longitude,
+                        }}
+                        title={location.bairro}
+                        pinColor={selectedLocation && selectedLocation.bairro === location.bairro ? '#FF0000' : '#0099FF'}
+                        onPress={() => handleLocationPress(location)}
+                    />
+                ))}
+            </MapView>
+
+            <View style={styles.locationListContainer}>
+                <FlatList<LocationData> 
+                    data={ubsData}
+                    renderItem={renderLocationItem}
+                    keyExtractor={(item, index) => index.toString()}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={{ paddingHorizontal: 10 }}
+                />
+            </View>
 
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -52,97 +119,40 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 27,
         color: "#fff",
-        fontFamily: 'Quicksand_700Bold',
-        marginBottom: 30, // espaço entre o título e a section
+        marginBottom: 20, 
         marginTop: -50,
-        alignItems: 'center',
     },
-    icon: {
-        margin: 10,
+    map: {
+        width: '100%',
+        height: Dimensions.get('window').height * 0.5,
+        marginTop: 20, 
     },
-    section: {
-        backgroundColor: '#fff',
-        borderRadius: 15,
-        padding: 13,
-        elevation: 2,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
-        width: 390,
-        height: 400,
-        alignItems: 'center',
-    },
-    inputContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderColor: '#ccc',
-        borderWidth: 1,
-        borderRadius: 8,
-        paddingHorizontal: 10,
-        marginBottom: 20,
-        marginTop: 20,
-        backgroundColor: '#fff',
-    },
-    textInput: {
-        flex: 1,
-        height: 60,
-        marginLeft: 5,
-        fontSize: 16,
-    },
-    dropdownContainer: {
+    locationListContainer: {
         position: 'absolute',
-        top: 65, // distância do topo do input 
-        left: 0,
-        right: 0,
-        backgroundColor: '#fff',
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        zIndex: 20,
-        elevation: 10,
-        shadowColor: '#000',
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        maxHeight: 200,
+        bottom: 20,
+        height: 70, 
+        width: '100%',
+        zIndex: 10,
     },
     option: {
+        backgroundColor: '#fff',
+        borderRadius: 10,
         paddingVertical: 10,
-        paddingHorizontal: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#eee',
+        paddingHorizontal: 15,
+        marginHorizontal: 5,
+        justifyContent: 'center',
+        elevation: 3,
+        width: 150, 
+        alignItems: 'center',
+    },
+    selectedOption: {
+        borderColor: '#FF0000', 
+        borderWidth: 2,
     },
     optionText: {
         fontSize: 16,
-        color: '#333',
-    },
-    button: {
-        backgroundColor: "#ccc",
-        borderRadius: 12,
-        paddingVertical: 12,
-        paddingHorizontal: 36,
-        marginTop: 10,
-        elevation: 4,
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.3,
-        shadowRadius: 3,
-        flexDirection: 'row',
-    },
-    buttonPressed: {
-        backgroundColor: "gray",
-        transform: [{ scale: 0.97 }],
-    },
-    textButton: {
-        fontSize: 18,
         fontWeight: 'bold',
-        color: '#fff',
-        letterSpacing: 1,
-        textTransform: 'uppercase',
-        marginLeft: 30
-    },
-
-    map: {
-        width: '100%',
-        height: '100%',
+        color: '#333',
+        textAlign: 'center',
     },
 });

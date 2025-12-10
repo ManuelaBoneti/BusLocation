@@ -88,55 +88,56 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  button: {
-    backgroundColor: "#677db0",
+  button : {
+    backgroundColor: "#ccc",
     borderRadius: 12,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    marginTop:  80,
-    
+    paddingVertical: 12,
+    paddingHorizontal: 36,
+    marginTop: 10,
+    elevation: 4,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    flexDirection: 'row',
 },
-
   modalContainer: {
     flex: 1,
     justifyContent: "flex-end",
-    alignItems: "center",      // 👈 centraliza horizontalmente
+    alignItems: "center",      
     backgroundColor: "rgba(0,0,0,0.45)",
   },
   modalContent: {
-    width: "90%",               // 👈 aumenta o tamanho
+    width: "90%",              
     backgroundColor: "#fff",
-    paddingVertical: 40,        // 👈 mais espaço interno
+    paddingVertical: 40,      
     paddingHorizontal: 30,
-    borderTopLeftRadius: 30,    // 👈 bordas maiores
+    borderTopLeftRadius: 30,    
     borderTopRightRadius: 30,
     elevation: 15,
-    marginBottom: 150,           // 👈 sobe um pouco o modal
+    marginBottom: 150,        
   },
   modalTitle: {
-    fontSize: 26,               // 👈 maior
+    fontSize: 26,               
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 15,
   },
   modalText: {
-    fontSize: 18,               // 👈 maior
+    fontSize: 18,               
     textAlign: "center",
     marginBottom: 30,
   },
   modalButton: {
     backgroundColor: "#033b85",
-    paddingVertical: 16,        // 👈 botão maior
+    paddingVertical: 16,        
     borderRadius: 14,
     alignItems: "center",
   },
   modalButtonText: {
     color: "#fff",
-    fontSize: 18,               // 👈 texto maior
+    fontSize: 18,              
     fontWeight: "bold",
   },
-  
-
   tela: {
     width: 220,
     height: 280,
@@ -168,5 +169,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderRadius: 30,
   },
-  navButtonText: { color: "#fff", fontSize: 22, fontWeight: "bold" },
+  navButtonText : {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+},
 });

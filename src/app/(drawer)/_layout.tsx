@@ -131,7 +131,7 @@ export default function Layout() {
                             color: "#fff"
                         },
                         drawerIcon: () => (
-                            <Ionicons name="card-outline"
+                            <Ionicons name="chatbubble-ellipses-outline"
                                 size={22} />
                         ),
                         headerLeft: () => {
